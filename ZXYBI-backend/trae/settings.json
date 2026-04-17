@@ -1,0 +1,22 @@
+{
+  "maven": {
+    "executablePath": "mvn",
+    "userSettingsPath": "",
+    "localRepository": "D:\\Code\\ZX-BI-main\\ZX-BI-main\\.m2",
+    "terminal": {
+      "customEnv": {
+        "MAVEN_OPTS": "-Dmaven.repo.local=D:\\Code\\ZX-BI-main\\ZX-BI-main\\.m2"
+      }
+    }
+  },
+  "java": {
+    "home": "",
+    "import": {
+      "maven": {
+        "enabled": true,
+        "userSettingsPath": "",
+        "localRepository": "D:\\Code\\ZX-BI-main\\ZX-BI-main\\.m2"
+      }
+    }
+  }
+}

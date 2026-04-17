@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panther.smartBI.mapper.AiSessionMapper">
+
+    <select id="selectByUserId" resultType="com.panther.smartBI.model.entity.AiSession">
+        SELECT * FROM ai_session
+        WHERE userId = #{userId}
+        AND isDelete = 0
+        ORDER BY updateTime DESC
+    </select>
+
+    <delete id="deleteExpiredSessions">
+        <![CDATA[
+        DELETE FROM ai_session
+        WHERE createTime < #{expireTime}
+        ]]>
+    </delete>
+
+</mapper>

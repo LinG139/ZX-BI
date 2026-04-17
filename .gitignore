@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.m2/
+pnpm-lock.yaml
+package-lock.json
+
+# Build outputs
+dist/
+build/
+target/
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Cache
+.cache/
+.npm-cache/
+
+# Umi.js cache
+src/.umi/
+src/.umi-production/

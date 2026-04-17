@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panther.smartBI.mapper.AiChatMapper">
+
+    <select id="selectBySessionId" resultType="com.panther.smartBI.model.entity.AiChat">
+        SELECT * FROM ai_chat
+        WHERE sessionId = #{sessionId}
+        AND isDelete = 0
+        ORDER BY createTime ASC
+    </select>
+
+    <update id="deleteBySessionId">
+        UPDATE ai_chat
+        SET isDelete = 1
+        WHERE sessionId = #{sessionId}
+    </update>
+
+    <delete id="deleteExpiredChats">
+        <![CDATA[
+        DELETE FROM ai_chat
+        WHERE createTime < #{expireTime}
+        ]]>
+    </delete>
+
+</mapper>
