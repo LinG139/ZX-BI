@@ -1,0 +1,9 @@
+com\panther\smartBI\mapper\PostFavourMapperTest.class
+com\panther\smartBI\utils\EasyExcelTest.class
+com\panther\smartBI\manager\RedissonLimiterManagerTest.class
+com\panther\smartBI\service\PostThumbServiceTest.class
+com\panther\smartBI\service\UserServiceTest.class
+com\panther\smartBI\manager\annoRate.class
+com\panther\smartBI\dao\testService.class
+com\panther\smartBI\mapper\PostMapperTest.class
+com\panther\smartBI\service\PostFavourServiceTest.class

@@ -1,0 +1,52 @@
+# 线上配置文件
+server:
+  port: 9001
+spring:
+  # 数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/zhixiyun-bi?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username:
+    password:
+  # Redis 配置
+  redis:
+    database: 1
+    host:
+    port:
+    timeout:
+    password:
+  # RabbitMQ 配置
+  rabbitmq:
+    host:
+    port:
+    password:
+    username:
+  # 文件上传
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# 文件存储配置
+#file:
+#  upload:
+#    path: /www/wwwroot/zx-bi/uploads/avatars/
+#  access:
+#    url: http://your-domain.com/api/file/avatar/
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: ''
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
+# AI配置
+ai:
+  provider: zhipu
+
+# 智谱AI配置
+
