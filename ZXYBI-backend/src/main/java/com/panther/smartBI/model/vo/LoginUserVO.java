@@ -37,11 +37,14 @@ public class LoginUserVO implements Serializable {
     private String userRole;
 
     /**
+<<<<<<< HEAD
      * 用户账号
      */
     private String userAccount;
 
     /**
+=======
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
      * 电话
      */
     private String phoneNum;

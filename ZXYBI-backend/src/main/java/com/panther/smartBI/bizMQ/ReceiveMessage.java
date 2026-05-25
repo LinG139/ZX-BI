@@ -4,6 +4,10 @@ import com.panther.smartBI.common.ErrorCode;
 import com.panther.smartBI.constant.BiConstant;
 import com.panther.smartBI.constant.BiMQConstant;
 import com.panther.smartBI.exception.BusinessException;
+<<<<<<< HEAD
+=======
+import com.panther.smartBI.exception.ThrowUtils;
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 import com.panther.smartBI.manager.AiManager;
 import com.panther.smartBI.model.entity.Chart;
 import com.panther.smartBI.model.enums.ChartStatusEnum;

@@ -59,12 +59,19 @@ public class UserController {
         String userAccount = userRegisterRequest.getUserAccount();
         String userPassword = userRegisterRequest.getUserPassword();
         String checkPassword = userRegisterRequest.getCheckPassword();
+<<<<<<< HEAD
         String userName = userRegisterRequest.getUserName();
         String userAvatar = userRegisterRequest.getUserAvatar();
         if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "参数为空");
         }
         long result = userService.userRegister(userAccount, userPassword, checkPassword, userName, userAvatar);
+=======
+        if (StringUtils.isAnyBlank(userAccount, userPassword, checkPassword)) {
+            return null;
+        }
+        long result = userService.userRegister(userAccount, userPassword, checkPassword);
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
         return ResultUtils.success(result);
     }
 
@@ -276,6 +283,7 @@ public class UserController {
         ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
         return ResultUtils.success(true);
     }
+<<<<<<< HEAD
 
     /**
      * 充值积分
@@ -288,4 +296,6 @@ public class UserController {
         int result = userService.rechargeUserCount(request);
         return ResultUtils.success(result);
     }
+=======
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 }

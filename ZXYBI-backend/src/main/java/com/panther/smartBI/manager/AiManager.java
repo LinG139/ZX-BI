@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 
 @Service
 @Slf4j
@@ -28,6 +31,7 @@ public class AiManager {
     private String aiProvider;
 
     public String doChat(long modelId, String message){
+<<<<<<< HEAD
         return doChat(modelId, message, null);
     }
 
@@ -38,10 +42,19 @@ public class AiManager {
             return doChatByZhiPu(message, false, prompt);
         } else {
             return doChatByYuCongMing(modelId, message, prompt);
+=======
+        log.info("使用AI提供商: {}, 模型ID: {}", aiProvider, modelId);
+        
+        if ("zhipu".equalsIgnoreCase(aiProvider)) {
+            return doChatByZhiPu(message, false);
+        } else {
+            return doChatByYuCongMing(modelId, message);
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
         }
     }
 
     public String doChartAnalysis(long modelId, String message){
+<<<<<<< HEAD
         return doChartAnalysis(modelId, message, null);
     }
 
@@ -52,10 +65,19 @@ public class AiManager {
             return doChatByZhiPu(message, true, prompt);
         } else {
             return doChatByYuCongMing(modelId, message, prompt);
+=======
+        log.info("使用AI提供商: {}, 模型ID: {} (图表分析)", aiProvider, modelId);
+        
+        if ("zhipu".equalsIgnoreCase(aiProvider)) {
+            return doChatByZhiPu(message, true);
+        } else {
+            return doChatByYuCongMing(modelId, message);
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
         }
     }
 
     public String doChatByClient(long modelId, String message){
+<<<<<<< HEAD
         return doChatByClient(modelId, message, null);
     }
 
@@ -82,6 +104,20 @@ public class AiManager {
     private String doChatByZhiPu(String message, boolean isChartAnalysis, String prompt) {
         try {
             return zhiPuClient.doChat(message, isChartAnalysis, prompt);
+=======
+        log.info("使用AI提供商: {}, 模型ID: {}", aiProvider, modelId);
+        
+        if ("zhipu".equalsIgnoreCase(aiProvider)) {
+            return doChatByZhiPu(message, false);
+        } else {
+            return doChatByYuCongMing(modelId, message);
+        }
+    }
+
+    private String doChatByZhiPu(String message, boolean isChartAnalysis) {
+        try {
+            return zhiPuClient.doChat(message, isChartAnalysis);
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
         } catch (BusinessException e) {
             throw e;
         } catch (Exception e) {
@@ -90,6 +126,7 @@ public class AiManager {
         }
     }
 
+<<<<<<< HEAD
     private String doChatByZhiPuWithHistory(String message, boolean isChartAnalysis, String prompt, List<ZhiPuClient.Message> history) {
         try {
             return zhiPuClient.doChatWithHistory(message, isChartAnalysis, prompt, history);
@@ -106,6 +143,12 @@ public class AiManager {
         devChatRequest.setModelId(modelId);
         String finalMessage = buildMessageWithPrompt(message, prompt);
         devChatRequest.setMessage(finalMessage);
+=======
+    private String doChatByYuCongMing(long modelId, String message) {
+        DevChatRequest devChatRequest = new DevChatRequest();
+        devChatRequest.setModelId(modelId);
+        devChatRequest.setMessage(message);
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 
         try {
             BaseResponse<DevChatResponse> devChatResponseBaseResponse = yuCongMingClient.doChat(devChatRequest);
@@ -113,6 +156,7 @@ public class AiManager {
                 log.error("AI 响应为 null");
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 响应异常");
             }
+<<<<<<< HEAD
 
             if (devChatResponseBaseResponse.getCode() != 0) {
                 log.error("AI 服务返回错误码: {}, 消息: {}",
@@ -122,17 +166,36 @@ public class AiManager {
                     "AI 服务异常: " + devChatResponseBaseResponse.getMessage());
             }
 
+=======
+            
+            if (devChatResponseBaseResponse.getCode() != 0) {
+                log.error("AI 服务返回错误码: {}, 消息: {}", 
+                    devChatResponseBaseResponse.getCode(), 
+                    devChatResponseBaseResponse.getMessage());
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, 
+                    "AI 服务异常: " + devChatResponseBaseResponse.getMessage());
+            }
+            
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
             if (devChatResponseBaseResponse.getData() == null) {
                 log.error("AI 响应数据为 null，完整响应: {}", devChatResponseBaseResponse);
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 响应数据为空");
             }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
             String content = devChatResponseBaseResponse.getData().getContent();
             if (content == null || content.trim().isEmpty()) {
                 log.error("AI 返回内容为空");
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 返回内容为空");
             }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
             return content;
         } catch (BusinessException e) {
             throw e;
@@ -142,6 +205,7 @@ public class AiManager {
         }
     }
 
+<<<<<<< HEAD
     /**
      * 将prompt与消息合并
      */
@@ -153,3 +217,6 @@ public class AiManager {
     }
 
 }
+=======
+}
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270

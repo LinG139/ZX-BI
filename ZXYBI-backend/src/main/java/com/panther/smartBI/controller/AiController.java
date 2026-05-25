@@ -1,22 +1,32 @@
 package com.panther.smartBI.controller;
 
+<<<<<<< HEAD
 import com.panther.smartBI.ai.ZhiPuClient;
+=======
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 import com.panther.smartBI.common.BaseResponse;
 import com.panther.smartBI.common.ResultUtils;
 import com.panther.smartBI.constant.BiConstant;
 import com.panther.smartBI.manager.AiManager;
 import com.panther.smartBI.model.dto.ai.ChatRequest;
 import com.panther.smartBI.model.dto.ai.StoryRequest;
+<<<<<<< HEAD
 import com.panther.smartBI.model.vo.ChatResponse;
 import com.panther.smartBI.model.vo.StoryResponse;
 import com.panther.smartBI.service.ChatHistoryService;
 import lombok.extern.slf4j.Slf4j;
+=======
+import com.panther.smartBI.model.vo.StoryResponse;
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 
 /**
  * @author Gin 琴酒
@@ -24,12 +34,16 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/ai")
+<<<<<<< HEAD
 @Slf4j
+=======
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 public class AiController {
 
     @Resource
     private AiManager aiManager;
 
+<<<<<<< HEAD
     @Resource
     private ChatHistoryService chatHistoryService;
 
@@ -82,6 +96,16 @@ public class AiController {
         chatResponse.setSessionId(sessionId);
 
         return ResultUtils.success(chatResponse);
+=======
+    /**
+     * AI 聊天
+     * @return
+     */
+    @PostMapping("/chat")
+    public BaseResponse<String> genChat(ChatRequest chatRequest){
+        String answer = aiManager.doChat(BiConstant.CHAT_MODEL_ID, chatRequest.getMessage());
+        return ResultUtils.success(answer);
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
     }
 
     /**
@@ -111,4 +135,8 @@ public class AiController {
         return ResultUtils.success(content);
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270

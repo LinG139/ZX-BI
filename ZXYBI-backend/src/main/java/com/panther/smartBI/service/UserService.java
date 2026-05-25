@@ -27,6 +27,7 @@ public interface UserService extends IService<User> {
     long userRegister(String userAccount, String userPassword, String checkPassword);
 
     /**
+<<<<<<< HEAD
      * 用户注册（带昵称和头像）
      *
      * @param userAccount   用户账户
@@ -39,6 +40,8 @@ public interface UserService extends IService<User> {
     long userRegister(String userAccount, String userPassword, String checkPassword, String userName, String userAvatar);
 
     /**
+=======
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
      * 用户登录
      *
      * @param userAccount  用户账户
@@ -123,6 +126,7 @@ public interface UserService extends IService<User> {
      * 扣减积分
      */
     boolean updateUserChartCount(HttpServletRequest request);
+<<<<<<< HEAD
 
     /**
      * 扣减积分（根据用户ID）
@@ -136,4 +140,6 @@ public interface UserService extends IService<User> {
      * @return 充值后的积分
      */
     int rechargeUserCount(HttpServletRequest request);
+=======
+>>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 }
