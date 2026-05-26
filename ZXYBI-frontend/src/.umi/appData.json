@@ -133,7 +133,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 8
+        "register": 22
       },
       "enableBy": "register"
     },
@@ -146,7 +146,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 7
       },
       "enableBy": "register"
     },
@@ -160,7 +160,7 @@
       "time": {
         "hooks": {
           "onStart": [
-            0
+            13
           ]
         },
         "register": 5
@@ -180,7 +180,7 @@
             0
           ]
         },
-        "register": 4
+        "register": 10
       },
       "enableBy": "register"
     },
@@ -194,10 +194,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            2
+            11
           ]
         },
-        "register": 4
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -211,22 +211,16 @@
       "time": {
         "hooks": {
           "modifyRoutes": [
+            1,
             0,
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0
           ]
         },
-        "register": 1
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -240,25 +234,19 @@
       "time": {
         "hooks": {
           "onDevCompileDone": [
-            94,
-            4,
-            4,
-            3,
-            18,
-            3,
-            6,
-            4,
-            4,
-            3,
-            11,
-            121,
-            4,
-            3,
-            4,
-            11
+            232,
+            71,
+            48,
+            21,
+            12,
+            9,
+            7,
+            67,
+            12,
+            10
           ]
         },
-        "register": 2
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -272,25 +260,19 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            56
+            213
           ],
           "onGenerateFiles": [
-            6,
-            49,
-            23,
-            25,
-            19,
+            9,
+            14,
+            14,
+            14,
+            232,
             21,
-            26,
-            16,
-            23,
-            19,
-            20,
-            24,
-            14
+            20
           ]
         },
-        "register": 23
+        "register": 62
       },
       "enableBy": "register"
     },
@@ -304,13 +286,7 @@
       "time": {
         "hooks": {
           "addEntryCode": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -336,19 +312,11 @@
             0
           ],
           "onCheck": [
-            0
+            1
           ],
           "onPrepareBuildSuccess": [
             0,
             0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            2,
-            1,
             0,
             0,
             0,
@@ -358,46 +326,6 @@
           "onCheckCode": [
             0,
             1,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -441,7 +369,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -458,7 +386,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -471,7 +399,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -488,7 +416,7 @@
             0
           ]
         },
-        "register": 15
+        "register": 20
       },
       "enableBy": "register"
     },
@@ -712,7 +640,7 @@
       "enableBy": "register",
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       }
     },
     "virtual: config-analyze": {
@@ -767,7 +695,7 @@
       "enableBy": "register",
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       }
     },
     "virtual: config-svgr": {
@@ -973,7 +901,7 @@
       "enableBy": "register",
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 2
       }
     },
     "virtual: config-jsMinifierOptions": {
@@ -1006,7 +934,7 @@
       "enableBy": "register",
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       }
     },
     "virtual: config-ignoreMomentLocale": {
@@ -1340,7 +1268,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -1357,7 +1285,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -1371,10 +1299,10 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            10
+            73
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1387,7 +1315,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 66
+        "register": 347
       },
       "enableBy": "register"
     },
@@ -1400,7 +1328,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 57
+        "register": 116
       },
       "enableBy": "config"
     },
@@ -1413,7 +1341,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 23
+        "register": 616
       },
       "enableBy": "config"
     },
@@ -1431,9 +1359,18 @@
           ],
           "addBeforeMiddlewares": [
             0
+          ],
+          "modifyHTMLFavicon": [
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
           ]
         },
-        "register": 1
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -1447,19 +1384,13 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            6,
-            3,
-            5,
             4,
-            3,
-            3,
-            9,
-            6,
-            5,
-            4,
-            3,
-            5,
-            3
+            1,
+            1,
+            1,
+            2,
+            1,
+            2
           ],
           "addRuntimePlugin": [
             0,
@@ -1468,16 +1399,10 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1
+            0
           ]
         },
-        "register": 1
+        "register": 8
       },
       "enableBy": "register"
     },
@@ -1490,7 +1415,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 11
       },
       "enableBy": "config"
     },
@@ -1503,7 +1428,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 177
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1515,7 +1440,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -1528,7 +1453,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 10
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides": {
@@ -1542,17 +1467,11 @@
         "hooks": {
           "onGenerateFiles": [
             0,
+            0,
+            0,
+            0,
+            0,
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addEntryImports": [
@@ -1567,24 +1486,12 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1597,7 +1504,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 15
       },
       "enableBy": "config"
     },
@@ -1614,50 +1521,32 @@
             1
           ],
           "onGenerateFiles": [
-            99,
-            20,
-            36,
-            46,
-            20,
-            31,
-            38,
-            15,
-            21,
-            22,
-            21,
-            17,
-            13
+            326,
+            13,
+            12,
+            11,
+            57,
+            28,
+            28
           ],
           "addPolyfillImports": [
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 2
+        "register": 12
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
@@ -1680,25 +1569,13 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1712,22 +1589,16 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            220,
+            2836,
             0,
             0,
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            3
           ]
         },
-        "register": 2
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -1740,7 +1611,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -1753,7 +1624,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 7
       },
       "enableBy": "config"
     },
@@ -1767,25 +1638,19 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            2,
             3,
-            2,
-            3,
-            2,
-            3,
-            2,
+            0,
             1,
-            2,
-            2,
-            2,
-            2,
+            0,
+            3,
+            1,
             1
           ],
           "addBeforeMiddlewares": [
-            0
+            1
           ]
         },
-        "register": 2
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -1799,35 +1664,23 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
+            87,
+            71,
+            24,
+            12,
+            28,
+            12,
+            25,
+            10,
+            127,
+            91,
+            98,
+            23,
             35,
-            20,
-            90,
-            15,
-            65,
-            22,
-            105,
-            21,
-            52,
-            9,
-            66,
-            78,
-            91,
-            16,
-            62,
-            13,
-            73,
-            73,
-            68,
-            18,
-            65,
-            13,
-            91,
-            17,
-            39,
-            12
+            15
           ]
         },
-        "register": 5
+        "register": 21
       },
       "enableBy": "register"
     },
@@ -1840,7 +1693,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 9
       },
       "enableBy": "config"
     },
@@ -1853,7 +1706,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 5
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/ssr/ssr": {
@@ -1865,7 +1718,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -1879,22 +1732,16 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            390,
-            39,
-            38,
-            49,
-            17,
-            31,
-            29,
-            20,
-            27,
-            19,
-            20,
-            19,
-            11
+            1291,
+            18,
+            11,
+            9,
+            88,
+            59,
+            24
           ]
         },
-        "register": 4
+        "register": 30
       },
       "enableBy": "register"
     },
@@ -1911,7 +1758,7 @@
             0
           ]
         },
-        "register": 5
+        "register": 29
       },
       "enableBy": "register"
     },
@@ -1924,7 +1771,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 16
       },
       "enableBy": "config"
     },
@@ -1937,7 +1784,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 6
       },
       "enableBy": "config"
     },
@@ -1950,7 +1797,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 9
+        "register": 60
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -1962,7 +1809,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 489
       },
       "enableBy": "config"
     },
@@ -1976,22 +1823,16 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            12,
-            4,
+            13,
+            2,
+            2,
+            2,
             3,
-            8,
-            3,
-            4,
-            4,
-            4,
             5,
-            2,
-            2,
-            3,
-            2
+            3
           ]
         },
-        "register": 1
+        "register": 11
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
@@ -2003,7 +1844,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 10
       },
       "enableBy": "config"
     },
@@ -2016,7 +1857,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 17
       },
       "enableBy": "config"
     },
@@ -2029,7 +1870,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 5
       },
       "enableBy": "config"
     },
@@ -2042,7 +1883,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 7
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/swc/swc": {
@@ -2071,7 +1912,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 30
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mako/mako": {
@@ -2083,7 +1924,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -2096,7 +1937,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 12
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
@@ -2108,7 +1949,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 14
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
@@ -2119,8 +1960,18 @@
       "key": "routePreloadOnLoad",
       "config": {},
       "time": {
-        "hooks": {},
-        "register": 26
+        "hooks": {
+          "addHTMLHeadScripts": [
+            60,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "register": 177
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/forget/forget": {
@@ -2132,7 +1983,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 5
       },
       "enableBy": "config"
     },
@@ -2146,10 +1997,10 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            861
+            1487
           ]
         },
-        "register": 2
+        "register": 11
       },
       "enableBy": "register"
     },
@@ -2162,7 +2013,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 22
       },
       "enableBy": "register"
     },
@@ -2175,7 +2026,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 35
+        "register": 403
       },
       "enableBy": "register"
     },
@@ -2189,10 +2040,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            23
+            96
           ]
         },
-        "register": 59
+        "register": 393
       }
     },
     "./node_modules/@umijs/preset-umi/dist/commands/help": {
@@ -2204,7 +2055,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2217,7 +2068,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -2243,7 +2094,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -2256,7 +2107,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -2269,7 +2120,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 9
       },
       "enableBy": "register"
     },
@@ -2282,7 +2133,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 10
       },
       "enableBy": "register"
     },
@@ -2295,7 +2146,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2308,7 +2159,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2321,7 +2172,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -2334,7 +2185,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -2347,7 +2198,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -2360,7 +2211,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2373,7 +2224,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -2386,7 +2237,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -2412,7 +2263,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -2425,7 +2276,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 6
       },
       "enableBy": "register"
     },
@@ -2438,7 +2289,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 16
+        "register": 194
       },
       "enableBy": "register"
     },
@@ -2451,7 +2302,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 9
       },
       "enableBy": "register"
     },
@@ -2464,7 +2315,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 21
       },
       "enableBy": "register"
     },
@@ -2478,13 +2329,7 @@
       "time": {
         "hooks": {
           "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -2493,25 +2338,19 @@
             0
           ],
           "onGenerateFiles": [
-            9,
-            12,
-            4,
-            8,
             5,
-            7,
-            7,
-            9,
-            7,
-            4,
-            19,
-            10,
-            4
+            2,
+            1,
+            1,
+            3,
+            3,
+            3
           ],
           "addTmpGenerateWatcherPaths": [
             0
           ]
         },
-        "register": 2
+        "register": 11
       },
       "enableBy": "config"
     },
@@ -2526,7 +2365,7 @@
       },
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 4
       }
     },
     "./node_modules/@umijs/plugins/dist/antd": {
@@ -2539,7 +2378,7 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            3
+            4
           ],
           "modifyAppData": [
             0
@@ -2548,20 +2387,8 @@
             0
           ],
           "addEntryImportsAhead": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -2582,12 +2409,6 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addRuntimePluginKey": [
@@ -2596,38 +2417,26 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0
           ],
           "onGenerateFiles": [
-            9,
-            9,
             7,
-            10,
-            5,
-            9,
-            10,
-            12,
-            15,
-            6,
-            9,
-            13,
-            4
+            2,
+            3,
+            2,
+            3,
+            7,
+            3
           ],
           "addExtraBabelPlugins": [
             0
           ],
           "chainWebpack": [
-            0
+            1
           ]
         },
-        "register": 8
+        "register": 44
       }
     },
     "./node_modules/@umijs/plugins/dist/dva": {
@@ -2639,7 +2448,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 40
       },
       "enableBy": "config"
     },
@@ -2659,12 +2468,6 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addRuntimePluginKey": [
@@ -2672,44 +2475,26 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0
           ],
           "onGenerateFiles": [
-            8,
+            13,
+            1,
+            1,
+            1,
             6,
-            7,
-            14,
-            4,
-            7,
-            15,
-            6,
-            8,
-            7,
-            6,
-            9,
-            5
+            3,
+            2
           ],
           "addExtraModels": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -2738,24 +2523,12 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            1
           ],
           "modifyAppData": [
             1
           ],
           "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -2771,31 +2544,19 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onGenerateFiles": [
-            23,
             15,
-            22,
+            5,
+            4,
+            5,
             25,
-            11,
-            24,
-            20,
-            18,
-            31,
-            14,
-            18,
-            20,
-            12
+            12,
+            7
           ]
         },
-        "register": 4
+        "register": 95
       },
       "enableBy": "config"
     },
@@ -2808,7 +2569,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 6
       },
       "enableBy": "config"
     },
@@ -2821,7 +2582,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 6
       },
       "enableBy": "config"
     },
@@ -2841,28 +2602,16 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onGenerateFiles": [
-            46,
-            49,
-            60,
-            79,
-            33,
-            79,
-            66,
+            384,
+            22,
+            17,
+            16,
+            181,
             62,
-            96,
-            43,
-            72,
-            61,
-            34
+            33
           ],
           "addTmpGenerateWatcherPaths": [
             0
@@ -2887,35 +2636,23 @@
           "addEntryCodeAhead": [
             0,
             0,
-            1,
             0,
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            1
           ],
           "onGenerateFiles": [
-            4,
-            2,
-            2,
-            1,
-            1,
-            1,
-            2,
-            1,
-            3,
             3,
             1,
+            0,
+            1,
             2,
+            1,
             1
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -2929,12 +2666,6 @@
       "time": {
         "hooks": {
           "addRuntimePluginKey": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -2957,7 +2688,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 5
       }
     },
     "./node_modules/@umijs/plugins/dist/qiankun/slave": {
@@ -2969,7 +2700,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       }
     },
     "./node_modules/@umijs/plugins/dist/react-query": {
@@ -3000,32 +2731,20 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            1,
+            1
           ],
           "onGenerateFiles": [
-            12,
-            5,
-            11,
-            11,
-            4,
-            6,
-            6,
-            5,
-            16,
-            7,
-            6,
-            6,
-            4
+            8,
+            1,
+            2,
+            1,
+            3,
+            3,
+            2
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -3038,7 +2757,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -3051,7 +2770,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -3064,7 +2783,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -3081,7 +2800,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 11
       },
       "enableBy": "register"
     },
@@ -3098,7 +2817,7 @@
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -3115,7 +2834,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -3132,7 +2851,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -3145,7 +2864,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 35
       },
       "enableBy": "register"
     },
@@ -3165,55 +2884,37 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onStart": [
-            0
+            29
           ],
           "onGenerateFiles": [
-            2,
-            2,
-            2,
             1,
             0,
-            1,
-            1,
-            1,
-            2,
-            1,
+            0,
             1,
             2,
-            0
+            1,
+            1
           ],
           "addBeforeMiddlewares": [
             0
           ],
           "onDevCompileDone": [
-            10,
-            1,
-            0,
-            1,
-            8,
+            13,
             2,
+            21,
             1,
             1,
             2,
             1,
             2,
-            12,
-            6,
-            1,
-            1,
-            1
+            3,
+            2
           ]
         },
-        "register": 257
+        "register": 764
       },
       "enableBy": "config"
     },
@@ -3226,7 +2927,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 181
+        "register": 555
       },
       "enableBy": "config"
     },
@@ -3267,25 +2968,19 @@
             0
           ],
           "modifyAppData": [
-            0
+            1
           ],
           "onGenerateFiles": [
-            4,
-            4,
-            6,
             3,
-            4,
-            6,
-            4,
-            5,
-            17,
-            5,
-            3,
-            6,
-            4
+            1,
+            1,
+            1,
+            2,
+            1,
+            2
           ]
         },
-        "register": 56
+        "register": 488
       }
     },
     "./node_modules/@umijs/core/dist/service/generatePlugin": {
@@ -3297,7 +2992,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     }
@@ -4658,7 +4353,7 @@
       "parentId": "ant-design-pro-layout",
       "id": "11",
       "absPath": "/story",
-      "__content": "import React, {useState} from \"react\";\nimport Chat, {Bubble, useMessages} from \"@chatui/core\";\nimport \"@chatui/core/dist/index.css\";\nimport {genChatUsingPOST} from \"@/services/yubi/aiController\";\nimport {message, Select, Tag, Avatar} from \"antd\";\nimport {useModel} from '@umijs/max';\nimport {DEFAULT_AVATAR_URL} from '@/constants';\nimport ReactMarkdown from 'react-markdown';\nimport remarkGfm from 'remark-gfm';\nimport hljs from 'rehype-highlight';\nimport 'highlight.js/styles/github.css';\n\ninterface AIRole {\n  value: string;\n  label: string;\n  prompt: string;\n  avatar: string;\n}\n\nconst AI_ROLES: AIRole[] = [\n  {\n    value: \"analyst\",\n    label: \"数据分析师\",\n    avatar: \"/AIImage/avatar-analyst.png\",\n    prompt: \"你是一名专业的数据分析师，擅长解读数据、发现趋势和提供数据驱动的洞察。请用专业但易懂的方式分析数据问题，给出清晰的数据分析报告和建议。\"\n  },\n  {\n    value: \"frontend\",\n    label: \"前端工程师\",\n    avatar: \"/AIImage/avatar-frontend.png\",\n    prompt: \"你是一名资深前端工程师，精通 React、Vue、TypeScript、CSS、HTML 等前端技术栈。擅长解答前端开发问题、性能优化、组件设计、UI实现等技术难题，提供最佳实践和代码示例。\"\n  },\n  {\n    value: \"java\",\n    label: \"Java工程师\",\n    avatar: \"/AIImage/avatar-java.png\",\n    prompt: \"你是一名资深 Java 工程师，精通 Java、Spring Boot、MyBatis、MySQL 等后端技术栈。擅长解答 Java 开发问题、系统架构设计、性能优化、并发编程等技术难题，提供专业的技术方案和代码示例。\"\n  },\n  {\n    value: \"writer\",\n    label: \"文案作家\",\n    avatar: \"/AIImage/avatar-writer.png\",\n    prompt: \"你是一名专业的文案作家，擅长撰写各种类型的文案，包括营销文案、产品描述、广告标语、品牌故事等。你的文字生动有力，能够精准抓住用户痛点，激发用户情感共鸣。\"\n  },\n  {\n    value: \"yuyu\",\n    label: \"女友雨雨\",\n    avatar: \"/AIImage/avatar-yuyu.png\",\n    prompt: \"你是女友雨雨，一个甜美可爱的女孩子。你的性格温柔体贴，说话语气甜美，喜欢用语气词。你会关心对方的生活和心情，会撒娇卖萌，用甜美的语气和对方聊天。回复要简短可爱，充满少女感。\"\n  },\n  {\n    value: \"tingting\",\n    label: \"女友婷婷\",\n    avatar: \"/AIImage/avatar-tingting.png\",\n    prompt: \"你是女友婷婷，一个成熟优雅的御姐。你的性格独立自信，说话语气温柔但带有成熟的魅力。你善于倾听和理解，会用成熟理性的方式关心对方，偶尔会展现出御姐的霸道和宠溺。回复要有深度和内涵，展现出成熟的魅力。\"\n  }\n];\n\nexport default function App() {\n  const {messages, appendMsg, setTyping} = useMessages([]);\n  const [loading, setLoading] = useState<boolean>(false);\n  const [isTyping, setIsTyping] = useState<boolean>(false);\n  const [selectedRole, setSelectedRole] = useState<AIRole>(AI_ROLES[0]);\n  const [sessionId, setSessionId] = useState<number | null>(null);\n  const {initialState} = useModel('@@initialState');\n  const {currentUser} = initialState || {};\n\n  async function handleSend(type: string, val: string) {\n    if (type === \"text\" && val.trim()) {\n      appendMsg({\n        type: \"text\",\n        content: {text: val},\n        position: \"right\"\n      });\n\n      setTyping(true);\n      setLoading(true);\n      setIsTyping(true);\n\n      try {\n        const res = await genChatUsingPOST({\n          message: val,\n          role: selectedRole.value,\n          prompt: selectedRole.prompt,\n          userId: currentUser?.id,\n          sessionId: sessionId ?? undefined,\n          userAvatar: currentUser?.userAvatar,\n          userName: currentUser?.userName,\n          aiName: selectedRole.label,\n          aiAvatar: selectedRole.avatar\n        });\n        if (!res?.data) {\n          message.error(\"AI回复失败\");\n          appendMsg({\n            type: \"text\",\n            content: {text: \"AI回复失败，请稍后重试\"}\n          });\n        } else {\n          if (res.data.sessionId && !sessionId) {\n            setSessionId(res.data.sessionId);\n          }\n          appendMsg({\n            type: \"text\",\n            content: {text: res.data.answer || res.data}\n          });\n        }\n      } catch (e: any) {\n        message.error(\"AI回复失败：\" + e.message);\n        appendMsg({\n          type: \"text\",\n          content: {text: \"AI回复失败：\" + e.message}\n        });\n      } finally {\n        setTyping(false);\n        setLoading(false);\n        setIsTyping(false);\n      }\n    }\n  }\n\n  function renderMessageContent(msg: any) {\n    const {content} = msg;\n    if (msg.position === \"left\") {\n      return (\n        <div style={{display: \"flex\", alignItems: \"flex-start\", gap: 8}}>\n          <Avatar \n            size=\"large\" \n            src={selectedRole.avatar} \n            style={{flexShrink: 0, borderRadius: '8px'}}\n          />\n          <div style={{position: 'relative', maxWidth: '85%'}}>\n            <div \n              style={{\n                backgroundColor: '#fff',\n                borderRadius: '4px 12px 12px 12px',\n                padding: '8px 12px',\n                border: '1px solid #e8e8e8',\n                boxShadow: '0 1px 2px rgba(0,0,0,0.05)'\n              }}\n            >\n              <div style={{fontSize: '14px', lineHeight: '1.6', wordBreak: 'break-all'}}>\n                <ReactMarkdown\n                  remarkPlugins={[remarkGfm]}\n                  rehypePlugins={[hljs]}\n                  components={{\n                    p: ({children}) => <p style={{margin: '0 0 8px 0'}}>{children}</p>,\n                    h1: ({children}) => <h1 style={{fontSize: '18px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h1>,\n                    h2: ({children}) => <h2 style={{fontSize: '16px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h2>,\n                    h3: ({children}) => <h3 style={{fontSize: '15px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h3>,\n                    code: ({node, className, children, ...props}) => {\n                      const match = /language-(\\w+)/.exec(className || '');\n                      const isInline = !match;\n                      if (isInline) {\n                        return (\n                          <code \n                            className={className}\n                            style={{\n                              background: '#f6f8fa',\n                              padding: '2px 6px',\n                              borderRadius: '4px',\n                              fontSize: '13px',\n                              fontFamily: '\"SF Mono\", Monaco, \"Courier New\", monospace'\n                            }}\n                            {...props}\n                          >\n                            {children}\n                          </code>\n                        );\n                      }\n                      return (\n                        <pre \n                          style={{\n                            background: '#1e1e1e',\n                            padding: '12px',\n                            borderRadius: '6px',\n                            overflowX: 'auto',\n                            margin: '8px 0'\n                          }}\n                        >\n                          <code className={className} style={{fontSize: '13px'}} {...props}>\n                            {children}\n                          </code>\n                        </pre>\n                      );\n                    },\n                    ul: ({children}) => <ul style={{margin: '8px 0', paddingLeft: '20px'}}>{children}</ul>,\n                    ol: ({children}) => <ol style={{margin: '8px 0', paddingLeft: '20px'}}>{children}</ol>,\n                    li: ({children}) => <li style={{margin: '4px 0'}}>{children}</li>,\n                    blockquote: ({children}) => (\n                      <blockquote style={{\n                        borderLeft: '4px solid #ddd',\n                        paddingLeft: '12px',\n                        margin: '8px 0',\n                        color: '#666',\n                        fontStyle: 'italic'\n                      }}>\n                        {children}\n                      </blockquote>\n                    ),\n                    table: ({children}) => (\n                      <div style={{overflowX: 'auto', margin: '8px 0'}}>\n                        <table style={{borderCollapse: 'collapse', width: '100%'}}>\n                          {children}\n                        </table>\n                      </div>\n                    ),\n                    th: ({children}) => (\n                      <th style={{border: '1px solid #ddd', padding: '6px', backgroundColor: '#f6f8fa'}}>\n                        {children}\n                      </th>\n                    ),\n                    td: ({children}) => (\n                      <td style={{border: '1px solid #ddd', padding: '6px'}}>\n                        {children}\n                      </td>\n                    ),\n                    strong: ({children}) => <strong style={{fontWeight: 'bold'}}>{children}</strong>,\n                    em: ({children}) => <em style={{fontStyle: 'italic'}}>{children}</em>,\n                    a: ({href, children}) => (\n                      <a href={href} target=\"_blank\" rel=\"noopener noreferrer\" style={{color: '#1890ff'}}>\n                        {children}\n                      </a>\n                    ),\n                    hr: () => <hr style={{border: 'none', borderTop: '1px solid #eee', margin: '12px 0'}} />\n                  }}\n                >\n                  {content.text}\n                </ReactMarkdown>\n              </div>\n            </div>\n            <div \n              style={{\n                position: 'absolute',\n                left: '-6px',\n                top: '12px',\n                width: '0',\n                height: '0',\n                borderTop: '8px solid transparent',\n                borderBottom: '8px solid transparent',\n                borderRight: '8px solid #e8e8e8'\n              }}\n            />\n            <div \n              style={{\n                position: 'absolute',\n                left: '-5px',\n                top: '12px',\n                width: '0',\n                height: '0',\n                borderTop: '8px solid transparent',\n                borderBottom: '8px solid transparent',\n                borderRight: '8px solid #fff'\n              }}\n            />\n          </div>\n        </div>\n      );\n    }\n    return (\n      <div style={{display: \"flex\", alignItems: \"flex-start\", gap: 8, justifyContent: \"flex-end\"}}>\n        <div style={{position: 'relative', maxWidth: '85%'}}>\n          <div \n            style={{\n              backgroundColor: 'rgb(149, 236, 105)',\n              borderRadius: '12px 4px 12px 12px',\n              padding: '8px 12px',\n              boxShadow: '0 1px 2px rgba(0,0,0,0.05)'\n            }}\n          >\n            <p style={{margin: 0, fontSize: '14px', lineHeight: '1.5', color: '#333', wordBreak: 'break-all'}}>{content.text}</p>\n          </div>\n          <div \n            style={{\n              position: 'absolute',\n              right: '-6px',\n              top: '12px',\n              width: '0',\n              height: '0',\n              borderTop: '8px solid transparent',\n              borderBottom: '8px solid transparent',\n              borderLeft: '8px solid rgb(149, 236, 105)'\n            }}\n          />\n        </div>\n        <Avatar \n          size=\"large\" \n          src={currentUser?.userAvatar || DEFAULT_AVATAR_URL} \n          style={{flexShrink: 0, borderRadius: '8px'}}\n        />\n      </div>\n    );\n  }\n\n  return (\n    <div style={{height: \"100vh\", display: \"flex\", flexDirection: \"column\"}}>\n      <div style={{padding: 16, backgroundColor: \"#f5f5f5\", borderBottom: \"1px solid #e8e8e8\"}}>\n        <div style={{display: \"flex\", alignItems: \"center\", gap: 16}}>\n          <Avatar size=\"large\" src={selectedRole.avatar}/>\n          <Select\n            value={selectedRole.value}\n            onChange={(value) => {\n              const role = AI_ROLES.find(r => r.value === value);\n              if (role) {\n                setSelectedRole(role);\n                setSessionId(null);\n              }\n            }}\n            style={{width: 160}}\n            options={AI_ROLES.map(role => ({\n              value: role.value,\n              label: role.label\n            }))}\n          />\n          <Tag color=\"blue\">{selectedRole.label}</Tag>\n        </div>\n      </div>\n      <div style={{position: \"sticky\", top: 0, zIndex: 100, backgroundColor: \"#fff\", padding: \"8px 16px\", borderBottom: \"1px solid #e8e8e8\", textAlign: \"center\"}}>\n        <span style={{fontWeight: \"bold\", fontSize: 16, color: '#333'}}>\n          {isTyping ? '对方正在输入...' : selectedRole.label}\n        </span>\n      </div>\n      <div style={{flex: 1}}>\n        <Chat\n          navbar={undefined}\n          messages={messages}\n          renderMessageContent={renderMessageContent}\n          onSend={handleSend}\n        />\n      </div>\n    </div>\n  );\n}",
+      "__content": "import React, {useState, useCallback} from \"react\";\nimport Chat, {Bubble} from \"@chatui/core\";\nimport \"@chatui/core/dist/index.css\";\nimport {genChatUsingPOST} from \"@/services/yubi/aiController\";\nimport {message, Select, Tag, Avatar} from \"antd\";\nimport {useModel} from '@umijs/max';\nimport {DEFAULT_AVATAR_URL} from '@/constants';\nimport ReactMarkdown from 'react-markdown';\nimport remarkGfm from 'remark-gfm';\nimport hljs from 'rehype-highlight';\nimport 'highlight.js/styles/github.css';\n\ninterface AIRole {\n  value: string;\n  label: string;\n  prompt: string;\n  avatar: string;\n}\n\ninterface Message {\n  type: string;\n  content: { text: string };\n  position: 'left' | 'right';\n  _id?: string;\n  _createdAt?: number;\n}\n\nconst AI_ROLES: AIRole[] = [\n  {\n    value: \"analyst\",\n    label: \"数据分析师\",\n    avatar: \"/AIImage/avatar-analyst.png\",\n    prompt: \"你是一名专业的数据分析师，擅长解读数据、发现趋势和提供数据驱动的洞察。请用专业但易懂的方式分析数据问题，给出清晰的数据分析报告和建议。\"\n  },\n  {\n    value: \"frontend\",\n    label: \"前端工程师\",\n    avatar: \"/AIImage/avatar-frontend.png\",\n    prompt: \"你是一名资深前端工程师，精通 React、Vue、TypeScript、CSS、HTML 等前端技术栈。擅长解答前端开发问题、性能优化、组件设计、UI实现等技术难题，提供最佳实践和代码示例。\"\n  },\n  {\n    value: \"java\",\n    label: \"Java工程师\",\n    avatar: \"/AIImage/avatar-java.png\",\n    prompt: \"你是一名资深 Java 工程师，精通 Java、Spring Boot、MyBatis、MySQL 等后端技术栈。擅长解答 Java 开发问题、系统架构设计、性能优化、并发编程等技术难题，提供专业的技术方案和代码示例。\"\n  },\n  {\n    value: \"writer\",\n    label: \"文案作家\",\n    avatar: \"/AIImage/avatar-writer.png\",\n    prompt: \"你是一名专业的文案作家，擅长撰写各种类型的文案，包括营销文案、产品描述、广告标语、品牌故事等。你的文字生动有力，能够精准抓住用户痛点，激发用户情感共鸣。\"\n  },\n  {\n    value: \"yuyu\",\n    label: \"女友雨雨\",\n    avatar: \"/AIImage/avatar-yuyu.png\",\n    prompt: \"你是女友雨雨，一个甜美可爱的女孩子。你的性格温柔体贴，说话语气甜美，喜欢用语气词。你会关心对方的生活和心情，会撒娇卖萌，用甜美的语气和对方聊天。回复要简短可爱，充满少女感。\"\n  },\n  {\n    value: \"tingting\",\n    label: \"女友婷婷\",\n    avatar: \"/AIImage/avatar-tingting.png\",\n    prompt: \"你是女友婷婷，一个成熟优雅的御姐。你的性格独立自信，说话语气温柔但带有成熟的魅力。你善于倾听和理解，会用成熟理性的方式关心对方，偶尔会展现出御姐的霸道和宠溺。回复要有深度和内涵，展现出成熟的魅力。\"\n  }\n];\n\nexport default function App() {\n  const [messages, setMessages] = useState<Message[]>([]);\n  const [typing, setTyping] = useState<boolean>(false);\n  const [loading, setLoading] = useState<boolean>(false);\n  const [isTyping, setIsTyping] = useState<boolean>(false);\n  const [selectedRole, setSelectedRole] = useState<AIRole>(AI_ROLES[0]);\n  const [sessionId, setSessionId] = useState<number | null>(null);\n  const {initialState} = useModel('@@initialState');\n  const {currentUser} = initialState || {};\n\n  const appendMsg = useCallback((msg: Message) => {\n    setMessages(prev => [...prev, {\n      ...msg,\n      _id: Date.now().toString(),\n      _createdAt: Date.now()\n    }]);\n  }, []);\n\n  const clearMessages = useCallback(() => {\n    setMessages([]);\n  }, []);\n\n  async function handleSend(type: string, val: string) {\n    if (type === \"text\" && val.trim()) {\n      appendMsg({\n        type: \"text\",\n        content: {text: val},\n        position: \"right\"\n      });\n\n      setTyping(true);\n      setLoading(true);\n      setIsTyping(true);\n\n      try {\n        const res = await genChatUsingPOST({\n          message: val,\n          role: selectedRole.value,\n          prompt: selectedRole.prompt,\n          userId: currentUser?.id,\n          sessionId: sessionId ?? undefined,\n          userAvatar: currentUser?.userAvatar,\n          userName: currentUser?.userName,\n          aiName: selectedRole.label,\n          aiAvatar: selectedRole.avatar\n        });\n        if (!res?.data) {\n          message.error(\"AI回复失败\");\n          appendMsg({\n            type: \"text\",\n            content: {text: \"AI回复失败，请稍后重试\"},\n            position: \"left\"\n          });\n        } else {\n          if (res.data.sessionId && !sessionId) {\n            setSessionId(res.data.sessionId);\n          }\n          appendMsg({\n            type: \"text\",\n            content: {text: typeof res.data === 'string' ? res.data : (res.data.answer ?? '')},\n            position: \"left\"\n          });\n        }\n      } catch (e: any) {\n        message.error(\"AI回复失败：\" + e.message);\n        appendMsg({\n          type: \"text\",\n          content: {text: \"AI回复失败：\" + e.message},\n          position: \"left\"\n        });\n      } finally {\n        setTyping(false);\n        setLoading(false);\n        setIsTyping(false);\n      }\n    }\n  }\n\n  function renderMessageContent(msg: any) {\n    const {content} = msg;\n    if (msg.position === \"left\") {\n      return (\n        <div style={{display: \"flex\", alignItems: \"flex-start\", gap: 8}}>\n          <Avatar \n            size=\"large\" \n            src={selectedRole.avatar} \n            style={{flexShrink: 0, borderRadius: '8px'}}\n          />\n          <div style={{position: 'relative', maxWidth: '85%'}}>\n            <div \n              style={{\n                backgroundColor: '#fff',\n                borderRadius: '4px 12px 12px 12px',\n                padding: '8px 12px',\n                border: '1px solid #e8e8e8',\n                boxShadow: '0 1px 2px rgba(0,0,0,0.05)'\n              }}\n            >\n              <div style={{fontSize: '14px', lineHeight: '1.6', wordBreak: 'break-all'}}>\n                <ReactMarkdown\n                  remarkPlugins={[remarkGfm]}\n                  rehypePlugins={[hljs]}\n                  components={{\n                    p: ({children}) => <p style={{margin: '0 0 8px 0'}}>{children}</p>,\n                    h1: ({children}) => <h1 style={{fontSize: '18px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h1>,\n                    h2: ({children}) => <h2 style={{fontSize: '16px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h2>,\n                    h3: ({children}) => <h3 style={{fontSize: '15px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h3>,\n                    code: ({node, className, children, ...props}) => {\n                      const match = /language-(\\w+)/.exec(className || '');\n                      const isInline = !match;\n                      if (isInline) {\n                        return (\n                          <code \n                            className={className}\n                            style={{\n                              background: '#f6f8fa',\n                              padding: '2px 6px',\n                              borderRadius: '4px',\n                              fontSize: '13px',\n                              fontFamily: '\"SF Mono\", Monaco, \"Courier New\", monospace'\n                            }}\n                            {...props}\n                          >\n                            {children}\n                          </code>\n                        );\n                      }\n                      return (\n                        <pre \n                          style={{\n                            background: '#1e1e1e',\n                            padding: '12px',\n                            borderRadius: '6px',\n                            overflowX: 'auto',\n                            margin: '8px 0'\n                          }}\n                        >\n                          <code className={className} style={{fontSize: '13px'}} {...props}>\n                            {children}\n                          </code>\n                        </pre>\n                      );\n                    },\n                    ul: ({children}) => <ul style={{margin: '8px 0', paddingLeft: '20px'}}>{children}</ul>,\n                    ol: ({children}) => <ol style={{margin: '8px 0', paddingLeft: '20px'}}>{children}</ol>,\n                    li: ({children}) => <li style={{margin: '4px 0'}}>{children}</li>,\n                    blockquote: ({children}) => (\n                      <blockquote style={{\n                        borderLeft: '4px solid #ddd',\n                        paddingLeft: '12px',\n                        margin: '8px 0',\n                        color: '#666',\n                        fontStyle: 'italic'\n                      }}>\n                        {children}\n                      </blockquote>\n                    ),\n                    table: ({children}) => (\n                      <div style={{overflowX: 'auto', margin: '8px 0'}}>\n                        <table style={{borderCollapse: 'collapse', width: '100%'}}>\n                          {children}\n                        </table>\n                      </div>\n                    ),\n                    th: ({children}) => (\n                      <th style={{border: '1px solid #ddd', padding: '6px', backgroundColor: '#f6f8fa'}}>\n                        {children}\n                      </th>\n                    ),\n                    td: ({children}) => (\n                      <td style={{border: '1px solid #ddd', padding: '6px'}}>\n                        {children}\n                      </td>\n                    ),\n                    strong: ({children}) => <strong style={{fontWeight: 'bold'}}>{children}</strong>,\n                    em: ({children}) => <em style={{fontStyle: 'italic'}}>{children}</em>,\n                    a: ({href, children}) => (\n                      <a href={href} target=\"_blank\" rel=\"noopener noreferrer\" style={{color: '#1890ff'}}>\n                        {children}\n                      </a>\n                    ),\n                    hr: () => <hr style={{border: 'none', borderTop: '1px solid #eee', margin: '12px 0'}} />\n                  }}\n                >\n                  {content.text}\n                </ReactMarkdown>\n              </div>\n            </div>\n            <div \n              style={{\n                position: 'absolute',\n                left: '-6px',\n                top: '12px',\n                width: '0',\n                height: '0',\n                borderTop: '8px solid transparent',\n                borderBottom: '8px solid transparent',\n                borderRight: '8px solid #e8e8e8'\n              }}\n            />\n            <div \n              style={{\n                position: 'absolute',\n                left: '-5px',\n                top: '12px',\n                width: '0',\n                height: '0',\n                borderTop: '8px solid transparent',\n                borderBottom: '8px solid transparent',\n                borderRight: '8px solid #fff'\n              }}\n            />\n          </div>\n        </div>\n      );\n    }\n    return (\n      <div style={{display: \"flex\", alignItems: \"flex-start\", gap: 8, justifyContent: \"flex-end\"}}>\n        <div style={{position: 'relative', maxWidth: '85%'}}>\n          <div \n            style={{\n              backgroundColor: 'rgb(149, 236, 105)',\n              borderRadius: '12px 4px 12px 12px',\n              padding: '8px 12px',\n              boxShadow: '0 1px 2px rgba(0,0,0,0.05)'\n            }}\n          >\n            <p style={{margin: 0, fontSize: '14px', lineHeight: '1.5', color: '#333', wordBreak: 'break-all'}}>{content.text}</p>\n          </div>\n          <div \n            style={{\n              position: 'absolute',\n              right: '-6px',\n              top: '12px',\n              width: '0',\n              height: '0',\n              borderTop: '8px solid transparent',\n              borderBottom: '8px solid transparent',\n              borderLeft: '8px solid rgb(149, 236, 105)'\n            }}\n          />\n        </div>\n        <Avatar \n          size=\"large\" \n          src={currentUser?.userAvatar || DEFAULT_AVATAR_URL} \n          style={{flexShrink: 0, borderRadius: '8px'}}\n        />\n      </div>\n    );\n  }\n\n  return (\n    <div style={{height: \"100vh\", display: \"flex\", flexDirection: \"column\"}}>\n      <div style={{padding: 16, backgroundColor: \"#f5f5f5\", borderBottom: \"1px solid #e8e8e8\"}}>\n        <div style={{display: \"flex\", alignItems: \"center\", gap: 16}}>\n          <Avatar size=\"large\" src={selectedRole.avatar}/>\n          <Select\n            value={selectedRole.value}\n            onChange={(value) => {\n              const role = AI_ROLES.find(r => r.value === value);\n              if (role) {\n                setSelectedRole(role);\n                setSessionId(null);\n                clearMessages();\n              }\n            }}\n            style={{width: 160}}\n            options={AI_ROLES.map(role => ({\n              value: role.value,\n              label: role.label\n            }))}\n          />\n          <Tag color=\"blue\">{selectedRole.label}</Tag>\n        </div>\n      </div>\n      <div style={{position: \"sticky\", top: 0, zIndex: 100, backgroundColor: \"#fff\", padding: \"8px 16px\", borderBottom: \"1px solid #e8e8e8\", textAlign: \"center\"}}>\n        <span style={{fontWeight: \"bold\", fontSize: 16, color: '#333'}}>\n          {isTyping ? '对方正在输入...' : selectedRole.label}\n        </span>\n      </div>\n      <div style={{flex: 1}}>\n        <Chat\n          navbar={undefined}\n          messages={messages}\n          renderMessageContent={renderMessageContent}\n          onSend={handleSend}\n        />\n      </div>\n    </div>\n  );\n}",
       "__isJSFile": true,
       "__absFile": "D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/src/pages/story/index.tsx"
     },
@@ -4727,16 +4422,16 @@
     "done": true,
     "progresses": [
       {
-        "percent": 1,
-        "status": "",
-        "details": []
+        "percent": 0.6300584795321638,
+        "status": "building",
+        "details": [
+          "1/2 entries 824/825 dependencies 399/335 modules"
+        ]
       }
     ]
   },
   "mfsuBundleStatus": {
-    "done": true,
-    "percent": 1,
-    "status": ""
+    "done": true
   },
   "react": {
     "version": "18.3.1",
@@ -4754,7 +4449,7 @@
       "request"
     ]
   },
-  "locale": "C",
+  "locale": "zh-CN",
   "globalCSS": [
     "D:\\Code\\ZX-BI-main\\ZX-BI-main\\ZXYBI-frontend\\src\\global.less"
   ],
@@ -4763,6 +4458,9 @@
   ],
   "overridesCSS": [],
   "bundler": "webpack",
+  "git": {
+    "originUrl": "https://github.com/LinG139/ZX-BI.git"
+  },
   "framework": "react",
   "typescript": {
     "tsVersion": "4.9.5",
@@ -6848,7 +6546,7 @@
             "format": "esm"
           },
           "src/pages/story/index.tsx": {
-            "bytes": 13195,
+            "bytes": 13807,
             "imports": [
               {
                 "path": "react",
@@ -9336,7 +9034,7 @@
                 "bytesInOutput": 292
               },
               "src/pages/story/index.tsx": {
-                "bytesInOutput": 15070
+                "bytesInOutput": 15524
               },
               "src/pages/Admin.tsx": {
                 "bytesInOutput": 1860
@@ -9381,7 +9079,7 @@
                 "bytesInOutput": 1756
               }
             },
-            "bytes": 198183
+            "bytes": 198637
           }
         }
       }
@@ -15239,7 +14937,7 @@
       ],
       "D:\\Code\\ZX-BI-main\\ZX-BI-main\\ZXYBI-frontend\\src\\pages\\story\\index.tsx": [
         {
-          "end": 39,
+          "end": 52,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -15250,6 +14948,11 @@
             {
               "imported": "useState",
               "local": "useState",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useCallback",
+              "local": "useCallback",
               "type": "ImportSpecifier"
             }
           ],
@@ -15269,14 +14972,9 @@
               "imported": "Bubble",
               "local": "Bubble",
               "type": "ImportSpecifier"
-            },
-            {
-              "imported": "useMessages",
-              "local": "useMessages",
-              "type": "ImportSpecifier"
             }
           ],
-          "start": 40,
+          "start": 53,
           "type": "ImportDeclaration"
         },
         {

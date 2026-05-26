@@ -67,7 +67,9 @@
       "react-dom": "^18.2.0",
       "react-helmet-async": "^1.3.0",
       "react-infinite-scroll-component": "^6.1.0",
-      "react-markdown": "^10.1.0"
+      "react-markdown": "^8.0.7",
+      "rehype-highlight": "^6.0.0",
+      "remark-gfm": "^3.0.1"
     },
     "devDependencies": {
       "@ant-design/pro-cli": "^2.1.5",
@@ -131,7 +133,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 12
+        "register": 8
       },
       "enableBy": "register"
     },
@@ -144,7 +146,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 8
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -161,7 +163,7 @@
             0
           ]
         },
-        "register": 8
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -178,7 +180,7 @@
             0
           ]
         },
-        "register": 6
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -212,7 +214,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -239,10 +241,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            64
+            59
           ]
         },
-        "register": 33
+        "register": 22
       },
       "enableBy": "register"
     },
@@ -255,7 +257,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -272,7 +274,7 @@
             0
           ],
           "onCheck": [
-            1
+            0
           ]
         },
         "register": 1
@@ -292,7 +294,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -305,7 +307,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -319,10 +321,10 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            0
+            1
           ]
         },
-        "register": 13
+        "register": 12
       },
       "enableBy": "register"
     },
@@ -1191,7 +1193,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1204,7 +1206,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1217,7 +1219,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 124
+        "register": 70
       },
       "enableBy": "register"
     },
@@ -1230,7 +1232,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 87
+        "register": 63
       },
       "enableBy": "config"
     },
@@ -1243,7 +1245,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 20
+        "register": 25
       },
       "enableBy": "config"
     },
@@ -1260,7 +1262,7 @@
             0
           ]
         },
-        "register": 3
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1273,7 +1275,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1286,7 +1288,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1299,7 +1301,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 48
+        "register": 32
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1324,7 +1326,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/overrides/overrides": {
@@ -1378,7 +1380,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -1391,7 +1393,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -1430,7 +1432,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1443,7 +1445,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 6
       },
       "enableBy": "register"
     },
@@ -1456,7 +1458,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -1469,7 +1471,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/ssr/ssr": {
@@ -1481,7 +1483,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -1507,7 +1509,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 6
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -1533,7 +1535,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1546,7 +1548,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 13
+        "register": 10
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -1558,7 +1560,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 33
+        "register": 20
       },
       "enableBy": "config"
     },
@@ -1571,7 +1573,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
@@ -1583,7 +1585,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/legacy/legacy": {
@@ -1621,7 +1623,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 2
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/swc/swc": {
@@ -1650,7 +1652,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 4
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/mako/mako": {
@@ -1675,7 +1677,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
@@ -1687,7 +1689,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 4
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
@@ -1699,7 +1701,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 48
+        "register": 26
       }
     },
     "./node_modules/@umijs/preset-umi/dist/features/forget/forget": {
@@ -1750,7 +1752,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 56
+        "register": 41
       },
       "enableBy": "register"
     },
@@ -1763,7 +1765,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 67
+        "register": 63
       }
     },
     "./node_modules/@umijs/preset-umi/dist/commands/help": {
@@ -1801,7 +1803,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -1814,7 +1816,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1840,7 +1842,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -1866,7 +1868,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1892,7 +1894,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -1957,7 +1959,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -1970,7 +1972,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1996,7 +1998,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2009,7 +2011,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 29
+        "register": 21
       },
       "enableBy": "register"
     },
@@ -2022,7 +2024,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2035,7 +2037,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -2048,7 +2050,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -2063,7 +2065,7 @@
       },
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       }
     },
     "./node_modules/@umijs/plugins/dist/antd": {
@@ -2085,7 +2087,7 @@
             0
           ]
         },
-        "register": 11
+        "register": 10
       }
     },
     "./node_modules/@umijs/plugins/dist/dva": {
@@ -2097,7 +2099,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 11
+        "register": 7
       },
       "enableBy": "config"
     },
@@ -2132,7 +2134,7 @@
             0
           ],
           "modifyAppData": [
-            13
+            0
           ]
         },
         "register": 4
@@ -2148,7 +2150,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -2161,7 +2163,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -2174,7 +2176,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -2191,7 +2193,7 @@
             1
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "config"
     },
@@ -2204,7 +2206,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2241,7 +2243,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -2341,7 +2343,7 @@
       "time": {
         "hooks": {
           "onCheckPkgJSON": [
-            0
+            1
           ]
         },
         "register": 1
@@ -2361,7 +2363,7 @@
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2374,7 +2376,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -2391,7 +2393,7 @@
             0
           ]
         },
-        "register": 305
+        "register": 678
       },
       "enableBy": "config"
     },
@@ -2404,7 +2406,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 231
+        "register": 704
       },
       "enableBy": "config"
     },
@@ -2442,13 +2444,13 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            0
+            1
           ],
           "modifyAppData": [
             0
           ]
         },
-        "register": 91
+        "register": 156
       }
     },
     "./node_modules/@umijs/core/dist/service/generatePlugin": {
@@ -3761,7 +3763,7 @@
       "parentId": "ant-design-pro-layout",
       "id": "6",
       "absPath": "/welcome",
-      "__content": "import {IMAGES} from '@/constants';\nimport {PageContainer} from '@ant-design/pro-components';\nimport {useModel} from '@umijs/max';\nimport {Card, Carousel, Divider, Image, theme} from 'antd';\nimport React, {useEffect, useState} from 'react';\n\n/**\n * 每个单独的卡片，为了复用样式抽成了组件\n * @param param0\n * @returns\n */\nconst InfoCard: React.FC<{\n  title: string;\n  index: number;\n  desc: string;\n  href: string;\n}> = ({title, href, index, desc}) => {\n  const {useToken} = theme;\n  const {token} = useToken();\n\n  return (\n    <div\n      style={{\n        backgroundColor: token.colorBgContainer,\n        boxShadow: token.boxShadow,\n        borderRadius: '8px',\n        fontSize: '14px',\n        color: token.colorTextSecondary,\n        lineHeight: '22px',\n        padding: '16px 19px',\n        minWidth: '220px',\n        flex: 1,\n      }}\n    >\n      <div\n        style={{\n          display: 'flex',\n          gap: '4px',\n          alignItems: 'center',\n        }}\n      >\n        <div\n          style={{\n            width: 48,\n            height: 48,\n            lineHeight: '22px',\n            backgroundSize: '100%',\n            textAlign: 'center',\n            padding: '8px 16px 16px 12px',\n            color: '#FFF',\n            fontWeight: 'bold',\n            backgroundImage:\n              'url(\\'https://gw.alipayobjects.com/zos/bmw-prod/daaf8d50-8e6d-4251-905d-676a24ddfa12.svg\\')',\n          }}\n        >\n          {index}\n        </div>\n        <div\n          style={{\n            fontSize: '16px',\n            color: token.colorText,\n            paddingBottom: 8,\n          }}\n        >\n          {title}\n        </div>\n      </div>\n      <div\n        style={{\n          fontSize: '14px',\n          color: token.colorTextSecondary,\n          textAlign: 'justify',\n          lineHeight: '22px',\n          marginBottom: 8,\n        }}\n      >\n        {desc}\n      </div>\n      <a href={href} target=\"_blank\" rel=\"noreferrer\">\n        了解更多 {'>'}\n      </a>\n    </div>\n  );\n};\n\nconst Welcome: React.FC = () => {\n  const {token} = theme.useToken();\n  // 加载图片\n  const [loadedImages, setLoadedImages] = useState<string[]>([]);\n  useEffect(() => {\n    Promise.all(IMAGES.map((img) => img.then((m) => m.default)))\n      .then((images) => setLoadedImages(images))\n      .catch((error) => console.error('图片加载失败:', error));\n  }, []);\n  const {initialState} = useModel('@@initialState');\n  return (\n    <PageContainer>\n      <Card\n        style={{\n          borderRadius: 8,\n        }}\n        bodyStyle={{\n          backgroundImage:\n            initialState?.currentUser?.settings?.navTheme === 'realDark'\n              ? 'background-image: linear-gradient(75deg, #1A1B1F 0%, #191C1F 100%)'\n              : 'background-image: linear-gradient(75deg, #FBFDFF 0%, #F5F7FF 100%)',\n        }}\n      >\n        <div\n          style={{\n            backgroundPosition: '100% -30%',\n            backgroundRepeat: 'no-repeat',\n            backgroundSize: '274px auto',\n            backgroundImage:\n              'url(\\'https://gw.alipayobjects.com/mdn/rms_a9745b/afts/img/A*BuFmQqsB2iAAAAAAAAAAAAAAARQnAQ\\')',\n          }}\n        >\n          <div\n            style={{\n              fontSize: '20px',\n              color: token.colorTextHeading,\n            }}\n          >\n            欢迎使用 智析云 BI\n          </div>\n          <p\n            style={{\n              fontSize: '14px',\n              color: token.colorTextSecondary,\n              lineHeight: '22px',\n              marginTop: 16,\n              marginBottom: 32,\n              width: '65%',\n            }}\n          >\n          </p>\n          <div\n            style={{\n              display: 'flex',\n              flexWrap: 'wrap',\n              gap: 16,\n            }}\n          >\n            <InfoCard\n              index={3}\n              href=\"https://github.com/LinG139/ZX-BI\"\n              title=\"项目介绍\"\n              desc=\"这是一个创新的数据分析工具，与传统的BI完全不同。我们的项目利用AI技术，以完全新颖的方式帮助用户进行数据分析，节约人力成本并提高效率。分别采用了线程池和消息队列来提升用户的体验和加强信息的可靠性,后端自定义 Prompt 预设模板并封装用户输入的数据和分析诉求，通过对接 AIGC 接口生成可视化图表由于 AIGC 的输入 Token 限制，使用 Easy Excel 解析用户上传的 XLSX 表格数据文件并压缩为 CSV，实测提高了 20% 的单次输入数据量、并节约了成本。\"\n            />\n            <InfoCard\n              index={1}\n              title=\"什么是BI?\"\n              href={''}\n              desc=\"BI是商业智能（Business Intelligence）的缩写。它是一种通过收集、分析和呈现数据来帮助企业做出更好决策的技术和过程。BI通常涉及使用各种数据仓库、数据挖掘和数据分析工具，以提取有关企业绩效、市场趋势、客户行为等方面的信息。这些数据可以被转化为可视化图表、报表和仪表盘，可协助企业管理层了解他们所运营的公司的情况，并根据这些信息制定更明智的商业决策。\"\n            />\n            <InfoCard\n              index={2}\n              title=\"BI 平台的优点\"\n              href=\"add_chart\"\n              desc=\"自动化数据分析：项目采用AI技术，能够自动化地从原始数据中生成符合要求的图表和分析结论。用户只需要输入分析目标和原始数据，无需具备专业的数据分析知识，即可完成数据分析的过程。可视化结果：通过使用AI接口生成分析结果，该项目能够实现将数据以可视化的方式展示出来，使用户更容易理解和解读数据，从而做出更明智的决策。\"\n            />\n          </div>\n        </div>\n      </Card>\n      <Divider style={{color: 'blue'}}>AIGC猫咪</Divider>\n      <Carousel autoplay autoplaySpeed={10000}>\n        {loadedImages.map((image, index) => (\n          <div key={index}>\n            <Image src={image}/>\n          </div>\n        ))}\n      </Carousel>\n    </PageContainer>\n  );\n};\n\nexport default Welcome;\n",
+      "__content": "import {PageContainer} from '@ant-design/pro-components';\nimport {useModel} from '@umijs/max';\nimport {Card, theme, Typography, Button, Avatar, Space} from 'antd';\nimport {\n  RocketOutlined,\n  BarChart3Outlined,\n  LightbulbOutlined,\n  ArrowRightOutlined,\n  StarOutlined,\n} from '@ant-design/icons';\nimport React from 'react';\n\nconst {Title, Paragraph} = Typography;\n\nconst FeatureCard: React.FC<{\n  title: string;\n  icon: React.ReactNode;\n  desc: string;\n  href: string;\n  delay?: number;\n}> = ({title, icon, desc, href, delay = 0}) => {\n  return (\n    <Card\n      className=\"glass-card card-hover animate-fadeIn\"\n      style={{\n        borderRadius: '16px',\n        border: 'none',\n        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',\n        minHeight: '280px',\n        animationDelay: `${delay}ms`,\n        overflow: 'hidden',\n      }}\n      hoverable\n    >\n      <div\n        style={{\n          width: '72px',\n          height: '72px',\n          borderRadius: '16px',\n          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n          display: 'flex',\n          alignItems: 'center',\n          justifyContent: 'center',\n          marginBottom: '20px',\n          boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',\n        }}\n      >\n        <div style={{color: '#fff', fontSize: '28px'}}>{icon}</div>\n      </div>\n      <Title level={3} style={{marginBottom: '12px', fontWeight: 600}}>\n        <span className=\"gradient-text\">{title}</span>\n      </Title>\n      <Paragraph style={{color: '#64748b', lineHeight: '1.8', fontSize: '14px'}}>\n        {desc}\n      </Paragraph>\n      {href && (\n        <Button\n          type=\"link\"\n          icon={<ArrowRightOutlined />}\n          style={{\n            marginTop: '16px',\n            padding: 0,\n            color: '#667eea',\n            fontWeight: 500,\n          }}\n          onClick={() => window.open(href, '_blank')}\n        >\n          了解更多\n        </Button>\n      )}\n    </Card>\n  );\n};\n\nconst Welcome: React.FC = () => {\n  const {token} = theme.useToken();\n  const {initialState} = useModel('@@initialState');\n\n  return (\n    <PageContainer\n      style={{background: 'transparent', padding: '40px 0'}}\n      header={{\n        title: (\n          <div className=\"animate-fadeIn\" style={{animationDelay: '100ms'}}>\n            <Space>\n              <Avatar\n                size={48}\n                style={{\n                  background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n                  fontSize: '24px',\n                }}\n              >\n                <StarOutlined />\n              </Avatar>\n              <div>\n                <Title level={2} style={{margin: 0, fontWeight: 700}}>\n                  <span className=\"gradient-text\">智析云 BI</span>\n                </Title>\n                <Paragraph style={{margin: 0, color: '#94a3b8'}}>\n                  基于AI的智能数据分析平台\n                </Paragraph>\n              </div>\n            </Space>\n          </div>\n        ),\n        subTitle: '',\n      }}\n    >\n      <div className=\"animate-fadeIn\" style={{animationDelay: '200ms'}}>\n        <Card\n          className=\"glass-card\"\n          style={{\n            borderRadius: '20px',\n            border: 'none',\n            boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',\n            marginBottom: '40px',\n          }}\n          bodyStyle={{padding: '48px'}}\n        >\n          <div\n            style={{\n              display: 'flex',\n              alignItems: 'center',\n              justifyContent: 'space-between',\n              flexWrap: 'wrap',\n              gap: '32px',\n            }}\n          >\n            <div style={{flex: 1}}>\n              <Title\n                level={1}\n                style={{\n                  fontSize: '42px',\n                  fontWeight: 800,\n                  marginBottom: '16px',\n                  background:\n                    'linear-gradient(135deg, #1e293b 0%, #334155 100%)',\n                  WebkitBackgroundClip: 'text',\n                  WebkitTextFillColor: 'transparent',\n                  backgroundClip: 'text',\n                }}\n              >\n                让数据\n                <span\n                  style={{\n                    background:\n                      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n                    WebkitBackgroundClip: 'text',\n                    WebkitTextFillColor: 'transparent',\n                    backgroundClip: 'text',\n                  }}\n                >\n                  自己说话\n                </span>\n              </Title>\n              <Paragraph\n                style={{\n                  fontSize: '18px',\n                  color: '#64748b',\n                  lineHeight: '1.8',\n                  maxWidth: '600px',\n                }}\n              >\n                智析云BI利用先进的AI技术，自动分析您的数据并生成专业的可视化图表和分析报告。无需专业技能，让每一位用户都能轻松洞察数据价值。\n              </Paragraph>\n              <Space style={{marginTop: '24px'}}>\n                <Button\n                  type=\"primary\"\n                  size=\"large\"\n                  icon={<BarChart3Outlined />}\n                  href=\"/add_chart\"\n                  style={{\n                    borderRadius: '12px',\n                    padding: '12px 32px',\n                    background:\n                      'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n                    border: 'none',\n                    boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',\n                  }}\n                >\n                  开始分析\n                </Button>\n                <Button\n                  size=\"large\"\n                  icon={<RocketOutlined />}\n                  style={{\n                    borderRadius: '12px',\n                    padding: '12px 32px',\n                  }}\n                  href=\"/add_chart_async\"\n                >\n                  异步分析\n                </Button>\n              </Space>\n            </div>\n            <div\n              style={{\n                width: '400px',\n                height: '400px',\n                background:\n                  'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',\n                borderRadius: '24px',\n                display: 'flex',\n                alignItems: 'center',\n                justifyContent: 'center',\n                position: 'relative',\n              }}\n            >\n              <div\n                style={{\n                  width: '280px',\n                  height: '280px',\n                  background:\n                    'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n                  borderRadius: '50%',\n                  display: 'flex',\n                  alignItems: 'center',\n                  justifyContent: 'center',\n                  boxShadow: '0 20px 60px rgba(102, 126, 234, 0.4)',\n                  animation: 'pulse 3s ease-in-out infinite',\n                }}\n              >\n                <div style={{textAlign: 'center', color: '#fff'}}>\n                  <StarOutlined style={{fontSize: '48px', marginBottom: '8px'}} />\n                  <div style={{fontSize: '24px', fontWeight: 600}}>AI 驱动</div>\n                  <div style={{fontSize: '14px', opacity: 0.9}}>智能分析</div>\n                </div>\n              </div>\n              <div\n                style={{\n                  position: 'absolute',\n                  top: '20px',\n                  right: '20px',\n                  background: '#fff',\n                  padding: '12px 20px',\n                  borderRadius: '12px',\n                  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',\n                  animation: 'slideIn 0.6s ease-out',\n                  animationDelay: '400ms',\n                }}\n              >\n                <div style={{fontSize: '24px', fontWeight: 700, color: '#667eea'}}>\n                  99.9%\n                </div>\n                <div style={{fontSize: '12px', color: '#94a3b8'}}>准确率</div>\n              </div>\n              <div\n                style={{\n                  position: 'absolute',\n                  bottom: '40px',\n                  left: '20px',\n                  background: '#fff',\n                  padding: '12px 20px',\n                  borderRadius: '12px',\n                  boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)',\n                  animation: 'slideIn 0.6s ease-out',\n                  animationDelay: '600ms',\n                }}\n              >\n                <div style={{fontSize: '24px', fontWeight: 700, color: '#10b981'}}>\n                  50万+\n                </div>\n                <div style={{fontSize: '12px', color: '#94a3b8'}}>分析次数</div>\n              </div>\n            </div>\n          </div>\n        </Card>\n      </div>\n\n      <div className=\"animate-fadeIn\" style={{animationDelay: '300ms'}}>\n        <Title\n          level={2}\n          style={{\n            textAlign: 'center',\n            marginBottom: '40px',\n            fontWeight: 600,\n          }}\n        >\n          <span className=\"gradient-text\">核心功能</span>\n        </Title>\n        <div style={{display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px'}}>\n          <FeatureCard\n            title=\"AI 智能分析\"\n            icon={<LightbulbOutlined />}\n            desc=\"基于先进的大语言模型，自动理解您的分析需求，从原始数据中提取洞察，生成专业的分析报告和可视化图表。\"\n            href=\"https://github.com/LinG139/ZX-BI\"\n            delay={0}\n          />\n          <FeatureCard\n            title=\"多种图表支持\"\n            icon={<BarChart3Outlined />}\n            desc=\"支持折线图、柱状图、饼图、雷达图等多种图表类型，满足不同数据分析场景的可视化需求。\"\n            href=\"/add_chart\"\n            delay={100}\n          />\n          <FeatureCard\n            title=\"异步处理\"\n            icon={<RocketOutlined />}\n            desc=\"采用线程池技术实现异步分析，上传数据后立即返回，后台自动处理，大幅提升用户体验。\"\n            href=\"/add_chart_async\"\n            delay={200}\n          />\n        </div>\n      </div>\n    </PageContainer>\n  );\n};\n\nexport default Welcome;",
       "__isJSFile": true,
       "__absFile": "D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/src/pages/Welcome.tsx"
     },
@@ -3773,7 +3775,7 @@
       "parentId": "ant-design-pro-layout",
       "id": "7",
       "absPath": "/add_chart",
-      "__content": "import {getChartByAiUsingPOST} from '@/services/yubi/chartController';\nimport {UploadOutlined} from '@ant-design/icons';\nimport {Button, Card, Col, Divider, Form, Input, message, Modal, Row, Select, Space, Spin, Upload} from 'antd';\nimport TextArea from 'antd/es/input/TextArea';\nimport React, {useState} from 'react';\nimport ReactECharts from 'echarts-for-react';\nimport {optimizeChartOption} from '@/utils/chartOptimizer';\nimport {history, useModel} from '@umijs/max';\n\n/**\n * 添加图表页面\n * @constructor\n */\nconst AddChart: React.FC = () => {\n  const [chart, setChart] = useState<API.BiResponse>();\n  const [option, setOption] = useState<any>();\n  const [submitting, setSubmitting] = useState<boolean>(false);\n  const [showNoCreditModal, setShowNoCreditModal] = useState(false);\n  const { initialState } = useModel('@@initialState');\n\n  const handleGoToRecharge = () => {\n    setShowNoCreditModal(false);\n    history.push('/user/settings');\n  };\n\n  /**\n   * 提交\n   * @param values\n   */\n  const onFinish = async (values: any) => {\n    // 获取当前用户积分\n    const userLeftCount = (initialState?.currentUser as any)?.leftCount ?? 0;\n    \n    // 积分校验\n    if (userLeftCount <= 0) {\n      setShowNoCreditModal(true);\n      return;\n    }\n\n    // 避免重复提交\n    if (submitting) {\n      return;\n    }\n    setSubmitting(true);\n    setChart(undefined);\n    setOption(undefined);\n    // 对接后端，上传数据\n    const params = {\n      ...values,\n      file: undefined,\n    };\n    try {\n      const res = await getChartByAiUsingPOST(params, {}, values.file.file.originFileObj);\n      if (!res?.data) {\n        message.error('分析失败');\n      } else {\n        message.success('分析成功');\n        const chartOption = JSON.parse(res.data.genChart ?? '');\n        if (!chartOption) {\n          throw new Error('图表代码解析错误')\n        } else {\n          setChart(res.data);\n          setOption(chartOption);\n        }\n      }\n    } catch (e: any) {\n      message.error('分析失败，' + e.message);\n    }\n    setSubmitting(false);\n  };\n\n  return (\n    <div className=\"add-chart\">\n      <Row gutter={24}>\n        <Col span={12}>\n          <Card title=\"智能分析\">\n            <Form name=\"addChart\" labelAlign=\"left\" labelCol={{span: 4}}\n                  wrapperCol={{span: 16}} onFinish={onFinish} initialValues={{}}>\n              <Form.Item\n                name=\"goal\"\n                label=\"分析目标\"\n                rules={[{required: true, message: '请输入分析目标'}]}\n              >\n                <TextArea placeholder=\"请输入你的分析需求，比如：分析网站用户的增长情况\"/>\n              </Form.Item>\n              <Form.Item name=\"name\" label=\"图表名称\">\n                <Input placeholder=\"请输入图表名称\"/>\n              </Form.Item>\n              <Form.Item name=\"chartType\" label=\"图表类型\">\n                <Select\n                  options={[\n                    {value: '折线图', label: '折线图'},\n                    {value: '柱状图', label: '柱状图'},\n                    {value: '堆叠图', label: '堆叠图'},\n                    {value: '饼图', label: '饼图'},\n                    {value: '雷达图', label: '雷达图'},\n                    {value: '热力图', label: '热力图'},\n                    {value: '漏斗图', label: '漏斗图'},\n                    {value: '散点图', label: '散点图'},\n                    {value: '仪表盘', label: '仪表盘'},\n                    {value: 'K线图', label: 'K线图'},\n                    {value: '长图表', label: '长图表'},\n                    {value: '区域图', label: '区域图'},\n                    {value: '面积热力图', label: '面积热力图'},\n                    {value: '三维散点图', label: '三维散点图'},\n                  ]}\n                />\n              </Form.Item>\n              <Form.Item name=\"file\" label=\"原始数据\">\n                <Upload name=\"file\" maxCount={1}>\n                  <Button icon={<UploadOutlined/>}>上传 CSV 文件</Button>\n                </Upload>\n              </Form.Item>\n\n              <Form.Item wrapperCol={{span: 16, offset: 4}}>\n                <Space>\n                  <Button type=\"primary\" htmlType=\"submit\" loading={submitting} disabled={submitting}>\n                    提交\n                  </Button>\n                  <Button htmlType=\"reset\">重置</Button>\n                </Space>\n              </Form.Item>\n            </Form>\n          </Card>\n        </Col>\n        <Col span={12}>\n          <Card title=\"分析结论\">\n            {chart?.genResult ?? <div>请先在左侧进行提交</div>}\n            <Spin spinning={submitting}/>\n          </Card>\n          <Divider/>\n          <Card title=\"可视化图表\">\n            {\n              option ? <ReactECharts option={option}/> : <div>请先在左侧进行提交</div>\n            }\n            <Spin spinning={submitting}/>\n          </Card>\n        </Col>\n      </Row>\n\n      <Modal\n        title=\"积分不足\"\n        visible={showNoCreditModal}\n        onCancel={() => setShowNoCreditModal(false)}\n        footer={null}\n        closable={true}\n      >\n        <p>您的积分不足，无法完成此操作。</p>\n        <p>请前往个人设置中心进行充值。</p>\n        <Button type=\"primary\" onClick={handleGoToRecharge} style={{ marginTop: 16 }}>\n          立即充值\n        </Button>\n      </Modal>\n    </div>\n  );\n};\nexport default AddChart;\n",
+      "__content": "import {getChartByAiUsingPOST} from '@/services/yubi/chartController';\nimport {UploadOutlined, BarChart3Outlined, RefreshOutlined, CreditCardOutlined} from '@ant-design/icons';\nimport {Button, Card, Col, Divider, Form, Input, message, Modal, Row, Select, Space, Spin, Upload, Typography} from 'antd';\nimport TextArea from 'antd/es/input/TextArea';\nimport React, {useState} from 'react';\nimport ReactECharts from 'echarts-for-react';\nimport {optimizeChartOption} from '@/utils/chartOptimizer';\nimport {history, useModel} from '@umijs/max';\n\nconst {Title, Paragraph} = Typography;\n\nconst chartTypes = [\n  {value: '折线图', label: '折线图'},\n  {value: '柱状图', label: '柱状图'},\n  {value: '堆叠图', label: '堆叠图'},\n  {value: '饼图', label: '饼图'},\n  {value: '雷达图', label: '雷达图'},\n  {value: '热力图', label: '热力图'},\n  {value: '漏斗图', label: '漏斗图'},\n  {value: '散点图', label: '散点图'},\n  {value: '仪表盘', label: '仪表盘'},\n  {value: 'K线图', label: 'K线图'},\n  {value: '长图表', label: '长图表'},\n  {value: '区域图', label: '区域图'},\n  {value: '面积热力图', label: '面积热力图'},\n  {value: '三维散点图', label: '三维散点图'},\n];\n\n/**\n * 添加图表页面\n * @constructor\n */\nconst AddChart: React.FC = () => {\n  const [chart, setChart] = useState<API.BiResponse>();\n  const [option, setOption] = useState<any>();\n  const [submitting, setSubmitting] = useState<boolean>(false);\n  const [showNoCreditModal, setShowNoCreditModal] = useState(false);\n  const {initialState} = useModel('@@initialState');\n\n  const userLeftCount = (initialState?.currentUser as any)?.leftCount ?? 0;\n\n  const handleGoToRecharge = () => {\n    setShowNoCreditModal(false);\n    history.push('/user/settings');\n  };\n\n  /**\n   * 提交\n   * @param values\n   */\n  const onFinish = async (values: any) => {\n    // 积分校验\n    if (userLeftCount <= 0) {\n      setShowNoCreditModal(true);\n      return;\n    }\n\n    // 避免重复提交\n    if (submitting) {\n      return;\n    }\n    setSubmitting(true);\n    setChart(undefined);\n    setOption(undefined);\n    // 对接后端，上传数据\n    const params = {\n      ...values,\n      file: undefined,\n    };\n    try {\n      const res = await getChartByAiUsingPOST(params, {}, values.file.file.originFileObj);\n      if (!res?.data) {\n        message.error('分析失败');\n      } else {\n        message.success('分析成功');\n        const chartOption = JSON.parse(res.data.genChart ?? '');\n        if (!chartOption) {\n          throw new Error('图表代码解析错误')\n        } else {\n          setChart(res.data);\n          setOption(chartOption);\n        }\n      }\n    } catch (e: any) {\n      message.error('分析失败，' + e.message);\n    }\n    setSubmitting(false);\n  };\n\n  return (\n    <div className=\"add-chart animate-fadeIn\" style={{padding: '24px'}}>\n      <div style={{marginBottom: '24px'}}>\n        <Title level={2} className=\"gradient-text\" style={{marginBottom: '8px'}}>\n          智能图表分析\n        </Title>\n        <Paragraph style={{color: '#64748b'}}>\n          输入您的分析需求和数据，AI 将自动为您生成专业的可视化图表和分析报告\n        </Paragraph>\n      </div>\n\n      <Row gutter={24}>\n        <Col span={11}>\n          <Card\n            className=\"glass-card\"\n            style={{\n              borderRadius: '16px',\n              border: 'none',\n              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',\n            }}\n            title={\n              <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>\n                <BarChart3Outlined style={{color: '#667eea'}}/>\n                <span>分析设置</span>\n              </div>\n            }\n          >\n            <Form\n              name=\"addChart\"\n              labelAlign=\"left\"\n              labelCol={{span: 5}}\n              wrapperCol={{span: 19}}\n              onFinish={onFinish}\n              initialValues={{}}\n              layout=\"vertical\"\n            >\n              <div\n                style={{\n                  background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)',\n                  borderRadius: '12px',\n                  padding: '16px',\n                  marginBottom: '20px',\n                  display: 'flex',\n                  alignItems: 'center',\n                  gap: '12px',\n                }}\n              >\n                <CreditCardOutlined style={{fontSize: '20px', color: '#667eea'}}/>\n                <div>\n                  <div style={{fontSize: '14px', color: '#64748b'}}>剩余积分</div>\n                  <div style={{fontSize: '24px', fontWeight: 700, color: '#667eea'}}>\n                    {userLeftCount}\n                  </div>\n                </div>\n              </div>\n\n              <Form.Item\n                name=\"goal\"\n                label={\n                  <span style={{fontWeight: 500, color: '#334155'}}>分析目标</span>\n                }\n                rules={[{required: true, message: '请输入分析目标'}]}\n              >\n                <TextArea\n                  placeholder=\"请输入您的分析需求，例如：分析不同年龄段用户对各类商品的购买偏好\"\n                  style={{\n                    borderRadius: '12px',\n                    border: '1px solid #e2e8f0',\n                    transition: 'all 0.3s ease',\n                  }}\n                  autoSize={{minRows: 4, maxRows: 6}}\n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"name\"\n                label={<span style={{fontWeight: 500, color: '#334155'}}>图表名称</span>}\n              >\n                <Input\n                  placeholder=\"请输入图表名称（可选）\"\n                  style={{\n                    borderRadius: '12px',\n                    border: '1px solid #e2e8f0',\n                  }}\n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"chartType\"\n                label={<span style={{fontWeight: 500, color: '#334155'}}>图表类型</span>}\n              >\n                <Select\n                  options={chartTypes}\n                  placeholder=\"选择图表类型（可选，AI将自动推荐）\"\n                  style={{\n                    borderRadius: '12px',\n                    border: '1px solid #e2e8f0',\n                  }}\n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"file\"\n                label={<span style={{fontWeight: 500, color: '#334155'}}>原始数据</span>}\n                rules={[{required: true, message: '请上传数据文件'}]}\n              >\n                <Upload\n                  name=\"file\"\n                  maxCount={1}\n                  accept=\".csv,.xlsx,.xls\"\n                  style={{width: '100%'}}\n                >\n                  <Button\n                    icon={<UploadOutlined/>}\n                    style={{\n                      width: '100%',\n                      borderRadius: '12px',\n                      height: '48px',\n                      border: '2px dashed #cbd5e1',\n                      background: 'rgba(255, 255, 255, 0.8)',\n                    }}\n                  >\n                    点击或拖拽上传 CSV/XLSX 文件\n                  </Button>\n                </Upload>\n                <Paragraph style={{fontSize: '12px', color: '#94a3b8', marginTop: '8px'}}>\n                  支持 CSV、XLSX、XLS 格式，建议数据量不超过 1000 行\n                </Paragraph>\n              </Form.Item>\n\n              <Form.Item>\n                <Space style={{width: '100%', justifyContent: 'flex-end', gap: '12px'}}>\n                  <Button\n                    htmlType=\"reset\"\n                    icon={<RefreshOutlined/>}\n                    style={{\n                      borderRadius: '12px',\n                      padding: '10px 24px',\n                    }}\n                  >\n                    重置\n                  </Button>\n                  <Button\n                    type=\"primary\"\n                    htmlType=\"submit\"\n                    loading={submitting}\n                    disabled={submitting}\n                    icon={<BarChart3Outlined/>}\n                    style={{\n                      borderRadius: '12px',\n                      padding: '10px 32px',\n                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n                      border: 'none',\n                      boxShadow: '0 4px 15px rgba(102, 126, 234, 0.4)',\n                    }}\n                  >\n                    {submitting ? '分析中...' : '开始分析'}\n                  </Button>\n                </Space>\n              </Form.Item>\n            </Form>\n          </Card>\n        </Col>\n\n        <Col span={13}>\n          <Card\n            className=\"glass-card\"\n            style={{\n              borderRadius: '16px',\n              border: 'none',\n              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',\n              marginBottom: '24px',\n              minHeight: '200px',\n            }}\n            title={\n              <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>\n                <span>分析结论</span>\n                {submitting && <Spin size=\"small\"/>}\n              </div>\n            }\n          >\n            {chart?.genResult ? (\n              <div\n                className=\"animate-fadeIn\"\n                style={{\n                  whiteSpace: 'pre-wrap',\n                  lineHeight: '1.8',\n                  color: '#475569',\n                  fontSize: '14px',\n                }}\n              >\n                {chart.genResult}\n              </div>\n            ) : (\n              <div\n                style={{\n                  display: 'flex',\n                  flexDirection: 'column',\n                  alignItems: 'center',\n                  justifyContent: 'center',\n                  height: '160px',\n                  color: '#94a3b8',\n                }}\n              >\n                <BarChart3Outlined style={{fontSize: '48px', marginBottom: '12px', opacity: 0.5}}/>\n                <div>请先在左侧提交分析请求</div>\n              </div>\n            )}\n          </Card>\n\n          <Card\n            className=\"glass-card\"\n            style={{\n              borderRadius: '16px',\n              border: 'none',\n              boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',\n            }}\n            title={\n              <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>\n                <span>可视化图表</span>\n                {submitting && <Spin size=\"small\"/>}\n              </div>\n            }\n          >\n            {option ? (\n              <div className=\"animate-fadeIn\" style={{height: '400px'}}>\n                <ReactECharts\n                  option={option}\n                  style={{height: '100%', width: '100%'}}\n                  opts={{renderer: 'canvas'}}\n                />\n              </div>\n            ) : (\n              <div\n                style={{\n                  display: 'flex',\n                  flexDirection: 'column',\n                  alignItems: 'center',\n                  justifyContent: 'center',\n                  height: '300px',\n                  color: '#94a3b8',\n                }}\n              >\n                <BarChart3Outlined style={{fontSize: '48px', marginBottom: '12px', opacity: 0.5}}/>\n                <div>图表将在此处显示</div>\n              </div>\n            )}\n          </Card>\n        </Col>\n      </Row>\n\n      <Modal\n        title={\n          <div style={{display: 'flex', alignItems: 'center', gap: '8px'}}>\n            <CreditCardOutlined style={{color: '#f59e0b'}}/>\n            <span>积分不足</span>\n          </div>\n        }\n        visible={showNoCreditModal}\n        onCancel={() => setShowNoCreditModal(false)}\n        footer={null}\n        closable={true}\n        centered\n        style={{borderRadius: '16px'}}\n      >\n        <div style={{textAlign: 'center', padding: '20px 0'}}>\n          <div\n            style={{\n              width: '80px',\n              height: '80px',\n              borderRadius: '50%',\n              background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(239, 68, 68, 0.1) 100%)',\n              display: 'flex',\n              alignItems: 'center',\n              justifyContent: 'center',\n              margin: '0 auto 20px',\n            }}\n          >\n            <CreditCardOutlined style={{fontSize: '40px', color: '#f59e0b'}}/>\n          </div>\n          <Title level={3} style={{marginBottom: '8px'}}>积分不足</Title>\n          <Paragraph style={{color: '#64748b'}}>\n            您当前的积分不足以完成此操作，请前往个人中心充值\n          </Paragraph>\n          <Button\n            type=\"primary\"\n            onClick={handleGoToRecharge}\n            style={{\n              marginTop: '20px',\n              borderRadius: '12px',\n              padding: '10px 32px',\n              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n              border: 'none',\n            }}\n          >\n            立即充值\n          </Button>\n        </div>\n      </Modal>\n    </div>\n  );\n};\nexport default AddChart;\n",
       "__isJSFile": true,
       "__absFile": "D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/src/pages/AddChart/index.tsx"
     },
@@ -3821,7 +3823,7 @@
       "parentId": "ant-design-pro-layout",
       "id": "11",
       "absPath": "/story",
-      "__content": "import React, {useState} from \"react\";\nimport Chat, {Bubble, useMessages} from \"@chatui/core\";\nimport \"@chatui/core/dist/index.css\";\nimport {genChatUsingPOST} from \"@/services/yubi/aiController\";\nimport {message, Select, Tag, Avatar} from \"antd\";\nimport {useModel} from '@umijs/max';\nimport {DEFAULT_AVATAR_URL} from '@/constants';\nimport ReactMarkdown from 'react-markdown';\n\ninterface AIRole {\n  value: string;\n  label: string;\n  prompt: string;\n  avatar: string;\n}\n\nconst AI_ROLES: AIRole[] = [\n  {\n    value: \"analyst\",\n    label: \"数据分析师\",\n    avatar: \"/AIImage/avatar-analyst.png\",\n    prompt: \"你是一名专业的数据分析师，擅长解读数据、发现趋势和提供数据驱动的洞察。请用专业但易懂的方式分析数据问题，给出清晰的数据分析报告和建议。\"\n  },\n  {\n    value: \"frontend\",\n    label: \"前端工程师\",\n    avatar: \"/AIImage/avatar-frontend.png\",\n    prompt: \"你是一名资深前端工程师，精通 React、Vue、TypeScript、CSS、HTML 等前端技术栈。擅长解答前端开发问题、性能优化、组件设计、UI实现等技术难题，提供最佳实践和代码示例。\"\n  },\n  {\n    value: \"java\",\n    label: \"Java工程师\",\n    avatar: \"/AIImage/avatar-java.png\",\n    prompt: \"你是一名资深 Java 工程师，精通 Java、Spring Boot、MyBatis、MySQL 等后端技术栈。擅长解答 Java 开发问题、系统架构设计、性能优化、并发编程等技术难题，提供专业的技术方案和代码示例。\"\n  },\n  {\n    value: \"writer\",\n    label: \"文案作家\",\n    avatar: \"/AIImage/avatar-writer.png\",\n    prompt: \"你是一名专业的文案作家，擅长撰写各种类型的文案，包括营销文案、产品描述、广告标语、品牌故事等。你的文字生动有力，能够精准抓住用户痛点，激发用户情感共鸣。\"\n  },\n  {\n    value: \"yuyu\",\n    label: \"女友雨雨\",\n    avatar: \"/AIImage/avatar-yuyu.png\",\n    prompt: \"你是女友雨雨，一个甜美可爱的女孩子。你的性格温柔体贴，说话语气甜美，喜欢用语气词。你会关心对方的生活和心情，会撒娇卖萌，用甜美的语气和对方聊天。回复要简短可爱，充满少女感。\"\n  },\n  {\n    value: \"tingting\",\n    label: \"女友婷婷\",\n    avatar: \"/AIImage/avatar-tingting.png\",\n    prompt: \"你是女友婷婷，一个成熟优雅的御姐。你的性格独立自信，说话语气温柔但带有成熟的魅力。你善于倾听和理解，会用成熟理性的方式关心对方，偶尔会展现出御姐的霸道和宠溺。回复要有深度和内涵，展现出成熟的魅力。\"\n  }\n];\n\nexport default function App() {\n  const {messages, appendMsg, setTyping} = useMessages([]);\n  const [loading, setLoading] = useState<boolean>(false);\n  const [isTyping, setIsTyping] = useState<boolean>(false);\n  const [selectedRole, setSelectedRole] = useState<AIRole>(AI_ROLES[0]);\n  const {initialState} = useModel('@@initialState');\n  const {currentUser} = initialState || {};\n\n  async function handleSend(type: string, val: string) {\n    if (type === \"text\" && val.trim()) {\n      appendMsg({\n        type: \"text\",\n        content: {text: val},\n        position: \"right\"\n      });\n\n      setTyping(true);\n      setLoading(true);\n      setIsTyping(true);\n\n      try {\n        const res = await genChatUsingPOST({\n          message: val,\n          role: selectedRole.value,\n          prompt: selectedRole.prompt\n        });\n        if (!res?.data) {\n          message.error(\"AI回复失败\");\n          appendMsg({\n            type: \"text\",\n            content: {text: \"AI回复失败，请稍后重试\"}\n          });\n        } else {\n          appendMsg({\n            type: \"text\",\n            content: {text: res.data}\n          });\n        }\n      } catch (e: any) {\n        message.error(\"AI回复失败：\" + e.message);\n        appendMsg({\n          type: \"text\",\n          content: {text: \"AI回复失败：\" + e.message}\n        });\n      } finally {\n        setTyping(false);\n        setLoading(false);\n        setIsTyping(false);\n      }\n    }\n  }\n\n  function renderMessageContent(msg: any) {\n    const {content} = msg;\n    if (msg.position === \"left\") {\n      return (\n        <div style={{display: \"flex\", alignItems: \"flex-start\", gap: 8}}>\n          <Avatar \n            size=\"large\" \n            src={selectedRole.avatar} \n            style={{flexShrink: 0, borderRadius: '8px'}}\n          />\n          <div style={{position: 'relative', maxWidth: '85%'}}>\n            <div \n              style={{\n                backgroundColor: '#fff',\n                borderRadius: '4px 12px 12px 12px',\n                padding: '8px 12px',\n                border: '1px solid #e8e8e8',\n                boxShadow: '0 1px 2px rgba(0,0,0,0.05)'\n              }}\n            >\n              <ReactMarkdown \n                style={{margin: 0, fontSize: '14px', lineHeight: '1.5', wordBreak: 'break-all'}}\n                components={{\n                  p: ({children}) => <p style={{margin: '4px 0'}}>{children}</p>,\n                  h1: ({children}) => <h1 style={{margin: '8px 0', fontSize: '18px'}}>{children}</h1>,\n                  h2: ({children}) => <h2 style={{margin: '8px 0', fontSize: '16px'}}>{children}</h2>,\n                  h3: ({children}) => <h3 style={{margin: '8px 0', fontSize: '15px'}}>{children}</h3>,\n                  ul: ({children}) => <ul style={{margin: '4px 0', paddingLeft: '20px'}}>{children}</ul>,\n                  ol: ({children}) => <ol style={{margin: '4px 0', paddingLeft: '20px'}}>{children}</ol>,\n                  li: ({children}) => <li style={{margin: '2px 0'}}>{children}</li>,\n                  code: ({children, className}) => {\n                    const isInline = !className;\n                    return isInline ? \n                      <code style={{backgroundColor: '#f5f5f5', padding: '2px 6px', borderRadius: '4px', fontSize: '13px'}}>{children}</code> :\n                      <code style={{display: 'block', backgroundColor: '#f5f5f5', padding: '8px', borderRadius: '4px', fontSize: '13px', overflow: 'auto'}}>{children}</code>;\n                  },\n                  strong: ({children}) => <strong style={{fontWeight: 'bold'}}>{children}</strong>,\n                }}\n              >\n                {content.text}\n              </ReactMarkdown>\n            </div>\n            <div \n              style={{\n                position: 'absolute',\n                left: '-6px',\n                top: '12px',\n                width: '0',\n                height: '0',\n                borderTop: '8px solid transparent',\n                borderBottom: '8px solid transparent',\n                borderRight: '8px solid #e8e8e8'\n              }}\n            />\n            <div \n              style={{\n                position: 'absolute',\n                left: '-5px',\n                top: '12px',\n                width: '0',\n                height: '0',\n                borderTop: '8px solid transparent',\n                borderBottom: '8px solid transparent',\n                borderRight: '8px solid #fff'\n              }}\n            />\n          </div>\n        </div>\n      );\n    }\n    return (\n      <div style={{display: \"flex\", alignItems: \"flex-start\", gap: 8, justifyContent: \"flex-end\"}}>\n        <div style={{position: 'relative', maxWidth: '85%'}}>\n          <div \n            style={{\n              backgroundColor: 'rgb(149, 236, 105)',\n              borderRadius: '12px 4px 12px 12px',\n              padding: '8px 12px',\n              boxShadow: '0 1px 2px rgba(0,0,0,0.05)'\n            }}\n          >\n            <p style={{margin: 0, fontSize: '14px', lineHeight: '1.5', color: '#333', wordBreak: 'break-all'}}>{content.text}</p>\n          </div>\n          <div \n            style={{\n              position: 'absolute',\n              right: '-6px',\n              top: '12px',\n              width: '0',\n              height: '0',\n              borderTop: '8px solid transparent',\n              borderBottom: '8px solid transparent',\n              borderLeft: '8px solid rgb(149, 236, 105)'\n            }}\n          />\n        </div>\n        <Avatar \n          size=\"large\" \n          src={currentUser?.userAvatar || DEFAULT_AVATAR_URL} \n          style={{flexShrink: 0, borderRadius: '8px'}}\n        />\n      </div>\n    );\n  }\n\n  return (\n    <div style={{height: \"100vh\", display: \"flex\", flexDirection: \"column\"}}>\n      <div style={{padding: 16, backgroundColor: \"#f5f5f5\", borderBottom: \"1px solid #e8e8e8\"}}>\n        <div style={{display: \"flex\", alignItems: \"center\", gap: 16}}>\n          <Avatar size=\"large\" src={selectedRole.avatar}/>\n          <Select\n            value={selectedRole.value}\n            onChange={(value) => {\n              const role = AI_ROLES.find(r => r.value === value);\n              if (role) {\n                setSelectedRole(role);\n              }\n            }}\n            style={{width: 160}}\n            options={AI_ROLES.map(role => ({\n              value: role.value,\n              label: role.label\n            }))}\n          />\n          <Tag color=\"blue\">{selectedRole.label}</Tag>\n        </div>\n      </div>\n      {/* 固定顶部的角色名称栏 */}\n      <div style={{position: \"sticky\", top: 0, zIndex: 100, backgroundColor: \"#fff\", padding: \"8px 16px\", borderBottom: \"1px solid #e8e8e8\", textAlign: \"center\"}}>\n        <span style={{fontWeight: \"bold\", fontSize: 16, color: '#333'}}>\n          {isTyping ? '对方正在输入...' : selectedRole.label}\n        </span>\n      </div>\n      <div style={{flex: 1}}>\n        <Chat\n          navbar={undefined}\n          messages={messages}\n          renderMessageContent={renderMessageContent}\n          onSend={handleSend}\n        />\n      </div>\n    </div>\n  );\n}\n",
+      "__content": "import React, {useState, useCallback} from \"react\";\nimport Chat, {Bubble} from \"@chatui/core\";\nimport \"@chatui/core/dist/index.css\";\nimport {genChatUsingPOST} from \"@/services/yubi/aiController\";\nimport {message, Select, Tag, Avatar} from \"antd\";\nimport {useModel} from '@umijs/max';\nimport {DEFAULT_AVATAR_URL} from '@/constants';\nimport ReactMarkdown from 'react-markdown';\nimport remarkGfm from 'remark-gfm';\nimport hljs from 'rehype-highlight';\nimport 'highlight.js/styles/github.css';\n\ninterface AIRole {\n  value: string;\n  label: string;\n  prompt: string;\n  avatar: string;\n}\n\ninterface Message {\n  type: string;\n  content: { text: string };\n  position: 'left' | 'right';\n  _id?: string;\n  _createdAt?: number;\n}\n\nconst AI_ROLES: AIRole[] = [\n  {\n    value: \"analyst\",\n    label: \"数据分析师\",\n    avatar: \"/AIImage/avatar-analyst.png\",\n    prompt: \"你是一名专业的数据分析师，擅长解读数据、发现趋势和提供数据驱动的洞察。请用专业但易懂的方式分析数据问题，给出清晰的数据分析报告和建议。\"\n  },\n  {\n    value: \"frontend\",\n    label: \"前端工程师\",\n    avatar: \"/AIImage/avatar-frontend.png\",\n    prompt: \"你是一名资深前端工程师，精通 React、Vue、TypeScript、CSS、HTML 等前端技术栈。擅长解答前端开发问题、性能优化、组件设计、UI实现等技术难题，提供最佳实践和代码示例。\"\n  },\n  {\n    value: \"java\",\n    label: \"Java工程师\",\n    avatar: \"/AIImage/avatar-java.png\",\n    prompt: \"你是一名资深 Java 工程师，精通 Java、Spring Boot、MyBatis、MySQL 等后端技术栈。擅长解答 Java 开发问题、系统架构设计、性能优化、并发编程等技术难题，提供专业的技术方案和代码示例。\"\n  },\n  {\n    value: \"writer\",\n    label: \"文案作家\",\n    avatar: \"/AIImage/avatar-writer.png\",\n    prompt: \"你是一名专业的文案作家，擅长撰写各种类型的文案，包括营销文案、产品描述、广告标语、品牌故事等。你的文字生动有力，能够精准抓住用户痛点，激发用户情感共鸣。\"\n  },\n  {\n    value: \"yuyu\",\n    label: \"女友雨雨\",\n    avatar: \"/AIImage/avatar-yuyu.png\",\n    prompt: \"你是女友雨雨，一个甜美可爱的女孩子。你的性格温柔体贴，说话语气甜美，喜欢用语气词。你会关心对方的生活和心情，会撒娇卖萌，用甜美的语气和对方聊天。回复要简短可爱，充满少女感。\"\n  },\n  {\n    value: \"tingting\",\n    label: \"女友婷婷\",\n    avatar: \"/AIImage/avatar-tingting.png\",\n    prompt: \"你是女友婷婷，一个成熟优雅的御姐。你的性格独立自信，说话语气温柔但带有成熟的魅力。你善于倾听和理解，会用成熟理性的方式关心对方，偶尔会展现出御姐的霸道和宠溺。回复要有深度和内涵，展现出成熟的魅力。\"\n  }\n];\n\nexport default function App() {\n  const [messages, setMessages] = useState<Message[]>([]);\n  const [typing, setTyping] = useState<boolean>(false);\n  const [loading, setLoading] = useState<boolean>(false);\n  const [isTyping, setIsTyping] = useState<boolean>(false);\n  const [selectedRole, setSelectedRole] = useState<AIRole>(AI_ROLES[0]);\n  const [sessionId, setSessionId] = useState<number | null>(null);\n  const {initialState} = useModel('@@initialState');\n  const {currentUser} = initialState || {};\n\n  const appendMsg = useCallback((msg: Message) => {\n    setMessages(prev => [...prev, {\n      ...msg,\n      _id: Date.now().toString(),\n      _createdAt: Date.now()\n    }]);\n  }, []);\n\n  const clearMessages = useCallback(() => {\n    setMessages([]);\n  }, []);\n\n  async function handleSend(type: string, val: string) {\n    if (type === \"text\" && val.trim()) {\n      appendMsg({\n        type: \"text\",\n        content: {text: val},\n        position: \"right\"\n      });\n\n      setTyping(true);\n      setLoading(true);\n      setIsTyping(true);\n\n      try {\n        const res = await genChatUsingPOST({\n          message: val,\n          role: selectedRole.value,\n          prompt: selectedRole.prompt,\n          userId: currentUser?.id,\n          sessionId: sessionId ?? undefined,\n          userAvatar: currentUser?.userAvatar,\n          userName: currentUser?.userName,\n          aiName: selectedRole.label,\n          aiAvatar: selectedRole.avatar\n        });\n        if (!res?.data) {\n          message.error(\"AI回复失败\");\n          appendMsg({\n            type: \"text\",\n            content: {text: \"AI回复失败，请稍后重试\"},\n            position: \"left\"\n          });\n        } else {\n          if (res.data.sessionId && !sessionId) {\n            setSessionId(res.data.sessionId);\n          }\n          appendMsg({\n            type: \"text\",\n            content: {text: typeof res.data === 'string' ? res.data : (res.data.answer ?? '')},\n            position: \"left\"\n          });\n        }\n      } catch (e: any) {\n        message.error(\"AI回复失败：\" + e.message);\n        appendMsg({\n          type: \"text\",\n          content: {text: \"AI回复失败：\" + e.message},\n          position: \"left\"\n        });\n      } finally {\n        setTyping(false);\n        setLoading(false);\n        setIsTyping(false);\n      }\n    }\n  }\n\n  function renderMessageContent(msg: any) {\n    const {content} = msg;\n    if (msg.position === \"left\") {\n      return (\n        <div style={{display: \"flex\", alignItems: \"flex-start\", gap: 8}}>\n          <Avatar \n            size=\"large\" \n            src={selectedRole.avatar} \n            style={{flexShrink: 0, borderRadius: '8px'}}\n          />\n          <div style={{position: 'relative', maxWidth: '85%'}}>\n            <div \n              style={{\n                backgroundColor: '#fff',\n                borderRadius: '4px 12px 12px 12px',\n                padding: '8px 12px',\n                border: '1px solid #e8e8e8',\n                boxShadow: '0 1px 2px rgba(0,0,0,0.05)'\n              }}\n            >\n              <div style={{fontSize: '14px', lineHeight: '1.6', wordBreak: 'break-all'}}>\n                <ReactMarkdown\n                  remarkPlugins={[remarkGfm]}\n                  rehypePlugins={[hljs]}\n                  components={{\n                    p: ({children}) => <p style={{margin: '0 0 8px 0'}}>{children}</p>,\n                    h1: ({children}) => <h1 style={{fontSize: '18px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h1>,\n                    h2: ({children}) => <h2 style={{fontSize: '16px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h2>,\n                    h3: ({children}) => <h3 style={{fontSize: '15px', fontWeight: 'bold', margin: '8px 0'}}>{children}</h3>,\n                    code: ({node, className, children, ...props}) => {\n                      const match = /language-(\\w+)/.exec(className || '');\n                      const isInline = !match;\n                      if (isInline) {\n                        return (\n                          <code \n                            className={className}\n                            style={{\n                              background: '#f6f8fa',\n                              padding: '2px 6px',\n                              borderRadius: '4px',\n                              fontSize: '13px',\n                              fontFamily: '\"SF Mono\", Monaco, \"Courier New\", monospace'\n                            }}\n                            {...props}\n                          >\n                            {children}\n                          </code>\n                        );\n                      }\n                      return (\n                        <pre \n                          style={{\n                            background: '#1e1e1e',\n                            padding: '12px',\n                            borderRadius: '6px',\n                            overflowX: 'auto',\n                            margin: '8px 0'\n                          }}\n                        >\n                          <code className={className} style={{fontSize: '13px'}} {...props}>\n                            {children}\n                          </code>\n                        </pre>\n                      );\n                    },\n                    ul: ({children}) => <ul style={{margin: '8px 0', paddingLeft: '20px'}}>{children}</ul>,\n                    ol: ({children}) => <ol style={{margin: '8px 0', paddingLeft: '20px'}}>{children}</ol>,\n                    li: ({children}) => <li style={{margin: '4px 0'}}>{children}</li>,\n                    blockquote: ({children}) => (\n                      <blockquote style={{\n                        borderLeft: '4px solid #ddd',\n                        paddingLeft: '12px',\n                        margin: '8px 0',\n                        color: '#666',\n                        fontStyle: 'italic'\n                      }}>\n                        {children}\n                      </blockquote>\n                    ),\n                    table: ({children}) => (\n                      <div style={{overflowX: 'auto', margin: '8px 0'}}>\n                        <table style={{borderCollapse: 'collapse', width: '100%'}}>\n                          {children}\n                        </table>\n                      </div>\n                    ),\n                    th: ({children}) => (\n                      <th style={{border: '1px solid #ddd', padding: '6px', backgroundColor: '#f6f8fa'}}>\n                        {children}\n                      </th>\n                    ),\n                    td: ({children}) => (\n                      <td style={{border: '1px solid #ddd', padding: '6px'}}>\n                        {children}\n                      </td>\n                    ),\n                    strong: ({children}) => <strong style={{fontWeight: 'bold'}}>{children}</strong>,\n                    em: ({children}) => <em style={{fontStyle: 'italic'}}>{children}</em>,\n                    a: ({href, children}) => (\n                      <a href={href} target=\"_blank\" rel=\"noopener noreferrer\" style={{color: '#1890ff'}}>\n                        {children}\n                      </a>\n                    ),\n                    hr: () => <hr style={{border: 'none', borderTop: '1px solid #eee', margin: '12px 0'}} />\n                  }}\n                >\n                  {content.text}\n                </ReactMarkdown>\n              </div>\n            </div>\n            <div \n              style={{\n                position: 'absolute',\n                left: '-6px',\n                top: '12px',\n                width: '0',\n                height: '0',\n                borderTop: '8px solid transparent',\n                borderBottom: '8px solid transparent',\n                borderRight: '8px solid #e8e8e8'\n              }}\n            />\n            <div \n              style={{\n                position: 'absolute',\n                left: '-5px',\n                top: '12px',\n                width: '0',\n                height: '0',\n                borderTop: '8px solid transparent',\n                borderBottom: '8px solid transparent',\n                borderRight: '8px solid #fff'\n              }}\n            />\n          </div>\n        </div>\n      );\n    }\n    return (\n      <div style={{display: \"flex\", alignItems: \"flex-start\", gap: 8, justifyContent: \"flex-end\"}}>\n        <div style={{position: 'relative', maxWidth: '85%'}}>\n          <div \n            style={{\n              backgroundColor: 'rgb(149, 236, 105)',\n              borderRadius: '12px 4px 12px 12px',\n              padding: '8px 12px',\n              boxShadow: '0 1px 2px rgba(0,0,0,0.05)'\n            }}\n          >\n            <p style={{margin: 0, fontSize: '14px', lineHeight: '1.5', color: '#333', wordBreak: 'break-all'}}>{content.text}</p>\n          </div>\n          <div \n            style={{\n              position: 'absolute',\n              right: '-6px',\n              top: '12px',\n              width: '0',\n              height: '0',\n              borderTop: '8px solid transparent',\n              borderBottom: '8px solid transparent',\n              borderLeft: '8px solid rgb(149, 236, 105)'\n            }}\n          />\n        </div>\n        <Avatar \n          size=\"large\" \n          src={currentUser?.userAvatar || DEFAULT_AVATAR_URL} \n          style={{flexShrink: 0, borderRadius: '8px'}}\n        />\n      </div>\n    );\n  }\n\n  return (\n    <div style={{height: \"100vh\", display: \"flex\", flexDirection: \"column\"}}>\n      <div style={{padding: 16, backgroundColor: \"#f5f5f5\", borderBottom: \"1px solid #e8e8e8\"}}>\n        <div style={{display: \"flex\", alignItems: \"center\", gap: 16}}>\n          <Avatar size=\"large\" src={selectedRole.avatar}/>\n          <Select\n            value={selectedRole.value}\n            onChange={(value) => {\n              const role = AI_ROLES.find(r => r.value === value);\n              if (role) {\n                setSelectedRole(role);\n                setSessionId(null);\n                clearMessages();\n              }\n            }}\n            style={{width: 160}}\n            options={AI_ROLES.map(role => ({\n              value: role.value,\n              label: role.label\n            }))}\n          />\n          <Tag color=\"blue\">{selectedRole.label}</Tag>\n        </div>\n      </div>\n      <div style={{position: \"sticky\", top: 0, zIndex: 100, backgroundColor: \"#fff\", padding: \"8px 16px\", borderBottom: \"1px solid #e8e8e8\", textAlign: \"center\"}}>\n        <span style={{fontWeight: \"bold\", fontSize: 16, color: '#333'}}>\n          {isTyping ? '对方正在输入...' : selectedRole.label}\n        </span>\n      </div>\n      <div style={{flex: 1}}>\n        <Chat\n          navbar={undefined}\n          messages={messages}\n          renderMessageContent={renderMessageContent}\n          onSend={handleSend}\n          typing={typing}\n        />\n      </div>\n    </div>\n  );\n}",
       "__isJSFile": true,
       "__absFile": "D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/src/pages/story/index.tsx"
     },
@@ -3902,7 +3904,7 @@
       "request"
     ]
   },
-  "locale": "C",
+  "locale": "zh-CN",
   "globalCSS": [
     "D:\\Code\\ZX-BI-main\\ZX-BI-main\\ZXYBI-frontend\\src\\global.less"
   ],
@@ -3911,6 +3913,9 @@
   ],
   "overridesCSS": [],
   "bundler": "webpack",
+  "git": {
+    "originUrl": "https://github.com/LinG139/ZX-BI.git"
+  },
   "framework": "react",
   "typescript": {
     "tsVersion": "4.9.5",

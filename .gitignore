@@ -1,38 +1,62 @@
-# Dependencies
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Package files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.project
+.classpath
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node.js
 node_modules/
-.m2/
-pnpm-lock.yaml
 package-lock.json
+pnpm-lock.yaml
+yarn.lock
 
 # Build outputs
 dist/
 build/
-target/
+*.min.js
 
-# IDE files
-.idea/
-.vscode/
-*.iml
-*.swp
-*.swo
+# Database
+*.db
 
-# OS files
-.DS_Store
-Thumbs.db
+# Spring Boot
+application-local.yml
+application-dev.yml
+application-prod.yml
 
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Logs
-logs/
-*.log
-
-# Cache
-.cache/
-.npm-cache/
-
-# Umi.js cache
-src/.umi/
-src/.umi-production/
+# Maven local repo
+.m2/

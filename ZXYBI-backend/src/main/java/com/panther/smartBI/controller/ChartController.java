@@ -102,7 +102,7 @@ public class ChartController {
     /**
      * 更新（仅管理员）
      *
-     * @param chartUpdateRequest 更新图标请求类
+     * @param chartUpdateRequest 更新图标请求
      * @return 统一返回
      */
     @PostMapping("/update")
@@ -167,13 +167,10 @@ public class ChartController {
     @PostMapping("/gen")
     @RateCount(count = "2")
     public BaseResponse<BiResponse> getChartByAi(@RequestPart("file") MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
-<<<<<<< HEAD
         // 积分校验
         User loginUser = userService.getLoginUser(request);
         ThrowUtils.throwIf(loginUser.getLeftCount() <= 0, ErrorCode.NO_AUTH_ERROR, "积分不足，请前往个人设置中心进行充值");
         
-=======
->>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
         //参数校验
         String csvData = analysisFile(multipartFile);
         BiResponse biResponse = chartService.getChartByAi(csvData, genChartByAiRequest, request);
@@ -183,13 +180,10 @@ public class ChartController {
     @PostMapping("/gen/async")
     @RateCount
     public BaseResponse<BiResponse> ByAiAsync(@RequestPart("file") MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
-<<<<<<< HEAD
         // 积分校验
         User loginUser = userService.getLoginUser(request);
         ThrowUtils.throwIf(loginUser.getLeftCount() <= 0, ErrorCode.NO_AUTH_ERROR, "积分不足，请前往个人设置中心进行充值");
         
-=======
->>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
         String csvData = analysisFile(multipartFile);
         BiResponse biResponse = chartService.ByAiAsync(csvData, genChartByAiRequest, request);
         return ResultUtils.success(biResponse);
@@ -198,13 +192,10 @@ public class ChartController {
     @PostMapping("/gen/async/mq")
     @RateCount
     public BaseResponse<BiResponse> ByAiAsyncMQ(@RequestPart("file") MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
-<<<<<<< HEAD
         // 积分校验
         User loginUser = userService.getLoginUser(request);
         ThrowUtils.throwIf(loginUser.getLeftCount() <= 0, ErrorCode.NO_AUTH_ERROR, "积分不足，请前往个人设置中心进行充值");
         
-=======
->>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
         String csvData = analysisFile(multipartFile);
         long chartId = chartService.saveRawData(csvData, genChartByAiRequest, request);
         sendMessage.sendMessage(String.valueOf(chartId));

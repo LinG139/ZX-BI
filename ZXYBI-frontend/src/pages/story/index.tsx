@@ -123,7 +123,7 @@ export default function App() {
           }
           appendMsg({
             type: "text",
-            content: {text: res.data.answer || res.data},
+            content: {text: typeof res.data === 'string' ? res.data : (res.data.answer ?? '')},
             position: "left"
           });
         }
@@ -347,10 +347,13 @@ export default function App() {
       <div style={{flex: 1}}>
         <Chat
           navbar={undefined}
-          messages={messages}
+          messages={messages.map(msg => ({
+            ...msg,
+            _id: msg._id || Date.now().toString(),
+            _createdAt: msg._createdAt || Date.now()
+          }))}
           renderMessageContent={renderMessageContent}
           onSend={handleSend}
-          typing={typing}
         />
       </div>
     </div>

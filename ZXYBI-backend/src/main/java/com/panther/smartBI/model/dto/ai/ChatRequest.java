@@ -11,7 +11,6 @@ public class ChatRequest {
 
     private String message;
 
-<<<<<<< HEAD
     private String role;
 
     private String prompt;
@@ -28,6 +27,3 @@ public class ChatRequest {
 
     private String aiAvatar;
 }
-=======
-}
->>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
