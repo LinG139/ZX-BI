@@ -10,7 +10,7 @@ import lombok.Data;
 
 /**
  * AI聊天
- * @TableName aichat
+ * @TableName ai_chat
  */
 @TableName(value ="ai_chat")
 @Data
@@ -22,15 +22,12 @@ public class AiChat implements Serializable {
     private Long id;
 
     /**
-<<<<<<< HEAD
      * 会话ID
      */
     @TableField(value = "sessionId")
     private Long sessionId;
 
     /**
-=======
->>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
      * 用户id
      */
     @TableField(value = "userId")
@@ -55,11 +52,7 @@ public class AiChat implements Serializable {
     private String AIMessage;
 
     /**
-<<<<<<< HEAD
      *
-=======
-     * 
->>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
      */
     @TableField(value = "AIAvatar")
     private String AIAvatar;
@@ -80,15 +73,12 @@ public class AiChat implements Serializable {
 
     private String AIName;
 
-<<<<<<< HEAD
     /**
      * 是否删除
      */
     @TableField(value = "isDelete")
     private Integer isDelete;
 
-=======
->>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

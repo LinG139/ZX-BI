@@ -4,10 +4,6 @@ import com.panther.smartBI.common.ErrorCode;
 import com.panther.smartBI.constant.BiConstant;
 import com.panther.smartBI.constant.BiMQConstant;
 import com.panther.smartBI.exception.BusinessException;
-<<<<<<< HEAD
-=======
-import com.panther.smartBI.exception.ThrowUtils;
->>>>>>> 0cc9b644bdc19feba39201e5a73ff5c5582cd270
 import com.panther.smartBI.manager.AiManager;
 import com.panther.smartBI.model.entity.Chart;
 import com.panther.smartBI.model.enums.ChartStatusEnum;
@@ -41,7 +37,7 @@ public class ReceiveMessage {
     private AiManager aiManager;
 
     /**
-     *  RabbitListener 这个注解会自动填充下面参数
+     * RabbitListener 这个注解会自动填充下面参数
      * @param message 消息
      * @param channel 信道
      * @param deliveryTag 确认消息的标签
@@ -51,7 +47,7 @@ public class ReceiveMessage {
     public void receiveMessage(String message, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag) {
         // 消息为空
         if(StringUtils.isBlank(message)){
-            // 消息的标识  取消批量确认  不放回队列
+            // 消息的标识 取消批量确认 不放回队列
             channel.basicNack(deliveryTag,false,false);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR,"消息为空！");
         }
@@ -75,19 +71,62 @@ public class ReceiveMessage {
             throw new BusinessException(ErrorCode.OPERATION_ERROR,"图标生成失败！");
         }
         String aiRes = aiManager.doChartAnalysis(BiConstant.BI_MODEL_ID_S, userInput);
-        //截取AI数据
-        final String str = "=>=>=>";
-        String[] aiData = aiRes.split(str);
-        String genChart = aiData[1].trim();
-        String genResult = aiData[2].trim();
-        //log.info("aiData len = {} data = {}", aiData.length, aiRes);
-        if(StringUtils.isBlank(genChart) || StringUtils.isBlank(genResult)){
-            update.setStatus(ChartStatusEnum.CHART_STATUS_FAILURE.getValue());
-            update.setExecMessage(ChartStatusEnum.CHART_STATUS_FAILURE.getText());
-            chartService.updateById(update);
-            channel.basicNack(deliveryTag,false,false);
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR,"AI 分析失败!");
+        
+        String genChart;
+        String genResult;
+        
+        try {
+            String normalizedResponse = normalizeAiResponse(aiRes);
+            String[] aiData = normalizedResponse.split("=>=>=>");
+
+            if (aiData.length == 1) {
+                String content = aiData[0].trim();
+                if (isValidJson(content)) {
+                    genChart = content;
+                    genResult = "AI分析完成";
+                } else {
+                    genResult = content;
+                    genChart = "{}";
+                }
+            } else if (aiData.length == 2) {
+                String analysisConclusion = aiData[0].trim();
+                if (isValidJson(aiData[1].trim())) {
+                    genChart = aiData[1].trim();
+                    genResult = analysisConclusion;
+                } else {
+                    genResult = aiData[1].trim();
+                    genChart = "{}";
+                }
+            } else if (aiData.length >= 3) {
+                genChart = aiData[1].trim();
+                genResult = aiData[2].trim();
+                
+                for (int i = 3; i < aiData.length; i++) {
+                    genResult += " =>=>=> " + aiData[i].trim();
+                }
+            } else {
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 返回数据格式异常");
+            }
+
+            if (StringUtils.isBlank(genChart)) {
+                genChart = "{}";
+            }
+            
+            if (StringUtils.isBlank(genResult)) {
+                genResult = "AI分析完成";
+            }
+
+            if (!isValidJson(genChart)) {
+                log.warn("AI返回的图表JSON格式无效，使用空对象");
+                genChart = "{}";
+            }
+        } catch (BusinessException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error("AI解析异常", e);
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 解析异常: " + e.getMessage());
         }
+
         // 更新状态为成功
         update.setStatus(ChartStatusEnum.CHART_STATUS_SUCCESS.getValue());
         update.setExecMessage(ChartStatusEnum.CHART_STATUS_SUCCESS.getText());
@@ -95,6 +134,33 @@ public class ReceiveMessage {
         update.setGenResult(genResult);
         chartService.updateById(update);
         channel.basicAck(deliveryTag,false);
+    }
+
+    private String normalizeAiResponse(String response) {
+        String normalized = response.trim();
+        
+        if (normalized.startsWith("```json")) {
+            normalized = normalized.substring(7);
+        } else if (normalized.startsWith("```")) {
+            normalized = normalized.substring(3);
+        }
+        
+        if (normalized.endsWith("```")) {
+            normalized = normalized.substring(0, normalized.length() - 3);
+        }
+        
+        normalized = normalized.replaceAll("\\r\\n", "\n").trim();
+        
+        return normalized;
+    }
+
+    private boolean isValidJson(String json) {
+        if (StringUtils.isBlank(json)) {
+            return false;
+        }
+        String trimmed = json.trim();
+        return (trimmed.startsWith("{") && trimmed.endsWith("}")) || 
+               (trimmed.startsWith("[") && trimmed.endsWith("]"));
     }
 
 }
