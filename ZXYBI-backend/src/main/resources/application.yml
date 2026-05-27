@@ -24,7 +24,7 @@ spring:
     port: 5672
     password: guest
     username: guest
-    enabled: false
+    enabled: true
   # 文件上传
   servlet:
     multipart:
