@@ -2,43 +2,57 @@
 
 ## 📋 项目概述
 
-智析云 BI 是基于 Spring Boot + MQ + AIGC（+ React）的智能数据分析平台。区别于传统 BI，用户只需要
-导入原始数据集、并输入分析诉求，就能自动生成可视化图表及分析结论，实现数据分析的降本增
-效（或者降低数据分析的人工成本、提高数据分析效率等）。
+智析云 BI 是基于 Spring Boot + RabbitMQ + AIGC + React 的智能数据分析平台。区别于传统 BI，用户只需要导入原始数据集、并输入分析诉求，就能自动生成可视化图表及分析结论，实现数据分析的降本增效。
+
+### ✨ 核心特性
+
+- **智能图表生成**：用户上传数据集，输入分析诉求，AI自动生成专业可视化图表
+- **异步处理机制**：通过 RabbitMQ 实现任务队列，支持高并发场景
+- **多AI提供商支持**：集成智谱AI、OpenAI等多种AI服务
+- **用户积分系统**：支持积分管理、充值等功能
+- **限流控制**：基于 Redisson 实现滑动窗口限流
+- **文件处理**：支持 Excel 文件解析，自动转换为 CSV 格式
+- **完整的用户系统**：支持用户注册、登录、权限管理
+
+### 🔄 业务流程
+
+```
+客户端上传数据 → 后端保存原始数据 → 发送消息到 RabbitMQ → 
+消费者消费消息 → 调用AI分析 → 生成图表 → 更新数据库 → 前端展示
+```
+
 ---
 
 ## 🎯 前端技术栈
 
-**开发框架**：React 18、Umi 4  
-**脚手架**：Ant Design Pro 5.x  
-**组件库**：Ant Design 5.x  
-**图表库**：ECharts 5.x  
-**语法扩展**：TypeScript、Less  
-**打包工具**：Webpack  
-**代码规范**：ESLint、StyleLint、Prettier  
-**前后端联调**：OpenAPI Generator（根据 Swagger 文档自动生成 TypeScript 接口代码）
+| 分类 | 技术 | 版本 |
+| :--- | :--- | :--- |
+| 开发框架 | React | 18 |
+| 脚手架 | Umi | 4 |
+| UI组件 | Ant Design | 5.x |
+| 图表库 | ECharts | 5.x |
+| 语法扩展 | TypeScript | - |
+| 样式 | Less | - |
+| 打包工具 | Webpack | - |
+| 代码规范 | ESLint / Prettier | - |
 
 ---
 
 ## ⚙️ 后端技术栈
 
-**主语言**：Java 1.8  
-**核心框架**：Spring Boot 2.7.2  
-**数据访问**：MyBatis-Plus 3.5.2、MyBatis X 代码生成  
-**数据库**：MySQL 5.7+  
-**缓存**：Redis 6.0+  
-**限流控制**：Redisson 3.21.3（滑动窗口限流、分布式锁）  
-**消息队列**：RabbitMQ 3.8+（Direct/Fanout/Topic/DLX 多种模式）  
-**AI 调用**：智谱 AI SDK (zai-sdk 0.3.3)  
-**异步化**：JDK ThreadPoolExecutor 自定义线程池  
-**表格处理**：EasyExcel 3.1.1  
-**搜索引擎**：Elasticsearch 7.x  
-**对象存储**：腾讯云 COS SDK 5.6.89  
-**接口文档**：Swagger + Knife4j 3.0.3  
-**工具类库**：Hutool 5.8.8、Apache Commons Lang3、Gson 2.9.1  
-**微信集成**：WxJava MP 4.4.0（公众号登录、消息推送）  
-**模板引擎**：FreeMarker（动态 SQL 生成）
-
+| 分类 | 技术 | 版本 |
+| :--- | :--- | :--- |
+| 主语言 | Java | 1.8 |
+| 核心框架 | Spring Boot | 2.7.2 |
+| ORM框架 | MyBatis-Plus | 3.5.2 |
+| 数据库 | MySQL | 5.7+ |
+| 缓存 | Redis | 6.0+ |
+| 限流 | Redisson | 3.21.3 |
+| 消息队列 | RabbitMQ | 3.8+ |
+| AI服务 | 智谱AI SDK | 0.3.3 |
+| 文件处理 | EasyExcel | 3.1.1 |
+| 接口文档 | Knife4j | 3.0.3 |
+| 工具类 | Hutool | 5.8.8 |
 
 ---
 

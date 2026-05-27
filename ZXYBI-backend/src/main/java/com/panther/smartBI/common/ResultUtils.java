@@ -24,7 +24,9 @@ public class ResultUtils {
      * @return
      */
     public static BaseResponse error(ErrorCode errorCode) {
-        return new BaseResponse<>(errorCode);
+        BaseResponse response = new BaseResponse(errorCode);
+        response.setSuccess(false);
+        return response;
     }
 
     /**
@@ -35,7 +37,9 @@ public class ResultUtils {
      * @return
      */
     public static BaseResponse error(int code, String message) {
-        return new BaseResponse(code, null, message);
+        BaseResponse response = new BaseResponse(code, null, message);
+        response.setSuccess(false);
+        return response;
     }
 
     /**
@@ -45,6 +49,8 @@ public class ResultUtils {
      * @return
      */
     public static BaseResponse error(ErrorCode errorCode, String message) {
-        return new BaseResponse(errorCode.getCode(), null, message);
+        BaseResponse response = new BaseResponse(errorCode.getCode(), null, message);
+        response.setSuccess(false);
+        return response;
     }
 }

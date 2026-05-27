@@ -54,7 +54,7 @@ public class AuthInterceptor {
             }
             String userRole = loginUser.getUserRole();
             // 如果被封号，直接拒绝
-            if (UserRoleEnum.BAN.equals(mustUserRoleEnum)) {
+            if (UserRoleEnum.BAN.getValue().equals(userRole)) {
                 throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
             }
             // 给定接口需要管理员权限时 必须有管理员权限

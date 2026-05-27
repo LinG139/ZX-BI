@@ -37,7 +37,7 @@ const AddChartAsync: React.FC = () => {
     0: { icon: ClockCircleOutlined, color: 'orange', text: '等待中' },
     2: { icon: LoadingOutlined, color: 'blue', text: '分析中' },
     1: { icon: CheckCircleOutlined, color: 'green', text: '分析完成' },
-    '-1': { icon: CloseCircleOutlined, color: 'red', text: '分析失败' },
+    [-1]: { icon: CloseCircleOutlined, color: 'red', text: '分析失败' },
   };
 
   const pollChartStatus = async () => {
@@ -71,6 +71,13 @@ const AddChartAsync: React.FC = () => {
   };
 
   useEffect(() => {
+    if (chartId && !chartData) {
+      const timer = setTimeout(() => {
+        pollChartStatus();
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+    
     if (chartId && chartData?.status === 0) {
       const timer = setTimeout(() => {
         pollChartStatus();
@@ -212,7 +219,7 @@ const AddChartAsync: React.FC = () => {
             {chartId ? (
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
-                  <StatusIcon style={{ color: statusColor, fontSize: 20 }} spin={chartData?.status === 'running'} />
+                  <StatusIcon style={{ color: statusColor, fontSize: 20 }} spin={chartData?.status === 2} />
                   <span style={{ color: statusColor, fontSize: 16, fontWeight: 'bold' }}>
                     {statusText}
                   </span>
@@ -220,12 +227,12 @@ const AddChartAsync: React.FC = () => {
                 </div>
                 
                 {chartData?.execMessage && (
-                  <p style={{ color: chartData.status === 'failed' ? '#ff4d4f' : '#666' }}>
+                  <p style={{ color: chartData.status === -1 ? '#ff4d4f' : '#666' }}>
                     {chartData.execMessage}
                   </p>
                 )}
                 
-                {chartData?.status === 'failed' && (
+                {chartData?.status === -1 && (
                   <Button type="primary" icon={<ReloadOutlined />} onClick={handleRetry}>
                     重新分析
                   </Button>
@@ -236,7 +243,7 @@ const AddChartAsync: React.FC = () => {
             )}
           </Card>
           
-          {chartData?.status === 'success' && (
+          {chartData?.status === 1 && (
             <>
               <Divider />
               <Card title="分析结论">

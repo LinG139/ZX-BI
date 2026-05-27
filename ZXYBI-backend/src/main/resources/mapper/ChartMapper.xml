@@ -27,7 +27,7 @@
     </sql>
 
     <select id="getFailedChart" resultType="Long">
-        select id from chart where status in (-1 , 2) and isDelete = 0;
+        select id from chart where status = -1 and isDelete = 0;
     </select>
 
 </mapper>

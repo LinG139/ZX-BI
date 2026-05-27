@@ -30,7 +30,7 @@ const AddChartAsync: React.FC = () => {
     0: { icon: ClockCircleOutlined, color: 'orange', text: '等待中' },
     2: { icon: LoadingOutlined, color: 'blue', text: '分析中' },
     1: { icon: CheckCircleOutlined, color: 'green', text: '分析完成' },
-    '-1': { icon: CloseCircleOutlined, color: 'red', text: '分析失败' },
+    [-1]: { icon: CloseCircleOutlined, color: 'red', text: '分析失败' },
   };
 
   const pollChartStatus = async () => {
@@ -64,6 +64,13 @@ const AddChartAsync: React.FC = () => {
   };
 
   useEffect(() => {
+    if (chartId && !chartData) {
+      const timer = setTimeout(() => {
+        pollChartStatus();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+    
     if (chartId && chartData?.status === 0) {
       const timer = setTimeout(() => {
         pollChartStatus();
@@ -100,7 +107,9 @@ const AddChartAsync: React.FC = () => {
         form.resetFields();
       }
     } catch (e: any) {
-      message.error('提交失败，' + e.message);
+      if (!e.message?.includes('积分不足')) {
+        message.error('提交失败，' + e.message);
+      }
     }
     setSubmitting(false);
   };

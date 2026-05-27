@@ -57,6 +57,22 @@ public class ReceiveMessage {
         // 根据chart 构建用户输入
         String userInput = UserInputUtils.BuilderUserInput(chartId,chartService);
 
+        // 查询当前图表状态，确保只有等待中(0)或失败(-1)的图表才能被处理
+        Chart chart = chartService.getById(chartId);
+        if (chart == null) {
+            log.warn("图表不存在，chartId: {}", chartId);
+            channel.basicAck(deliveryTag, false);
+            return;
+        }
+        
+        // 如果图表已经成功或正在处理中，跳过重复处理
+        Integer currentStatus = chart.getStatus();
+        if (currentStatus == ChartStatusEnum.CHART_STATUS_SUCCESS.getValue()) {
+            log.warn("图表已成功，无需重复处理，chartId: {}", chartId);
+            channel.basicAck(deliveryTag, false);
+            return;
+        }
+        
         Chart update = new Chart();
         update.setId(chartId);
         // 更新状态为执行中
@@ -70,12 +86,13 @@ public class ReceiveMessage {
             channel.basicNack(deliveryTag,false,false);
             throw new BusinessException(ErrorCode.OPERATION_ERROR,"图标生成失败！");
         }
-        String aiRes = aiManager.doChartAnalysis(BiConstant.BI_MODEL_ID_S, userInput);
         
         String genChart;
         String genResult;
         
         try {
+            String aiRes = aiManager.doChartAnalysis(BiConstant.BI_MODEL_ID_S, userInput);
+            
             String normalizedResponse = normalizeAiResponse(aiRes);
             String[] aiData = normalizedResponse.split("=>=>=>");
 
@@ -120,20 +137,27 @@ public class ReceiveMessage {
                 log.warn("AI返回的图表JSON格式无效，使用空对象");
                 genChart = "{}";
             }
-        } catch (BusinessException e) {
-            throw e;
-        } catch (Exception e) {
-            log.error("AI解析异常", e);
-            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 解析异常: " + e.getMessage());
-        }
 
-        // 更新状态为成功
-        update.setStatus(ChartStatusEnum.CHART_STATUS_SUCCESS.getValue());
-        update.setExecMessage(ChartStatusEnum.CHART_STATUS_SUCCESS.getText());
-        update.setGenChart(genChart);
-        update.setGenResult(genResult);
-        chartService.updateById(update);
-        channel.basicAck(deliveryTag,false);
+            // 更新状态为成功
+            update.setStatus(ChartStatusEnum.CHART_STATUS_SUCCESS.getValue());
+            update.setExecMessage(ChartStatusEnum.CHART_STATUS_SUCCESS.getText());
+            update.setGenChart(genChart);
+            update.setGenResult(genResult);
+            chartService.updateById(update);
+            channel.basicAck(deliveryTag,false);
+        } catch (BusinessException e) {
+            log.error("图表生成业务异常，chartId: {}, error: {}", chartId, e.getMessage());
+            update.setStatus(ChartStatusEnum.CHART_STATUS_FAILURE.getValue());
+            update.setExecMessage(e.getMessage());
+            chartService.updateById(update);
+            channel.basicNack(deliveryTag,false,false);
+        } catch (Exception e) {
+            log.error("图表生成系统异常，chartId: {}", chartId, e);
+            update.setStatus(ChartStatusEnum.CHART_STATUS_FAILURE.getValue());
+            update.setExecMessage("图表生成失败: " + e.getMessage());
+            chartService.updateById(update);
+            channel.basicNack(deliveryTag,false,false);
+        }
     }
 
     private String normalizeAiResponse(String response) {
