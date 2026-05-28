@@ -4,26 +4,25 @@
 import React from 'react';
 
 export async function getRoutes() {
-  const routes = {"1":{"path":"/user","layout":false,"id":"1"},"2":{"path":"/user/login","parentId":"1","id":"2"},"3":{"path":"/user/register","parentId":"1","id":"3"},"4":{"path":"/user/forget-password","parentId":"1","id":"4"},"5":{"path":"/user/settings","parentId":"1","id":"5"},"6":{"path":"/","redirect":"/welcome","parentId":"ant-design-pro-layout","id":"6"},"7":{"path":"/welcome","name":"首页","icon":"homeOutlined","parentId":"ant-design-pro-layout","id":"7"},"8":{"path":"/add_chart","name":"智能分析","icon":"barChart","parentId":"ant-design-pro-layout","id":"8"},"9":{"path":"/add_chart_async","name":"智能分析（异步）","icon":"barChart","parentId":"ant-design-pro-layout","id":"9"},"10":{"path":"/add_chart_MQ","name":"智能分析（MQ）","icon":"barChart","parentId":"ant-design-pro-layout","id":"10"},"11":{"path":"/my_chart","name":"我的图表","icon":"pieChart","parentId":"ant-design-pro-layout","id":"11"},"12":{"path":"/story","name":"AI聊天室","icon":"AliwangwangOutlined","parentId":"ant-design-pro-layout","id":"12"},"13":{"path":"/admin","icon":"crown","access":"canAdmin","parentId":"ant-design-pro-layout","id":"13"},"14":{"path":"/admin","name":"管理页面","redirect":"/admin/sub-page","parentId":"13","id":"14"},"15":{"path":"/admin/sub-page","name":"管理页面2","parentId":"13","id":"15"},"16":{"path":"*","layout":false,"id":"16"},"ant-design-pro-layout":{"id":"ant-design-pro-layout","path":"/","isLayout":true}} as const;
+  const routes = {"1":{"path":"/user","layout":false,"id":"1"},"2":{"path":"/user/login","parentId":"1","id":"2"},"3":{"path":"/user/register","parentId":"1","id":"3"},"4":{"path":"/user/settings","parentId":"1","id":"4"},"5":{"path":"/","redirect":"/welcome","parentId":"ant-design-pro-layout","id":"5"},"6":{"path":"/welcome","name":"首页","icon":"homeOutlined","parentId":"ant-design-pro-layout","id":"6"},"7":{"path":"/add_chart","name":"智能分析","icon":"barChart","parentId":"ant-design-pro-layout","id":"7"},"8":{"path":"/add_chart_async","name":"智能分析（异步）","icon":"barChart","parentId":"ant-design-pro-layout","id":"8"},"9":{"path":"/add_chart_MQ","name":"智能分析（MQ）","icon":"barChart","parentId":"ant-design-pro-layout","id":"9"},"10":{"path":"/my_chart","name":"我的图表","icon":"pieChart","parentId":"ant-design-pro-layout","id":"10"},"11":{"path":"/story","name":"AI聊天室","icon":"AliwangwangOutlined","parentId":"ant-design-pro-layout","id":"11"},"12":{"path":"/admin","icon":"crown","access":"canAdmin","parentId":"ant-design-pro-layout","id":"12"},"13":{"path":"/admin","name":"管理页面","redirect":"/admin/sub-page","parentId":"12","id":"13"},"14":{"path":"/admin/sub-page","name":"管理页面2","parentId":"12","id":"14"},"15":{"path":"*","layout":false,"id":"15"},"ant-design-pro-layout":{"id":"ant-design-pro-layout","path":"/","isLayout":true}} as const;
   return {
     routes,
     routeComponents: {
 '1': React.lazy(() => import('./EmptyRoute')),
 '2': React.lazy(() => import(/* webpackChunkName: "p__User__Login__index" */'@/pages/User/Login/index.tsx')),
 '3': React.lazy(() => import(/* webpackChunkName: "p__User__Register__index" */'@/pages/User/Register/index.tsx')),
-'4': React.lazy(() => import(/* webpackChunkName: "p__User__ForgetPassword__index" */'@/pages/User/ForgetPassword/index.tsx')),
-'5': React.lazy(() => import(/* webpackChunkName: "p__User__Settings__index" */'@/pages/User/Settings/index.tsx')),
-'6': React.lazy(() => import('./EmptyRoute')),
-'7': React.lazy(() => import(/* webpackChunkName: "p__Welcome" */'@/pages/Welcome.tsx')),
-'8': React.lazy(() => import(/* webpackChunkName: "p__AddChart__index" */'@/pages/AddChart/index.tsx')),
-'9': React.lazy(() => import(/* webpackChunkName: "p__AddChartAsync__index" */'@/pages/AddChartAsync/index.tsx')),
-'10': React.lazy(() => import(/* webpackChunkName: "p__AddChartMQ__index" */'@/pages/AddChartMQ/index.tsx')),
-'11': React.lazy(() => import(/* webpackChunkName: "p__MyChart__index" */'@/pages/MyChart/index.tsx')),
-'12': React.lazy(() => import(/* webpackChunkName: "p__story__index" */'@/pages/story/index.tsx')),
+'4': React.lazy(() => import(/* webpackChunkName: "p__User__Settings__index" */'@/pages/User/Settings/index.tsx')),
+'5': React.lazy(() => import('./EmptyRoute')),
+'6': React.lazy(() => import(/* webpackChunkName: "p__Welcome" */'@/pages/Welcome.tsx')),
+'7': React.lazy(() => import(/* webpackChunkName: "p__AddChart__index" */'@/pages/AddChart/index.tsx')),
+'8': React.lazy(() => import(/* webpackChunkName: "p__AddChartAsync__index" */'@/pages/AddChartAsync/index.tsx')),
+'9': React.lazy(() => import(/* webpackChunkName: "p__AddChartMQ__index" */'@/pages/AddChartMQ/index.tsx')),
+'10': React.lazy(() => import(/* webpackChunkName: "p__MyChart__index" */'@/pages/MyChart/index.tsx')),
+'11': React.lazy(() => import(/* webpackChunkName: "p__story__index" */'@/pages/story/index.tsx')),
+'12': React.lazy(() => import('./EmptyRoute')),
 '13': React.lazy(() => import('./EmptyRoute')),
-'14': React.lazy(() => import('./EmptyRoute')),
-'15': React.lazy(() => import(/* webpackChunkName: "p__Admin" */'@/pages/Admin.tsx')),
-'16': React.lazy(() => import(/* webpackChunkName: "p__404" */'@/pages/404.tsx')),
+'14': React.lazy(() => import(/* webpackChunkName: "p__Admin" */'@/pages/Admin.tsx')),
+'15': React.lazy(() => import(/* webpackChunkName: "p__404" */'@/pages/404.tsx')),
 'ant-design-pro-layout': React.lazy(() => import(/* webpackChunkName: "t__plugin-layout__Layout" */'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/src/.umi-production/plugin-layout/Layout.tsx')),
 },
   };

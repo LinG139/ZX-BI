@@ -16,6 +16,7 @@ const loginPath = '/user/login';
  * */
 export async function getInitialState(): Promise<{
   currentUser?: API.LoginUserVO;
+  settings?: Record<string, any>;
 }> {
   const fetchUserInfo = async (): Promise<API.LoginUserVO | undefined> => {
     try {
@@ -45,6 +46,26 @@ export async function getInitialState(): Promise<{
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => {
   return {
+    logo: (
+      <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+        <img alt="logo" src="/logo.svg" style={{ width: '40px', height: '40px', marginRight: '8px' }} />
+        
+          <span style={{ 
+            fontSize: '30px', 
+            fontWeight: 'bold',
+            fontStyle: 'italic',
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.1)',
+            transform: 'skewX(-8deg)',
+            display: 'inline-block',
+            letterSpacing: '2px'
+          }}>智析云 BI</span>
+    
+      </div>
+    ),
+    title: false,
     actionsRender: () => [<Question key="doc"/>],
     avatarProps: {
       src: initialState?.currentUser?.userAvatar,
@@ -112,7 +133,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
         </>
       );
     },
-    ...initialState?.settings,
+    ...(initialState?.settings || {}),
   };
 };
 

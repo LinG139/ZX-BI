@@ -17,12 +17,15 @@ import {
   Tag,
   Popconfirm,
 } from 'antd';
-import {DeleteOutlined} from '@ant-design/icons';
+import {DeleteOutlined, DownloadOutlined, EyeOutlined} from '@ant-design/icons';
+import {useNavigate} from 'umi';
 import ReactECharts from 'echarts-for-react';
-import React, {useEffect, useRef, useState} from 'react';
+import * as echarts from 'echarts';
+import React, {useEffect, useRef, useState, useCallback} from 'react';
 import {optimizeChartOption} from '@/utils/chartOptimizer';
 
 const TestMyChartPage: React.FC = () => {
+  const navigate = useNavigate();
   const initSearchParams = {
     name: '',
     chartType: '',
@@ -38,16 +41,34 @@ const TestMyChartPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [chartId, setChartId] = useState<number>(0);
   const actionRef = useRef<ActionType>();
+  const chartRefs = useRef<{ [key: number]: ReactECharts }>({});
 
   /**
    * 安全解析 JSON 并优化图表配置
    */
-  const safeParseJSON = (jsonString: string | undefined) => {
+  const safeParseJSON = (jsonString: string | undefined, chartName?: string) => {
     if (!jsonString) return {};
     try {
       const parsed = JSON.parse(jsonString);
-      // 优化图表配置，避免 title 和 legend 重叠
-      return optimizeChartOption(parsed);
+      const optimized = optimizeChartOption(parsed);
+      if (chartName && optimized) {
+        optimized.title = {
+          text: chartName,
+          left: 'center',
+          top: 10,
+          textStyle: {
+            fontSize: 14,
+            fontWeight: 'bold',
+            color: '#333',
+          },
+        };
+        if (optimized.grid) {
+          optimized.grid.top = optimized.grid.top > 60 ? optimized.grid.top : 70;
+        } else {
+          optimized.grid = { top: 70 };
+        }
+      }
+      return optimized;
     } catch (error) {
       console.error('JSON 解析失败:', error);
       return {};
@@ -123,6 +144,45 @@ const TestMyChartPage: React.FC = () => {
       message.error('删除失败', e.message);
     }
   };
+
+  /**
+   * 导出图表为PNG图片
+   * @param chartId 图表ID
+   * @param chartName 图表名称
+   */
+  const exportChart = useCallback((chartId: number, chartName: string) => {
+    const chartRef = chartRefs.current[chartId];
+    if (!chartRef) {
+      message.error('图表实例未找到');
+      return;
+    }
+
+    try {
+      // 获取ECharts实例
+      const echartsInstance = chartRef.getEchartsInstance();
+      if (!echartsInstance) {
+        message.error('无法获取图表实例');
+        return;
+      }
+
+      // 获取图片数据URL
+      const url = echartsInstance.getDataURL({
+        type: 'png',
+        pixelRatio: 2,
+        backgroundColor: '#fff',
+      });
+
+      // 创建下载链接
+      const link = document.createElement('a');
+      link.download = `${chartName || 'chart'}_${Date.now()}.png`;
+      link.href = url;
+      link.click();
+
+      message.success('图表导出成功');
+    } catch (e: any) {
+      message.error('图表导出失败: ' + e.message);
+    }
+  }, []);
 
   useEffect(() => {
     loadData();
@@ -205,8 +265,23 @@ const TestMyChartPage: React.FC = () => {
               </div>
             )}
             {item.execMessage === "成功" && (
-              <div style={{width: '100%', height: '300px'}}>
-                <ReactECharts option={safeParseJSON(item.genChart)} style={{height: '100%'}}/>
+              <div>
+                <div style={{width: '100%', height: '300px'}}>
+                  <ReactECharts 
+                    ref={(ref) => { if (ref) chartRefs.current[item.id as number] = ref; }}
+                    option={safeParseJSON(item.genChart, item.name)} 
+                    style={{height: '100%'}}
+                  />
+                </div>
+                <div style={{marginTop: 12, textAlign: 'right'}}>
+                  <Button
+                    type="primary"
+                    icon={<EyeOutlined />}
+                    onClick={() => navigate(`/chart_detail/${item.id}`)}
+                  >
+                    查看详情
+                  </Button>
+                </div>
               </div>
             )}
             <div>

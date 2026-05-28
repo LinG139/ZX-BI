@@ -38,6 +38,19 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = async (values: API.UserLoginRequest) => {
+    const {userAccount, userPassword} = values;
+    
+    // 表单验证
+    if (!userAccount || userAccount.trim().length < 4) {
+      message.error('用户名至少需要4个字符');
+      return;
+    }
+    
+    if (!userPassword || userPassword.trim().length < 8) {
+      message.error('密码至少需要8个字符');
+      return;
+    }
+    
     try {
       const res = await userLoginUsingPOST(values);
       if (res.code === 0) {
@@ -50,13 +63,17 @@ const Login: React.FC = () => {
         history.push(urlParams.get('redirect') || '/');
         return;
       } else {
-        message.error(res.message);
+        message.error(res.message || '登录失败，请检查账号密码');
       }
-    } catch (error) {
-      const defaultLoginFailureMessage = '登录失败，请重试！';
-      console.log(error);
-      message.error(defaultLoginFailureMessage);
+    } catch (error: any) {
+      const errorMessage = error?.response?.data?.message || error?.message || '登录失败，请重试';
+      console.error('登录失败:', error);
+      message.error(errorMessage);
     }
+  };
+  
+  const handleForgotPassword = () => {
+    message.info('忘记密码功能开发中，请联系管理员重置密码');
   };
   return (
     <div className={containerClassName}>
@@ -131,10 +148,18 @@ const Login: React.FC = () => {
           )}
           <div
             style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
               marginBottom: 24,
             }}
           >
             <Link to="/user/register" style={{fontSize: 18}}>注册</Link>
+            <Link 
+              onClick={handleForgotPassword}
+              style={{ fontSize: 14, color: '#1890ff' }} to={''}            >
+              忘记密码？
+            </Link>
           </div>
         </LoginForm>
       </div>

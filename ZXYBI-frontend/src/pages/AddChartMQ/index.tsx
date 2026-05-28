@@ -1,11 +1,12 @@
 import { ByAiAsyncMQUsingPOST, getChartVOByIdUsingGET, reloadChartByAiUsingGET } from '@/services/yubi/chartController';
 import { UploadOutlined, CheckCircleOutlined, ClockCircleOutlined, LoadingOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { ReloadOutlined } from '@ant-design/icons';
-import { Button, Card, Col, Divider, Form, Input, message, Row, Select, Space, Spin, Upload } from 'antd';
+import { Button, Card, Col, Divider, Form, Input, message, Modal, Row, Select, Space, Spin, Upload } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useEffect, useState } from 'react';
 import ReactECharts from 'echarts-for-react';
+import { history, useModel } from '@umijs/max';
 
 interface ChartData {
   id: number;
@@ -25,6 +26,13 @@ const AddChartAsync: React.FC = () => {
   const [chartData, setChartData] = useState<ChartData | null>(null);
   const [polling, setPolling] = useState<boolean>(false);
   const [chartOption, setChartOption] = useState<any>(null);
+  const [showNoCreditModal, setShowNoCreditModal] = useState(false);
+  const { initialState } = useModel('@@initialState');
+
+  const handleGoToRecharge = () => {
+    setShowNoCreditModal(false);
+    history.push('/user/settings');
+  };
 
   const statusConfig: Record<number, { icon: any; color: string; text: string }> = {
     0: { icon: ClockCircleOutlined, color: 'orange', text: '等待中' },
@@ -87,6 +95,15 @@ const AddChartAsync: React.FC = () => {
   }, [chartId, chartData?.status]);
 
   const onFinish = async (values: any) => {
+    // 获取当前用户积分
+    const userLeftCount = initialState?.currentUser?.leftCount ?? 0;
+    
+    // 积分校验
+    if (userLeftCount <= 0) {
+      setShowNoCreditModal(true);
+      return;
+    }
+
     if (submitting) return;
     setSubmitting(true);
     
@@ -107,9 +124,7 @@ const AddChartAsync: React.FC = () => {
         form.resetFields();
       }
     } catch (e: any) {
-      if (!e.message?.includes('积分不足')) {
-        message.error('提交失败，' + e.message);
-      }
+      message.error('提交失败，' + e.message);
     }
     setSubmitting(false);
   };
@@ -247,6 +262,20 @@ const AddChartAsync: React.FC = () => {
           )}
         </Col>
       </Row>
+
+      <Modal
+        title="积分不足"
+        visible={showNoCreditModal}
+        onCancel={() => setShowNoCreditModal(false)}
+        footer={null}
+        closable={true}
+      >
+        <p>您的积分不足，无法完成此操作。</p>
+        <p>请前往个人设置中心进行充值。</p>
+        <Button type="primary" onClick={handleGoToRecharge} style={{ marginTop: 16 }}>
+          立即充值
+        </Button>
+      </Modal>
     </div>
   );
 };

@@ -128,12 +128,12 @@ declare namespace API {
     genChart?: string;
     genResult?: string;
     goal?: string;
-    id?: number;
+    id?: number | string;
     isDelete?: number;
     name?: string;
     status?: number;
     updateTime?: string;
-    userId?: number;
+    userId?: number | string;
   };
 
   type ChartAddRequest = {
@@ -217,7 +217,7 @@ declare namespace API {
 
   type getChartVOByIdUsingGETParams = {
     /** id */
-    id?: number;
+    id?: number | string;
   };
 
   type getPostVOByIdUsingGETParams = {

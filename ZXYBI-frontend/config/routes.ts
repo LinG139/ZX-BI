@@ -12,6 +12,7 @@ export default [
   {path: '/add_chart_async', name: '智能分析（异步）', icon: 'barChart', component: './AddChartAsync'},
   {path: '/add_chart_MQ', name: '智能分析（MQ）', icon: 'barChart', component: './AddChartMQ'},
   {path: '/my_chart', name: '我的图表', icon: 'pieChart', component: './MyChart'},
+  {path: '/chart_detail/:id', component: './ChartDetail'},
   {path: '/story', name: 'AI聊天室', icon: 'AliwangwangOutlined', component: './story'},
   {
     path: '/admin',

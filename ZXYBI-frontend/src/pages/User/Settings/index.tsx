@@ -1,8 +1,8 @@
 import {Button, Card, Form, Input, message, Avatar, Modal} from 'antd';
-import {UserOutlined, WalletOutlined, ArrowLeftOutlined} from '@ant-design/icons';
+import {UserOutlined, WalletOutlined, ArrowLeftOutlined, LockOutlined} from '@ant-design/icons';
 import React, {useEffect, useState} from 'react';
 import {history, useModel} from '@umijs/max';
-import {getLoginUserUsingGET, updateMyUserUsingPOST, rechargeUserCountUsingPOST} from '@/services/yubi/userController';
+import {getLoginUserUsingGET, updateMyUserUsingPOST, rechargeUserCountUsingPOST, updateUserPasswordUsingPOST} from '@/services/yubi/userController';
 import {DEFAULT_AVATAR_URL} from '@/constants';
 import {flushSync} from 'react-dom';
 
@@ -15,6 +15,10 @@ const Settings: React.FC = () => {
   const [avatarUrl, setAvatarUrl] = useState<string>('');
   const {setInitialState} = useModel('@@initialState');
   const [showRechargeModal, setShowRechargeModal] = useState(false);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
 
   const handleAvatarUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const url = e.target.value;
@@ -112,6 +116,49 @@ const Settings: React.FC = () => {
     }
   };
 
+  const handleUpdatePassword = async () => {
+    // 验证
+    if (!oldPassword) {
+      message.error('请输入旧密码');
+      return;
+    }
+    if (!newPassword || newPassword.length < 8) {
+      message.error('新密码至少8个字符');
+      return;
+    }
+    if (newPassword !== confirmPassword) {
+      message.error('两次输入的新密码不一致');
+      return;
+    }
+
+    try {
+      const res = await updateUserPasswordUsingPOST({
+        oldPassword,
+        newPassword,
+        confirmPassword,
+      });
+      if (res.code === 0) {
+        message.success('密码修改成功，请重新登录');
+        setShowPasswordModal(false);
+        setOldPassword('');
+        setNewPassword('');
+        setConfirmPassword('');
+        // 可以选择自动登出
+      } else {
+        message.error(res.message || '密码修改失败');
+      }
+    } catch (e: any) {
+      message.error(e.message || '密码修改失败');
+    }
+  };
+
+  const resetPasswordForm = () => {
+    setOldPassword('');
+    setNewPassword('');
+    setConfirmPassword('');
+    setShowPasswordModal(false);
+  };
+
   return (
     <div style={{display: 'flex', justifyContent: 'center', padding: '20px'}}>
       <Card bordered={true} title={'个人设置'} style={{width: 600}}>
@@ -183,6 +230,16 @@ const Settings: React.FC = () => {
             </div>
           </Form.Item>
 
+          <Form.Item label="修改密码">
+            <Button
+              type="default"
+              icon={<LockOutlined/>}
+              onClick={() => setShowPasswordModal(true)}
+            >
+              修改密码
+            </Button>
+          </Form.Item>
+
           <Form.Item wrapperCol={{offset: 6, span: 16}}>
             <Button
               icon={<ArrowLeftOutlined/>}
@@ -213,6 +270,40 @@ const Settings: React.FC = () => {
       >
         <p>确认充值后，您的积分将设置为 100。</p>
         <p style={{color: '#999', fontSize: '12px', marginTop: '8px'}}>当前积分: {(user as any)?.leftCount || 0}</p>
+      </Modal>
+
+      <Modal
+        title="修改密码"
+        visible={showPasswordModal}
+        onOk={handleUpdatePassword}
+        onCancel={resetPasswordForm}
+        okText="确认修改"
+        cancelText="取消"
+        width={400}
+      >
+        <Form layout="vertical">
+          <Form.Item label="旧密码">
+            <Input.Password
+              value={oldPassword}
+              onChange={(e) => setOldPassword(e.target.value)}
+              placeholder="请输入旧密码"
+            />
+          </Form.Item>
+          <Form.Item label="新密码">
+            <Input.Password
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="请输入新密码（至少8个字符）"
+            />
+          </Form.Item>
+          <Form.Item label="确认新密码">
+            <Input.Password
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="请再次输入新密码"
+            />
+          </Form.Item>
+        </Form>
       </Modal>
     </div>
   );

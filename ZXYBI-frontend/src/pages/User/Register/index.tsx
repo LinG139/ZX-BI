@@ -23,19 +23,91 @@ const Login: React.FC = () => {
     };
   });
 
+  /**
+   * 验证密码强度
+   * 返回密码强度等级和提示信息
+   */
+  const validatePasswordStrength = (password: string): { level: number; message: string } => {
+    let level = 0;
+    let message = '';
+    
+    // 长度至少8位
+    if (password.length >= 8) level++;
+    // 包含数字
+    if (/\d/.test(password)) level++;
+    // 包含小写字母
+    if (/[a-z]/.test(password)) level++;
+    // 包含大写字母
+    if (/[A-Z]/.test(password)) level++;
+    // 包含特殊字符
+    if (/[!@#$%^&*(),.?":{}|<>]/.test(password)) level++;
+    
+    switch (level) {
+      case 0:
+      case 1:
+        message = '密码太弱，请使用更复杂的密码';
+        break;
+      case 2:
+        message = '密码强度较低，建议添加大写字母或特殊字符';
+        break;
+      case 3:
+        message = '密码强度中等，可以接受';
+        break;
+      case 4:
+      case 5:
+        message = '密码强度强，安全性高';
+        break;
+      default:
+        message = '';
+    }
+    
+    return { level, message };
+  };
+
   const handleSubmit = async (values: API.UserRegisterRequest) => {
     const {userPassword, checkPassword, userAccount, userName} = values;
 
-    if (!userAccount || userAccount.length < 4) {
+    // 账号验证
+    if (!userAccount || userAccount.trim().length < 4) {
       message.error('用户账号过短，至少4个字符');
       return;
     }
 
-    if (userName && userName.length < 2) {
+    if (userAccount.trim().length > 50) {
+      message.error('用户账号过长，最多50个字符');
+      return;
+    }
+
+    // 昵称验证
+    if (userName && userName.trim().length < 2) {
       message.error('昵称至少2个字符');
       return;
     }
 
+    if (userName && userName.trim().length > 50) {
+      message.error('昵称过长，最多50个字符');
+      return;
+    }
+
+    // 密码验证
+    if (!userPassword || userPassword.length < 8) {
+      message.error('密码至少8个字符');
+      return;
+    }
+
+    if (userPassword.length > 100) {
+      message.error('密码过长，最多100个字符');
+      return;
+    }
+
+    // 密码强度验证
+    const { level, message: strengthMsg } = validatePasswordStrength(userPassword);
+    if (level < 2) {
+      message.error(strengthMsg);
+      return;
+    }
+
+    // 确认密码验证
     if (userPassword !== checkPassword) {
       message.error('两次输入的密码不一致');
       return;
@@ -43,17 +115,16 @@ const Login: React.FC = () => {
 
     try {
       const registerParams = {
-        userAccount,
+        userAccount: userAccount.trim(),
         userPassword,
         checkPassword,
-        userName: userName || userAccount,
+        userName: (userName || userAccount).trim(),
         userAvatar: DEFAULT_AVATAR_URL,
       };
 
       const res = await userRegisterUsingPOST(registerParams);
       if (res.code === 0) {
-        const defaultLoginSuccessMessage = '注册成功！';
-        message.success(defaultLoginSuccessMessage);
+        message.success('注册成功！');
 
         if (!history) return;
         history.push({
@@ -64,8 +135,9 @@ const Login: React.FC = () => {
         message.error(res.message || '注册失败');
       }
     } catch (error: any) {
-      const defaultLoginFailureMessage = '注册失败，请重试！';
-      message.error(defaultLoginFailureMessage);
+      const errorMessage = error?.response?.data?.message || error?.message || '注册失败，请重试';
+      console.error('注册失败:', error);
+      message.error(errorMessage);
     }
   };
 

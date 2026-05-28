@@ -2,13 +2,14 @@ import React, {useState, useCallback} from "react";
 import Chat, {Bubble} from "@chatui/core";
 import "@chatui/core/dist/index.css";
 import {genChatUsingPOST} from "@/services/yubi/aiController";
-import {message, Select, Tag, Avatar} from "antd";
+import {message, Select, Tag, Avatar, Modal, Button} from "antd";
 import {useModel} from '@umijs/max';
 import {DEFAULT_AVATAR_URL} from '@/constants';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import hljs from 'rehype-highlight';
 import 'highlight.js/styles/github.css';
+import {DeleteOutlined} from '@ant-design/icons';
 
 interface AIRole {
   value: string;
@@ -24,6 +25,17 @@ interface Message {
   _id?: string;
   _createdAt?: number;
 }
+
+/**
+ * 格式化时间戳为可读格式
+ */
+const formatTime = (timestamp: number): string => {
+  const date = new Date(timestamp);
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  const seconds = date.getSeconds().toString().padStart(2, '0');
+  return `${hours}:${minutes}:${seconds}`;
+};
 
 const AI_ROLES: AIRole[] = [
   {
@@ -71,6 +83,7 @@ export default function App() {
   const [isTyping, setIsTyping] = useState<boolean>(false);
   const [selectedRole, setSelectedRole] = useState<AIRole>(AI_ROLES[0]);
   const [sessionId, setSessionId] = useState<number | null>(null);
+  const [showClearConfirm, setShowClearConfirm] = useState(false);
   const {initialState} = useModel('@@initialState');
   const {currentUser} = initialState || {};
 
@@ -84,7 +97,17 @@ export default function App() {
 
   const clearMessages = useCallback(() => {
     setMessages([]);
+    setSessionId(null);
+    setShowClearConfirm(false);
   }, []);
+
+  const handleClearConfirm = () => {
+    setShowClearConfirm(true);
+  };
+
+  const handleClearCancel = () => {
+    setShowClearConfirm(false);
+  };
 
   async function handleSend(type: string, val: string) {
     if (type === "text" && val.trim()) {
@@ -251,6 +274,11 @@ export default function App() {
                   {content.text}
                 </ReactMarkdown>
               </div>
+              {msg._createdAt && (
+                <div style={{fontSize: '12px', color: '#999', marginTop: '8px', textAlign: 'right'}}>
+                  {formatTime(msg._createdAt)}
+                </div>
+              )}
             </div>
             <div 
               style={{
@@ -292,6 +320,11 @@ export default function App() {
             }}
           >
             <p style={{margin: 0, fontSize: '14px', lineHeight: '1.5', color: '#333', wordBreak: 'break-all'}}>{content.text}</p>
+            {msg._createdAt && (
+              <div style={{fontSize: '12px', color: '#666', marginTop: '8px', textAlign: 'right'}}>
+                {formatTime(msg._createdAt)}
+              </div>
+            )}
           </div>
           <div 
             style={{
@@ -318,25 +351,36 @@ export default function App() {
   return (
     <div style={{height: "100vh", display: "flex", flexDirection: "column"}}>
       <div style={{padding: 16, backgroundColor: "#f5f5f5", borderBottom: "1px solid #e8e8e8"}}>
-        <div style={{display: "flex", alignItems: "center", gap: 16}}>
-          <Avatar size="large" src={selectedRole.avatar}/>
-          <Select
-            value={selectedRole.value}
-            onChange={(value) => {
-              const role = AI_ROLES.find(r => r.value === value);
-              if (role) {
-                setSelectedRole(role);
-                setSessionId(null);
-                clearMessages();
-              }
-            }}
-            style={{width: 160}}
-            options={AI_ROLES.map(role => ({
-              value: role.value,
-              label: role.label
-            }))}
-          />
-          <Tag color="blue">{selectedRole.label}</Tag>
+        <div style={{display: "flex", alignItems: "center", gap: 16, justifyContent: "space-between"}}>
+          <div style={{display: "flex", alignItems: "center", gap: 16}}>
+            <Avatar size="large" src={selectedRole.avatar}/>
+            <Select
+              value={selectedRole.value}
+              onChange={(value) => {
+                const role = AI_ROLES.find(r => r.value === value);
+                if (role) {
+                  setSelectedRole(role);
+                  setSessionId(null);
+                  clearMessages();
+                }
+              }}
+              style={{width: 160}}
+              options={AI_ROLES.map(role => ({
+                value: role.value,
+                label: role.label
+              }))}
+            />
+            <Tag color="blue">{selectedRole.label}</Tag>
+          </div>
+          <Button
+            type="text"
+            danger
+            icon={<DeleteOutlined />}
+            onClick={handleClearConfirm}
+            disabled={messages.length === 0}
+          >
+            清空聊天
+          </Button>
         </div>
       </div>
       <div style={{position: "sticky", top: 0, zIndex: 100, backgroundColor: "#fff", padding: "8px 16px", borderBottom: "1px solid #e8e8e8", textAlign: "center"}}>
@@ -356,6 +400,19 @@ export default function App() {
           onSend={handleSend}
         />
       </div>
+
+      <Modal
+        title="确认清空"
+        visible={showClearConfirm}
+        onOk={clearMessages}
+        onCancel={handleClearCancel}
+        okText="确认清空"
+        cancelText="取消"
+        okType="danger"
+      >
+        <p>确定要清空当前聊天记录吗？</p>
+        <p style={{color: '#999', fontSize: '12px', marginTop: '8px'}}>此操作不可恢复</p>
+      </Modal>
     </div>
   );
 }
