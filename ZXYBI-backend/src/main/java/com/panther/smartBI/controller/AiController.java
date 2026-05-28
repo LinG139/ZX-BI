@@ -58,12 +58,18 @@ public class AiController {
         List<ZhiPuClient.Message> history = chatHistoryService.getChatHistory(sessionId);
         log.info("获取历史消息: sessionId={}, 历史消息数={}", sessionId, history.size());
 
-        String answer = aiManager.doChatWithHistory(
-                BiConstant.CHAT_MODEL_ID,
-                message,
-                prompt,
-                history
-        );
+        String answer = null;
+        try {
+            answer = aiManager.doChatWithHistory(
+                    BiConstant.CHAT_MODEL_ID,
+                    message,
+                    prompt,
+                    history
+            );
+        } catch (Exception e) {
+            log.error("AI调用失败: {}", e.getMessage());
+            answer = "AI调用失败，请稍后重试: " + e.getMessage();
+        }
 
         chatHistoryService.saveMessage(
                 sessionId,
