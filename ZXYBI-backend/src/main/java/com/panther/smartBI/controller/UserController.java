@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -280,12 +281,13 @@ public class UserController {
     /**
      * 充值积分
      *
+     * @param count   充值数量
      * @param request
      * @return
      */
     @PostMapping("/recharge")
-    public BaseResponse<Integer> rechargeUserCount(HttpServletRequest request) {
-        int result = userService.rechargeUserCount(request);
+    public BaseResponse<Integer> rechargeUserCount(@RequestParam("count") int count, HttpServletRequest request) {
+        int result = userService.rechargeUserCount(request, count);
         return ResultUtils.success(result);
     }
 }

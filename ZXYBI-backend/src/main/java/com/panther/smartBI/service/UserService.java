@@ -133,7 +133,8 @@ public interface UserService extends IService<User> {
      * 充值积分
      *
      * @param request
+     * @param count 充值数量
      * @return 充值后的积分
      */
-    int rechargeUserCount(HttpServletRequest request);
+    int rechargeUserCount(HttpServletRequest request, int count);
 }

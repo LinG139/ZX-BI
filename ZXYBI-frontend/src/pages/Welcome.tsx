@@ -20,6 +20,7 @@ import {
   ThunderboltOutlined,
   FallOutlined,
   RiseOutlined,
+  WalletOutlined,
 } from '@ant-design/icons';
 import React, {useEffect, useState} from 'react';
 import {history} from '@umijs/max';
@@ -146,11 +147,11 @@ const Welcome: React.FC = () => {
 
   const quickActions = [
     {
-      icon: <CloudUploadOutlined style={{fontSize: 32, color: '#1890ff'}} />,
-      title: '上传数据',
-      desc: '上传Excel/CSV文件',
-      color: '#e6f7ff',
-      path: '/add_chart',
+      icon: <WalletOutlined style={{fontSize: 32, color: '#faad14'}} />,
+      title: '积分充值',
+      desc: '充值积分获取更多分析次数',
+      color: '#fffbe6',
+      path: '/recharge',
     },
     {
       icon: <BarChartOutlined style={{fontSize: 32, color: '#52c41a'}} />,

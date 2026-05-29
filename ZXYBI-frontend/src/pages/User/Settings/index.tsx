@@ -1,8 +1,8 @@
 import {Button, Card, Form, Input, message, Avatar, Modal} from 'antd';
-import {UserOutlined, WalletOutlined, ArrowLeftOutlined, LockOutlined} from '@ant-design/icons';
+import {UserOutlined, ArrowLeftOutlined, LockOutlined} from '@ant-design/icons';
 import React, {useEffect, useState} from 'react';
 import {history, useModel} from '@umijs/max';
-import {getLoginUserUsingGET, updateMyUserUsingPOST, rechargeUserCountUsingPOST, updateUserPasswordUsingPOST} from '@/services/yubi/userController';
+import {getLoginUserUsingGET, updateMyUserUsingPOST, updateUserPasswordUsingPOST} from '@/services/yubi/userController';
 import {DEFAULT_AVATAR_URL} from '@/constants';
 import {flushSync} from 'react-dom';
 
@@ -14,7 +14,6 @@ const Settings: React.FC = () => {
   const [user, setUser] = useState<API.LoginUserVO>();
   const [avatarUrl, setAvatarUrl] = useState<string>('');
   const {setInitialState} = useModel('@@initialState');
-  const [showRechargeModal, setShowRechargeModal] = useState(false);
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [oldPassword, setOldPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -90,31 +89,6 @@ const Settings: React.FC = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  const handleRecharge = async () => {
-    try {
-      const res = await rechargeUserCountUsingPOST();
-      if (res.code === 0) {
-        const updatedUser = {...user, leftCount: res.data};
-        setUser(updatedUser);
-        flushSync(() => {
-          setInitialState((s) => ({
-            ...s,
-            currentUser: {
-              ...s?.currentUser,
-              leftCount: res.data,
-            } as API.LoginUserVO,
-          }));
-        });
-        message.success(`充值成功，当前积分：${res.data}`);
-        setShowRechargeModal(false);
-      } else {
-        message.error(res.message || '充值失败');
-      }
-    } catch (e: any) {
-      message.error('充值失败');
-    }
-  };
 
   const handleUpdatePassword = async () => {
     // 验证
@@ -213,22 +187,7 @@ const Settings: React.FC = () => {
             />
           </Form.Item>
 
-          <Form.Item label="剩余积分">
-            <div style={{display: 'flex', alignItems: 'center', gap: '16px'}}>
-              <Input
-                value={(user as any)?.leftCount || 0}
-                disabled={true}
-                style={{width: '200px'}}
-              />
-              <Button
-                type="primary"
-                icon={<WalletOutlined/>}
-                onClick={() => setShowRechargeModal(true)}
-              >
-                充值
-              </Button>
-            </div>
-          </Form.Item>
+          
 
           <Form.Item label="修改密码">
             <Button
@@ -259,18 +218,6 @@ const Settings: React.FC = () => {
           </Form.Item>
         </Form>
       </Card>
-
-      <Modal
-        title="充值确认"
-        visible={showRechargeModal}
-        onOk={handleRecharge}
-        onCancel={() => setShowRechargeModal(false)}
-        okText="确认充值"
-        cancelText="取消"
-      >
-        <p>确认充值后，您的积分将设置为 100。</p>
-        <p style={{color: '#999', fontSize: '12px', marginTop: '8px'}}>当前积分: {(user as any)?.leftCount || 0}</p>
-      </Modal>
 
       <Modal
         title="修改密码"

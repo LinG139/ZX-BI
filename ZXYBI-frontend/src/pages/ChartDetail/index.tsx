@@ -146,7 +146,7 @@ const ChartDetailPage: React.FC = () => {
             <Button
               type="text"
               icon={<ArrowLeftOutlined />}
-              onClick={() => history.goBack()}
+              onClick={() => history.back()}
               style={{marginRight: 8}}
             />
             图表详情

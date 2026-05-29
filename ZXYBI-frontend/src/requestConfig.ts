@@ -52,9 +52,9 @@ export const errorConfig: RequestConfig = {
           const {errorMessage, errorCode} = errorInfo;
 
           if (errorCode === 40101 && errorMessage?.includes('积分不足')) {
-            message.error('积分不足，即将跳转到充值页面...');
+            message.warning('您的积分已用完，请充值后继续使用');
             setTimeout(() => {
-              history.push('/user/settings');
+              history.push('/recharge');
             }, 1500);
             return;
           }

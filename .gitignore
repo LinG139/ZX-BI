@@ -60,3 +60,4 @@ application-prod.yml
 
 # Maven local repo
 .m2/
+

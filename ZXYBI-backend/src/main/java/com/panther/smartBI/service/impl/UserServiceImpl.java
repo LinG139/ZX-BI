@@ -264,9 +264,6 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (!result) {
             return false;
         }
-        if (loginUser.getLeftCount() >= 1000) {
-            request.getSession().removeAttribute(USER_LOGIN_STATE);
-        }
         return true;
     }
 
@@ -296,12 +293,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
             Integer leftCount = loginUser.getLeftCount();
             if (leftCount <= 0) {
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "次数已经耗尽，请等待明天或者联系管理员");
-            }
-            if (leftCount >= 1000) {
-                loginUser.setUserRole(UserRoleEnum.BAN.getValue());
-                this.updateById(loginUser);
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "用户异常，加入黑名单");
+                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "次数已经耗尽，请充值积分");
             }
 
             loginUser.setLeftCount(leftCount - 5);
@@ -314,12 +306,13 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     }
 
     @Override
-    public int rechargeUserCount(HttpServletRequest request) {
+    public int rechargeUserCount(HttpServletRequest request, int count) {
         User loginUser = getLoginUser(request);
         if (loginUser == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
         }
-        loginUser.setLeftCount(100);
+        // 累加指定数量的积分
+        loginUser.setLeftCount(loginUser.getLeftCount() + count);
         boolean result = this.updateById(loginUser);
         if (!result) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "充值失败");

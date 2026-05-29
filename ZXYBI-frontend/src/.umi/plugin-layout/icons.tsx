@@ -4,6 +4,7 @@
 import HomeOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/HomeOutlined';
 import BarChartOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/BarChartOutlined';
 import PieChartOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/PieChartOutlined';
+import WalletOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/WalletOutlined';
 import AliwangwangOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/AliwangwangOutlined';
 import CrownOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/CrownOutlined';
-export default { HomeOutlined, BarChartOutlined, PieChartOutlined, AliwangwangOutlined, CrownOutlined };
+export default { HomeOutlined, BarChartOutlined, PieChartOutlined, WalletOutlined, AliwangwangOutlined, CrownOutlined };

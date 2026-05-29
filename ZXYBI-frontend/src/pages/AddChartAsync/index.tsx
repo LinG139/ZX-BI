@@ -30,7 +30,7 @@ const AddChartAsync: React.FC = () => {
 
   const handleGoToRecharge = () => {
     setShowNoCreditModal(false);
-    history.push('/user/settings');
+    history.push('/recharge');
   };
 
   const statusConfig: Record<number, { icon: any; color: string; text: string }> = {
@@ -270,7 +270,7 @@ const AddChartAsync: React.FC = () => {
         closable={true}
       >
         <p>您的积分不足，无法完成此操作。</p>
-        <p>请前往个人设置中心进行充值。</p>
+        <p>请前往积分充值页面进行充值。</p>
         <Button type="primary" onClick={handleGoToRecharge} style={{ marginTop: 16 }}>
           立即充值
         </Button>
