@@ -259,6 +259,8 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ]
         },
@@ -329,7 +331,10 @@
             6,
             7,
             4,
-            4
+            4,
+            56,
+            12,
+            8
           ]
         },
         "register": 19
@@ -397,7 +402,9 @@
             16,
             18,
             19,
-            12
+            12,
+            17,
+            94
           ]
         },
         "register": 325
@@ -443,6 +450,8 @@
             0,
             0,
             1,
+            0,
+            0,
             0,
             0,
             0,
@@ -538,7 +547,8 @@
             0,
             0,
             0,
-            1
+            1,
+            0
           ],
           "onCheckCode": [
             0,
@@ -603,6 +613,9 @@
             0,
             0,
             1,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1681,6 +1694,11 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1746,6 +1764,8 @@
             1,
             2,
             1,
+            1,
+            1,
             1
           ],
           "addRuntimePlugin": [
@@ -1788,6 +1808,8 @@
             0,
             0,
             1,
+            0,
+            0,
             0,
             0,
             0,
@@ -1912,6 +1934,8 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "addEntryImports": [
@@ -2012,6 +2036,10 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            1,
             0
           ]
         },
@@ -2096,7 +2124,9 @@
             9,
             13,
             11,
-            11
+            11,
+            8,
+            13
           ],
           "addPolyfillImports": [
             0,
@@ -2180,6 +2210,10 @@
             1,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2309,6 +2343,10 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -2371,6 +2409,8 @@
             0,
             0,
             1,
+            0,
+            0,
             0,
             0,
             0,
@@ -2465,7 +2505,9 @@
             1,
             1,
             0,
-            0
+            0,
+            1,
+            1
           ],
           "addBeforeMiddlewares": [
             0
@@ -2582,7 +2624,11 @@
             48,
             8,
             30,
-            10
+            10,
+            34,
+            11,
+            116,
+            19
           ]
         },
         "register": 113
@@ -2685,7 +2731,9 @@
             14,
             15,
             7,
-            12
+            12,
+            10,
+            19
           ]
         },
         "register": 48
@@ -2818,7 +2866,9 @@
             3,
             2,
             2,
-            2
+            2,
+            2,
+            3
           ]
         },
         "register": 49
@@ -2997,6 +3047,11 @@
             1,
             0,
             0,
+            0,
+            1,
+            1,
+            1,
+            1,
             0,
             1
           ]
@@ -3407,7 +3462,9 @@
             0,
             0,
             0,
-            1
+            1,
+            0,
+            0
           ],
           "onGenerateFiles": [
             4,
@@ -3458,6 +3515,8 @@
             3,
             3,
             1,
+            1,
+            2,
             1
           ],
           "addTmpGenerateWatcherPaths": [
@@ -3601,9 +3660,15 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
             0,
             0,
             0,
@@ -3703,6 +3768,8 @@
             1,
             0,
             0,
+            0,
+            1,
             0
           ],
           "onGenerateFiles": [
@@ -3754,7 +3821,9 @@
             3,
             2,
             2,
-            2
+            2,
+            2,
+            3
           ],
           "addExtraBabelPlugins": [
             0
@@ -3837,9 +3906,13 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "addRuntimePluginKey": [
+            0,
+            0,
             0,
             0,
             0,
@@ -3939,7 +4012,9 @@
             3,
             2,
             1,
-            1
+            1,
+            1,
+            4
           ],
           "addExtraModels": [
             0,
@@ -3990,7 +4065,9 @@
             0,
             1,
             0,
-            1
+            1,
+            0,
+            0
           ]
         },
         "register": 14
@@ -4063,12 +4140,16 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "modifyAppData": [
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
             0,
             0,
             0,
@@ -4168,6 +4249,8 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -4219,7 +4302,9 @@
             11,
             7,
             4,
-            5
+            5,
+            4,
+            7
           ]
         },
         "register": 30
@@ -4310,6 +4395,8 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -4361,7 +4448,9 @@
             60,
             51,
             29,
-            30
+            30,
+            32,
+            52
           ],
           "addTmpGenerateWatcherPaths": [
             0
@@ -4435,6 +4524,8 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -4486,7 +4577,9 @@
             1,
             1,
             1,
-            1
+            1,
+            0,
+            0
           ]
         },
         "register": 13
@@ -4530,6 +4623,8 @@
             0,
             0,
             1,
+            0,
+            0,
             0,
             0,
             0,
@@ -4653,6 +4748,8 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -4704,7 +4801,9 @@
             1,
             2,
             1,
-            1
+            1,
+            2,
+            2
           ]
         },
         "register": 15
@@ -4895,6 +4994,8 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "onStart": [
@@ -4947,6 +5048,8 @@
             1,
             1,
             1,
+            0,
+            0,
             0,
             0,
             0
@@ -5007,6 +5110,9 @@
             1,
             1,
             1,
+            1,
+            1,
+            9,
             1,
             1
           ]
@@ -5119,7 +5225,9 @@
             1,
             2,
             0,
-            0
+            0,
+            1,
+            2
           ]
         },
         "register": 746
@@ -6496,7 +6604,7 @@
       "parentId": "1",
       "id": "2",
       "absPath": "/user/login",
-      "__content": "import Footer from '@/components/Footer';\nimport {getLoginUserUsingGET, userLoginUsingPOST} from '@/services/yubi/userController';\nimport {Link} from '@@/exports';\nimport {LockOutlined, UserOutlined} from '@ant-design/icons';\nimport {LoginForm, ProFormText} from '@ant-design/pro-components';\nimport {useEmotionCss} from '@ant-design/use-emotion-css';\nimport {Helmet, history, useModel} from '@umijs/max';\nimport {message, Tabs} from 'antd';\nimport React, {useState} from 'react';\nimport {flushSync} from 'react-dom';\nimport Settings from '../../../../config/defaultSettings';\n\nconst Login: React.FC = () => {\n  const [type, setType] = useState<string>('account');\n  const {setInitialState} = useModel('@@initialState');\n  const containerClassName = useEmotionCss(() => {\n    return {\n      display: 'flex',\n      flexDirection: 'column',\n      height: '100vh',\n      overflow: 'auto',\n      backgroundImage:\n        \"url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')\",\n      backgroundSize: '100% 100%',\n    };\n  });\n\n  const fetchUserInfo = async () => {\n    const userInfo = await getLoginUserUsingGET();\n    if (userInfo && userInfo.data) {\n      flushSync(() => {\n        setInitialState((s) => ({\n          ...s,\n          currentUser: userInfo.data,\n        }));\n      });\n    }\n  };\n\n  const handleSubmit = async (values: API.UserLoginRequest) => {\n    const {userAccount, userPassword} = values;\n    \n    // 表单验证\n    if (!userAccount || userAccount.trim().length < 4) {\n      message.error('用户名至少需要4个字符');\n      return;\n    }\n    \n    if (!userPassword || userPassword.trim().length < 8) {\n      message.error('密码至少需要8个字符');\n      return;\n    }\n    \n    try {\n      const res = await userLoginUsingPOST(values);\n      if (res.code === 0) {\n        const defaultLoginSuccessMessage = '登录成功！';\n        message.success(defaultLoginSuccessMessage);\n\n        const userInfo = await getLoginUserUsingGET();\n        if (userInfo && userInfo.data) {\n          flushSync(() => {\n            setInitialState((s) => ({\n              ...s,\n              currentUser: userInfo.data,\n            }));\n          });\n          \n          const urlParams = new URL(window.location.href).searchParams;\n          const redirectUrl = urlParams.get('redirect');\n          \n          if (redirectUrl) {\n            history.push(redirectUrl);\n          } else {\n            if (userInfo.data.userRole === 'admin') {\n              history.push('/admin/dashboard');\n            } else {\n              history.push('/welcome');\n            }\n          }\n        } else {\n          history.push('/');\n        }\n        return;\n      } else {\n        message.error(res.message || '登录失败，请检查账号密码');\n      }\n    } catch (error: any) {\n      const errorMessage = error?.response?.data?.message || error?.message || '登录失败，请重试';\n      console.error('登录失败:', error);\n      message.error(errorMessage);\n    }\n  };\n  \n  const handleForgotPassword = () => {\n    message.info('忘记密码功能开发中，请联系管理员重置密码');\n  };\n  return (\n    <div className={containerClassName}>\n      <Helmet>\n        <title>\n          {'登录'}- {Settings.title}\n        </title>\n      </Helmet>\n      <div\n        style={{\n          flex: '1',\n          padding: '32px 0',\n        }}\n      >\n        <LoginForm\n          contentStyle={{\n            minWidth: 280,\n            maxWidth: '75vw',\n          }}\n          logo={<img alt=\"logo\" src=\"/logo.svg\"/>}\n          title=\"智析云 BI\"\n          subTitle={<a href=\"https://github.com/LinG139/ZX-BI\" style={{fontSize: 18}}> 智 析 云 端 ，工 作 更 简 单 </a>}\n          initialValues={{\n            autoLogin: true,\n          }}\n          onFinish={async (values) => {\n            await handleSubmit(values as API.UserLoginRequest);\n          }}\n        >\n          <Tabs\n            activeKey={type}\n            onChange={setType}\n            centered\n            items={[\n              {\n                key: 'account',\n                label: '账户密码登录',\n              },\n            ]}\n          />\n          {type === 'account' && (\n            <>\n              <ProFormText\n                name=\"userAccount\"\n                fieldProps={{\n                  size: 'large',\n                  prefix: <UserOutlined/>,\n                }}\n                placeholder={'请输入用户名:测试用户:test'}\n                rules={[\n                  {\n                    required: true,\n                    message: '用户名是必填项！',\n                  },\n                ]}\n              />\n              <ProFormText.Password\n                name=\"userPassword\"\n                fieldProps={{\n                  size: 'large',\n                  prefix: <LockOutlined/>,\n                }}\n                placeholder={'请输入密码:测试用户: 12345678'}\n                rules={[\n                  {\n                    required: true,\n                    message: '密码是必填项！',\n                  },\n                ]}\n              />\n            </>\n          )}\n          <div\n            style={{\n              display: 'flex',\n              justifyContent: 'space-between',\n              alignItems: 'center',\n              marginBottom: 24,\n            }}\n          >\n            <Link to=\"/user/register\" style={{fontSize: 18}}>注册</Link>\n            <Link \n              onClick={handleForgotPassword}\n              style={{ fontSize: 14, color: '#1890ff' }} to={''}            >\n              忘记密码？\n            </Link>\n          </div>\n        </LoginForm>\n      </div>\n      <Footer/>\n    </div>\n  );\n};\nexport default Login;\n",
+      "__content": "import Footer from '@/components/Footer';\nimport {getLoginUserUsingGET, userLoginUsingPOST} from '@/services/yubi/userController';\nimport {Link} from '@@/exports';\nimport {LockOutlined, UserOutlined} from '@ant-design/icons';\nimport {LoginForm, ProFormText} from '@ant-design/pro-components';\nimport {useEmotionCss} from '@ant-design/use-emotion-css';\nimport {Helmet, history, useModel} from '@umijs/max';\nimport {message, Tabs} from 'antd';\nimport React, {useState} from 'react';\nimport {flushSync} from 'react-dom';\nimport Settings from '../../../../config/defaultSettings';\n\nconst Login: React.FC = () => {\n  const [type, setType] = useState<string>('account');\n  const {setInitialState} = useModel('@@initialState');\n  const containerClassName = useEmotionCss(() => {\n    return {\n      display: 'flex',\n      flexDirection: 'column',\n      height: '100vh',\n      overflow: 'auto',\n      backgroundImage:\n        \"url('https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/V-_oS6r-i7wAAAAAAAAAAAAAFl94AQBr')\",\n      backgroundSize: '100% 100%',\n    };\n  });\n\n  const fetchUserInfo = async () => {\n    const userInfo = await getLoginUserUsingGET();\n    if (userInfo && userInfo.data) {\n      flushSync(() => {\n        setInitialState((s) => ({\n          ...s,\n          currentUser: userInfo.data,\n        }));\n      });\n    }\n  };\n\n  const handleSubmit = async (values: API.UserLoginRequest) => {\n    const {userAccount, userPassword} = values;\n    \n    // 表单验证\n    if (!userAccount || userAccount.trim().length < 4) {\n      message.error('用户名至少需要4个字符');\n      return;\n    }\n    \n    if (!userPassword || userPassword.trim().length < 8) {\n      message.error('密码至少需要8个字符');\n      return;\n    }\n    \n    try {\n      const res = await userLoginUsingPOST(values);\n      if (res.code === 0 && res.data) {\n        const defaultLoginSuccessMessage = '登录成功！';\n        message.success(defaultLoginSuccessMessage);\n\n        const userInfo = res.data;\n        flushSync(() => {\n          setInitialState((s) => ({\n            ...s,\n            currentUser: userInfo,\n          }));\n        });\n        \n        const urlParams = new URL(window.location.href).searchParams;\n        const redirectUrl = urlParams.get('redirect');\n        \n        if (redirectUrl) {\n          history.push(redirectUrl);\n        } else {\n          if (userInfo.userRole === 'admin' || userInfo.userRole === 'ADMIN') {\n            history.push('/admin/dashboard');\n          } else {\n            history.push('/welcome');\n          }\n        }\n        return;\n      } else {\n        message.error(res.message || '登录失败，请检查账号密码');\n      }\n    } catch (error: any) {\n      const errorMessage = error?.response?.data?.message || error?.message || '登录失败，请重试';\n      console.error('登录失败:', error);\n      message.error(errorMessage);\n    }\n  };\n  \n  const handleForgotPassword = () => {\n    message.info('忘记密码功能开发中，请联系管理员重置密码');\n  };\n  return (\n    <div className={containerClassName}>\n      <Helmet>\n        <title>\n          {'登录'}- {Settings.title}\n        </title>\n      </Helmet>\n      <div\n        style={{\n          flex: '1',\n          padding: '32px 0',\n        }}\n      >\n        <LoginForm\n          contentStyle={{\n            minWidth: 280,\n            maxWidth: '75vw',\n          }}\n          logo={<img alt=\"logo\" src=\"/logo.svg\"/>}\n          title=\"智析云 BI\"\n          subTitle={<a href=\"https://github.com/LinG139/ZX-BI\" style={{fontSize: 18}}> 智 析 云 端 ，工 作 更 简 单 </a>}\n          initialValues={{\n            autoLogin: true,\n          }}\n          onFinish={async (values) => {\n            await handleSubmit(values as API.UserLoginRequest);\n          }}\n        >\n          <Tabs\n            activeKey={type}\n            onChange={setType}\n            centered\n            items={[\n              {\n                key: 'account',\n                label: '账户密码登录',\n              },\n            ]}\n          />\n          {type === 'account' && (\n            <>\n              <ProFormText\n                name=\"userAccount\"\n                fieldProps={{\n                  size: 'large',\n                  prefix: <UserOutlined/>,\n                }}\n                placeholder={'请输入用户名:测试用户:test'}\n                rules={[\n                  {\n                    required: true,\n                    message: '用户名是必填项！',\n                  },\n                ]}\n              />\n              <ProFormText.Password\n                name=\"userPassword\"\n                fieldProps={{\n                  size: 'large',\n                  prefix: <LockOutlined/>,\n                }}\n                placeholder={'请输入密码:测试用户: 12345678'}\n                rules={[\n                  {\n                    required: true,\n                    message: '密码是必填项！',\n                  },\n                ]}\n              />\n            </>\n          )}\n          <div\n            style={{\n              display: 'flex',\n              justifyContent: 'space-between',\n              alignItems: 'center',\n              marginBottom: 24,\n            }}\n          >\n            <Link to=\"/user/register\" style={{fontSize: 18}}>注册</Link>\n            <Link \n              onClick={handleForgotPassword}\n              style={{ fontSize: 14, color: '#1890ff' }} to={''}            >\n              忘记密码？\n            </Link>\n          </div>\n        </LoginForm>\n      </div>\n      <Footer/>\n    </div>\n  );\n};\nexport default Login;\n",
       "__isJSFile": true,
       "__absFile": "D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/src/pages/User/Login/index.tsx"
     },
@@ -6651,7 +6759,7 @@
       "parentId": "ant-design-pro-layout",
       "id": "15",
       "absPath": "/admin/user",
-      "__content": "import { PageContainer } from '@ant-design/pro-components';\nimport { Button, Card, Modal, Select, Space, Table, Tag, Popconfirm, Input, Form, App as AntApp, Row, Col, Statistic, Checkbox } from 'antd';\nimport type { ColumnsType } from 'antd/es/table';\nimport React, { useEffect, useState } from 'react';\nimport dayjs from 'dayjs';\nimport { UserOutlined, TeamOutlined, CheckCircleOutlined, WalletOutlined, CloseCircleOutlined, ClockCircleOutlined, SearchOutlined } from '@ant-design/icons';\n\ninterface User {\n  id: number;\n  userAccount: string;\n  userName: string;\n  userAvatar: string;\n  userRole: string;\n  leftCount: number;\n  isVip: number;\n  createTime: string;\n  updateTime: string;\n  isDelete: number;\n}\n\ninterface Stats {\n  totalUsers: number;\n  activeUsers: number;\n  adminCount: number;\n  vipCount: number;\n  totalPoints: number;\n}\n\nconst UserManage: React.FC = () => {\n  const { message: antMessage } = AntApp.useApp();\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<User[]>([]);\n  const [total, setTotal] = useState(0);\n  const [current, setCurrent] = useState(1);\n  const [pageSize, setPageSize] = useState(10);\n  const [searchParams, setSearchParams] = useState({\n    userAccount: '',\n    userName: '',\n    userType: '',\n  });\n  const [addModalVisible, setAddModalVisible] = useState(false);\n  const [addForm] = Form.useForm();\n  const [pointsModalVisible, setPointsModalVisible] = useState(false);\n  const [selectedUser, setSelectedUser] = useState<User | null>(null);\n  const [pointsForm] = Form.useForm();\n  const [selectedRows, setSelectedRows] = useState<number[]>([]);\n  const [stats, setStats] = useState<Stats | null>(null);\n\n  useEffect(() => {\n    fetchData();\n    fetchStats();\n  }, [current, pageSize]);\n\n  const fetchStats = async () => {\n    try {\n      const response = await fetch('http://localhost:9001/api/admin/dashboard', {\n        credentials: 'include',\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        setStats({\n          totalUsers: res.data.totalUsers || 0,\n          activeUsers: (res.data.totalUsers || 0) - (res.data.totalUsers || 0) * 0.1,\n          adminCount: 1,\n          vipCount: res.data.totalUsers ? Math.floor(res.data.totalUsers * 0.2) : 0,\n          totalPoints: res.data.totalUserPoints || 0,\n        });\n      }\n    } catch (error) {\n      console.error('获取统计数据失败', error);\n    }\n  };\n\n  const fetchData = async () => {\n    setLoading(true);\n    try {\n      const response = await fetch('http://localhost:9001/api/admin/user/list/page', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        credentials: 'include',\n        body: JSON.stringify({\n          current,\n          pageSize,\n          ...searchParams,\n        }),\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        setData(res.data.records);\n        setTotal(res.data.total);\n      } else {\n        antMessage.error('获取数据失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const handleSearch = () => {\n    setCurrent(1);\n    fetchData();\n  };\n\n  const handleReset = () => {\n    setSearchParams({ userAccount: '', userName: '', userType: '' });\n    setCurrent(1);\n  };\n\n  const updateUserType = async (userId: number, userType: string) => {\n    try {\n      const response = await fetch(`http://localhost:9001/api/admin/user/update/type?userId=${userId}&userType=${userType}`, {\n        method: 'POST',\n        credentials: 'include',\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('身份更新成功');\n        fetchData();\n      } else {\n        antMessage.error('更新失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const updateStatus = async (userId: number, isDelete: number) => {\n    try {\n      const response = await fetch(`http://localhost:9001/api/admin/user/update/status?userId=${userId}&isDelete=${isDelete}`, {\n        method: 'POST',\n        credentials: 'include',\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('状态更新成功');\n        fetchData();\n      } else {\n        antMessage.error('更新失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const deleteUser = async (userId: number) => {\n    try {\n      const response = await fetch('http://localhost:9001/api/admin/user/delete', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        credentials: 'include',\n        body: JSON.stringify({ id: userId }),\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('删除成功');\n        fetchData();\n      } else {\n        antMessage.error('删除失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const handleAddUser = async (values: any) => {\n    try {\n      const response = await fetch('http://localhost:9001/api/user/add', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        credentials: 'include',\n        body: JSON.stringify(values),\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('用户添加成功');\n        setAddModalVisible(false);\n        addForm.resetFields();\n        fetchData();\n        fetchStats();\n      } else {\n        antMessage.error('添加失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const openPointsModal = (user: User) => {\n    setSelectedUser(user);\n    pointsForm.setFieldsValue({ amount: 0, remark: '' });\n    setPointsModalVisible(true);\n  };\n\n  const handleUpdatePoints = async (values: any) => {\n    if (!selectedUser) return;\n    try {\n      const response = await fetch('http://localhost:9001/api/admin/points/update', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        credentials: 'include',\n        body: JSON.stringify({\n          userId: selectedUser.id,\n          amount: values.amount,\n          remark: values.remark,\n          type: values.amount > 0 ? '充值' : '扣除',\n        }),\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('积分更新成功');\n        setPointsModalVisible(false);\n        setSelectedUser(null);\n        pointsForm.resetFields();\n        fetchData();\n        fetchStats();\n      } else {\n        antMessage.error('更新失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const batchDelete = async () => {\n    if (selectedRows.length === 0) {\n      antMessage.warning('请选择要删除的用户');\n      return;\n    }\n    Modal.confirm({\n      title: '批量删除',\n      content: `确定要删除选中的 ${selectedRows.length} 个用户吗？`,\n      okType: 'danger',\n      onOk: async () => {\n        try {\n          for (const id of selectedRows) {\n            await fetch('http://localhost:9001/api/admin/user/delete', {\n              method: 'POST',\n              headers: { 'Content-Type': 'application/json' },\n              credentials: 'include',\n              body: JSON.stringify({ id }),\n            });\n          }\n          antMessage.success('批量删除成功');\n          setSelectedRows([]);\n          fetchData();\n          fetchStats();\n        } catch (error) {\n          antMessage.error('批量删除失败');\n        }\n      },\n    });\n  };\n\n  const batchEnable = async () => {\n    if (selectedRows.length === 0) {\n      antMessage.warning('请选择要启用的用户');\n      return;\n    }\n    try {\n      for (const id of selectedRows) {\n        await fetch(`http://localhost:9001/api/admin/user/update/status?userId=${id}&isDelete=0`, {\n          method: 'POST',\n          credentials: 'include',\n        });\n      }\n      antMessage.success('批量启用成功');\n      setSelectedRows([]);\n      fetchData();\n    } catch (error) {\n      antMessage.error('批量启用失败');\n    }\n  };\n\n  const batchDisable = async () => {\n    if (selectedRows.length === 0) {\n      antMessage.warning('请选择要禁用的用户');\n      return;\n    }\n    try {\n      for (const id of selectedRows) {\n        await fetch(`http://localhost:9001/api/admin/user/update/status?userId=${id}&isDelete=1`, {\n          method: 'POST',\n          credentials: 'include',\n        });\n      }\n      antMessage.success('批量禁用成功');\n      setSelectedRows([]);\n      fetchData();\n    } catch (error) {\n      antMessage.error('批量禁用失败');\n    }\n  };\n\n  const getUserType = (user: User): string => {\n    if (user.userRole === 'admin') return 'admin';\n    if (user.isVip === 1) return 'vip';\n    return 'user';\n  };\n\n  const getUserTypeLabel = (user: User): string => {\n    if (user.userRole === 'admin') return '管理员';\n    if (user.isVip === 1) return 'VIP用户';\n    return '普通用户';\n  };\n\n  const getUserTypeColor = (user: User): string => {\n    if (user.userRole === 'admin') return 'gold';\n    if (user.isVip === 1) return 'purple';\n    return 'blue';\n  };\n\n  const columns: ColumnsType<User> = [\n    {\n      title: (\n        <Checkbox\n          indeterminate={selectedRows.length > 0 && selectedRows.length < data.length}\n          checked={selectedRows.length === data.length && data.length > 0}\n          onChange={(e) => {\n            if (e.target.checked) {\n              setSelectedRows(data.map((item) => item.id));\n            } else {\n              setSelectedRows([]);\n            }\n          }}\n        />\n      ),\n      width: 60,\n      render: (_, record) => (\n        <Checkbox\n          checked={selectedRows.includes(record.id)}\n          onChange={(e) => {\n            if (e.target.checked) {\n              setSelectedRows([...selectedRows, record.id]);\n            } else {\n              setSelectedRows(selectedRows.filter((id) => id !== record.id));\n            }\n          }}\n        />\n      ),\n    },\n    {\n      title: 'ID',\n      dataIndex: 'id',\n      width: 80,\n    },\n    {\n      title: '账号',\n      dataIndex: 'userAccount',\n      width: 120,\n    },\n    {\n      title: '用户名',\n      dataIndex: 'userName',\n      width: 120,\n    },\n    {\n      title: '头像',\n      dataIndex: 'userAvatar',\n      width: 80,\n      render: (url: string) => (\n        url ? <img src={url} alt=\"avatar\" style={{ width: 40, height: 40, borderRadius: '50%' }} /> : '-'\n      ),\n    },\n    {\n      title: '身份',\n      width: 100,\n      render: (_, record) => (\n        <Tag color={getUserTypeColor(record)}>\n          {getUserTypeLabel(record)}\n        </Tag>\n      ),\n    },\n    {\n      title: '积分',\n      dataIndex: 'leftCount',\n      width: 100,\n      render: (count: number, record) => (\n        <Space>\n          <span>{count}</span>\n          <Button\n            size=\"small\"\n            type=\"link\"\n            onClick={() => openPointsModal(record)}\n          >\n            管理\n          </Button>\n        </Space>\n      ),\n    },\n    {\n      title: '状态',\n      dataIndex: 'isDelete',\n      width: 80,\n      render: (isDelete: number) => (\n        <Tag color={isDelete === 0 ? 'green' : 'red'}>\n          {isDelete === 0 ? '正常' : '已禁用'}\n        </Tag>\n      ),\n    },\n    {\n      title: '创建时间',\n      dataIndex: 'createTime',\n      width: 180,\n      render: (time: string) => dayjs(time).format('YYYY-MM-DD HH:mm:ss'),\n    },\n    {\n      title: '操作',\n      width: 200,\n      render: (_, record) => (\n        <Space size=\"small\">\n          <Select\n            value={getUserType(record)}\n            style={{ width: 90 }}\n            size=\"small\"\n            onChange={(value) => updateUserType(record.id, value)}\n            options={[\n              { value: 'user', label: '普通' },\n              { value: 'vip', label: 'VIP' },\n              { value: 'admin', label: '管理员' },\n            ]}\n          />\n          <Button\n            type=\"link\"\n            danger={record.isDelete === 0}\n            onClick={() => updateStatus(record.id, record.isDelete === 0 ? 1 : 0)}\n          >\n            {record.isDelete === 0 ? '禁用' : '启用'}\n          </Button>\n          <Popconfirm\n            title=\"确定删除该用户吗？\"\n            onConfirm={() => deleteUser(record.id)}\n            okText=\"确定\"\n            cancelText=\"取消\"\n            okType=\"danger\"\n          >\n            <Button type=\"link\" danger>删除</Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  return (\n    <PageContainer>\n      <Row gutter={[16, 16]} style={{ marginBottom: 16 }}>\n        <Col xs={12} sm={6}>\n          <Card size=\"small\" hoverable>\n            <Statistic\n              title={<span><UserOutlined style={{ color: '#1890ff' }} /> 总用户数</span>}\n              value={stats?.totalUsers || 0}\n              valueStyle={{ color: '#1890ff' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={12} sm={6}>\n          <Card size=\"small\" hoverable>\n            <Statistic\n              title={<span><TeamOutlined style={{ color: '#faad14' }} /> VIP用户</span>}\n              value={stats?.vipCount || 0}\n              valueStyle={{ color: '#faad14' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={12} sm={6}>\n          <Card size=\"small\" hoverable>\n            <Statistic\n              title={<span><CheckCircleOutlined style={{ color: '#52c41a' }} /> 管理员</span>}\n              value={stats?.adminCount || 0}\n              valueStyle={{ color: '#52c41a' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={12} sm={6}>\n          <Card size=\"small\" hoverable>\n            <Statistic\n              title={<span><WalletOutlined style={{ color: '#722ed1' }} /> 总积分</span>}\n              value={stats?.totalPoints || 0}\n              valueStyle={{ color: '#722ed1' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card>\n        {selectedRows.length > 0 && (\n          <Space style={{ marginBottom: 16 }} wrap>\n            <span>已选择 {selectedRows.length} 个用户</span>\n            <Button onClick={batchEnable}>批量启用</Button>\n            <Button onClick={batchDisable} danger>批量禁用</Button>\n            <Button onClick={batchDelete} danger icon={<CloseCircleOutlined />}>批量删除</Button>\n            <Button onClick={() => setSelectedRows([])}>取消选择</Button>\n          </Space>\n        )}\n\n        <Space style={{ marginBottom: 16 }} wrap>\n          <Input\n            placeholder=\"账号\"\n            value={searchParams.userAccount}\n            onChange={(e) => setSearchParams({ ...searchParams, userAccount: e.target.value })}\n            style={{ width: 150 }}\n            prefix={<SearchOutlined />}\n          />\n          <Input\n            placeholder=\"用户名\"\n            value={searchParams.userName}\n            onChange={(e) => setSearchParams({ ...searchParams, userName: e.target.value })}\n            style={{ width: 150 }}\n            prefix={<SearchOutlined />}\n          />\n          <Select\n            placeholder=\"身份\"\n            value={searchParams.userType || undefined}\n            onChange={(value) => setSearchParams({ ...searchParams, userType: value || '' })}\n            style={{ width: 120 }}\n            allowClear\n            options={[\n              { value: 'user', label: '普通用户' },\n              { value: 'vip', label: 'VIP用户' },\n              { value: 'admin', label: '管理员' },\n            ]}\n          />\n          <Button type=\"primary\" icon={<SearchOutlined />} onClick={handleSearch}>搜索</Button>\n          <Button icon={<ClockCircleOutlined />} onClick={handleReset}>重置</Button>\n          <Button type=\"primary\" onClick={() => setAddModalVisible(true)}>\n            添加用户\n          </Button>\n        </Space>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current,\n            pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (total) => `共 ${total} 条`,\n            onChange: (page, size) => {\n              setCurrent(page);\n              setPageSize(size);\n              setSelectedRows([]);\n            },\n          }}\n        />\n      </Card>\n\n      <Modal\n        title=\"添加用户\"\n        open={addModalVisible}\n        onOk={() => addForm.submit()}\n        onCancel={() => {\n          setAddModalVisible(false);\n          addForm.resetFields();\n        }}\n        destroyOnClose\n        width={600}\n      >\n        <Form\n          form={addForm}\n          layout=\"vertical\"\n          onFinish={handleAddUser}\n        >\n          <Form.Item\n            name=\"userAccount\"\n            label=\"账号\"\n            rules={[{ required: true, message: '请输入账号' }]}\n          >\n            <Input placeholder=\"请输入账号\" />\n          </Form.Item>\n          <Form.Item\n            name=\"userPassword\"\n            label=\"密码\"\n            rules={[{ required: true, message: '请输入密码' }]}\n          >\n            <Input.Password placeholder=\"请输入密码\" />\n          </Form.Item>\n          <Form.Item\n            name=\"userName\"\n            label=\"用户名\"\n            rules={[{ required: true, message: '请输入用户名' }]}\n          >\n            <Input placeholder=\"请输入用户名\" />\n          </Form.Item>\n          <Form.Item\n            name=\"userAvatar\"\n            label=\"头像\"\n          >\n            <Input placeholder=\"请输入头像URL\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title={`积分管理 - ${selectedUser?.userName || ''}`}\n        open={pointsModalVisible}\n        onOk={() => pointsForm.submit()}\n        onCancel={() => {\n          setPointsModalVisible(false);\n          setSelectedUser(null);\n          pointsForm.resetFields();\n        }}\n        destroyOnClose\n        width={500}\n      >\n        <Form\n          form={pointsForm}\n          layout=\"vertical\"\n          onFinish={handleUpdatePoints}\n        >\n          <Form.Item\n            name=\"amount\"\n            label=\"积分数量\"\n            rules={[{ required: true, message: '请输入积分数量' }]}\n          >\n            <Input\n              placeholder=\"正数为增加，负数为扣除\"\n              type=\"number\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"remark\"\n            label=\"备注\"\n          >\n            <Input.TextArea placeholder=\"请输入备注信息\" />\n          </Form.Item>\n          {selectedUser && (\n            <div style={{ padding: 16, background: '#f5f5f5', borderRadius: 4 }}>\n              <p>当前积分: <strong>{selectedUser.leftCount}</strong></p>\n              <p>用户ID: {selectedUser.id}</p>\n            </div>\n          )}\n        </Form>\n      </Modal>\n    </PageContainer>\n  );\n};\n\nexport default UserManage;",
+      "__content": "import { PageContainer } from '@ant-design/pro-components';\nimport { Button, Card, Modal, Select, Space, Table, Tag, Popconfirm, Input, Form, App as AntApp, Row, Col, Statistic, Checkbox } from 'antd';\nimport type { ColumnsType } from 'antd/es/table';\nimport React, { useEffect, useState } from 'react';\nimport dayjs from 'dayjs';\nimport { UserOutlined, TeamOutlined, CheckCircleOutlined, WalletOutlined, CloseCircleOutlined, ClockCircleOutlined, SearchOutlined } from '@ant-design/icons';\n\ninterface User {\n  id: number;\n  userAccount: string;\n  userName: string;\n  userAvatar: string;\n  userRole: string;\n  leftCount: number;\n  isVip: number;\n  createTime: string;\n  updateTime: string;\n  isDelete: number;\n}\n\ninterface Stats {\n  totalUsers: number;\n  activeUsers: number;\n  adminCount: number;\n  vipCount: number;\n  totalPoints: number;\n}\n\nconst UserManage: React.FC = () => {\n  const { message: antMessage } = AntApp.useApp();\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<User[]>([]);\n  const [total, setTotal] = useState(0);\n  const [current, setCurrent] = useState(1);\n  const [pageSize, setPageSize] = useState(10);\n  const [searchParams, setSearchParams] = useState({\n    userAccount: '',\n    userName: '',\n    userType: '',\n  });\n  const [addModalVisible, setAddModalVisible] = useState(false);\n  const [addForm] = Form.useForm();\n  const [pointsModalVisible, setPointsModalVisible] = useState(false);\n  const [selectedUser, setSelectedUser] = useState<User | null>(null);\n  const [pointsForm] = Form.useForm();\n  const [selectedRows, setSelectedRows] = useState<number[]>([]);\n  const [stats, setStats] = useState<Stats | null>(null);\n\n  useEffect(() => {\n    fetchData();\n    fetchStats();\n  }, [current, pageSize]);\n\n  const fetchStats = async () => {\n    try {\n      const response = await fetch('http://localhost:9001/api/admin/dashboard', {\n        credentials: 'include',\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        setStats({\n          totalUsers: res.data.totalUsers || 0,\n          activeUsers: (res.data.totalUsers || 0) - (res.data.totalUsers || 0) * 0.1,\n          adminCount: 1,\n          vipCount: res.data.totalUsers ? Math.floor(res.data.totalUsers * 0.2) : 0,\n          totalPoints: res.data.totalUserPoints || 0,\n        });\n      }\n    } catch (error) {\n      console.error('获取统计数据失败', error);\n    }\n  };\n\n  const fetchData = async () => {\n    setLoading(true);\n    try {\n      const response = await fetch('http://localhost:9001/api/admin/user/list/page', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        credentials: 'include',\n        body: JSON.stringify({\n          current,\n          pageSize,\n          ...searchParams,\n        }),\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        setData(res.data.records);\n        setTotal(res.data.total);\n      } else {\n        antMessage.error('获取数据失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const handleSearch = () => {\n    setCurrent(1);\n    fetchData();\n  };\n\n  const handleReset = () => {\n    setSearchParams({ userAccount: '', userName: '', userType: '' });\n    setCurrent(1);\n  };\n\n  const updateUserType = async (userId: number, userType: string) => {\n    try {\n      const response = await fetch(`http://localhost:9001/api/admin/user/update/type?userId=${userId}&userType=${userType}`, {\n        method: 'POST',\n        credentials: 'include',\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('身份更新成功');\n        fetchData();\n      } else {\n        antMessage.error('更新失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const updateStatus = async (userId: number, isDelete: number) => {\n    try {\n      const response = await fetch(`http://localhost:9001/api/admin/user/update/status?userId=${userId}&isDelete=${isDelete}`, {\n        method: 'POST',\n        credentials: 'include',\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('状态更新成功');\n        fetchData();\n      } else {\n        antMessage.error('更新失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const deleteUser = async (userId: number) => {\n    try {\n      const response = await fetch('http://localhost:9001/api/admin/user/delete', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        credentials: 'include',\n        body: JSON.stringify({ id: userId }),\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('删除成功');\n        fetchData();\n      } else {\n        antMessage.error('删除失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const handleAddUser = async (values: any) => {\n    try {\n      const response = await fetch('http://localhost:9001/api/user/add', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        credentials: 'include',\n        body: JSON.stringify(values),\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('用户添加成功');\n        setAddModalVisible(false);\n        addForm.resetFields();\n        fetchData();\n        fetchStats();\n      } else {\n        antMessage.error('添加失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const openPointsModal = (user: User) => {\n    setSelectedUser(user);\n    pointsForm.setFieldsValue({ amount: 0, remark: '' });\n    setPointsModalVisible(true);\n  };\n\n  const handleUpdatePoints = async (values: any) => {\n    if (!selectedUser) return;\n    try {\n      const response = await fetch('http://localhost:9001/api/admin/points/update', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json' },\n        credentials: 'include',\n        body: JSON.stringify({\n          userId: selectedUser.id,\n          amount: values.amount,\n          remark: values.remark,\n          type: values.amount > 0 ? '充值' : '扣除',\n        }),\n      });\n      const res = await response.json();\n      if (res.code === 0) {\n        antMessage.success('积分更新成功');\n        setPointsModalVisible(false);\n        setSelectedUser(null);\n        pointsForm.resetFields();\n        fetchData();\n        fetchStats();\n      } else {\n        antMessage.error('更新失败: ' + res.message);\n      }\n    } catch (error) {\n      antMessage.error('网络错误');\n    }\n  };\n\n  const batchDelete = async () => {\n    if (selectedRows.length === 0) {\n      antMessage.warning('请选择要删除的用户');\n      return;\n    }\n    Modal.confirm({\n      title: '批量删除',\n      content: `确定要删除选中的 ${selectedRows.length} 个用户吗？`,\n      okType: 'danger',\n      onOk: async () => {\n        try {\n          for (const id of selectedRows) {\n            await fetch('http://localhost:9001/api/admin/user/delete', {\n              method: 'POST',\n              headers: { 'Content-Type': 'application/json' },\n              credentials: 'include',\n              body: JSON.stringify({ id }),\n            });\n          }\n          antMessage.success('批量删除成功');\n          setSelectedRows([]);\n          fetchData();\n          fetchStats();\n        } catch (error) {\n          antMessage.error('批量删除失败');\n        }\n      },\n    });\n  };\n\n  const batchEnable = async () => {\n    if (selectedRows.length === 0) {\n      antMessage.warning('请选择要启用的用户');\n      return;\n    }\n    try {\n      for (const id of selectedRows) {\n        await fetch(`http://localhost:9001/api/admin/user/update/status?userId=${id}&isDelete=0`, {\n          method: 'POST',\n          credentials: 'include',\n        });\n      }\n      antMessage.success('批量启用成功');\n      setSelectedRows([]);\n      fetchData();\n    } catch (error) {\n      antMessage.error('批量启用失败');\n    }\n  };\n\n  const batchDisable = async () => {\n    if (selectedRows.length === 0) {\n      antMessage.warning('请选择要禁用的用户');\n      return;\n    }\n    try {\n      for (const id of selectedRows) {\n        await fetch(`http://localhost:9001/api/admin/user/update/status?userId=${id}&isDelete=1`, {\n          method: 'POST',\n          credentials: 'include',\n        });\n      }\n      antMessage.success('批量禁用成功');\n      setSelectedRows([]);\n      fetchData();\n    } catch (error) {\n      antMessage.error('批量禁用失败');\n    }\n  };\n\n  const getUserType = (user: User): string => {\n    if (user.userRole === 'admin') return 'admin';\n    if (user.isVip === 1) return 'vip';\n    return 'user';\n  };\n\n  const getUserTypeLabel = (user: User): string => {\n    if (user.userRole === 'admin') return '管理员';\n    if (user.isVip === 1) return 'VIP用户';\n    return '普通用户';\n  };\n\n  const getUserTypeColor = (user: User): string => {\n    if (user.userRole === 'admin') return 'gold';\n    if (user.isVip === 1) return 'purple';\n    return 'blue';\n  };\n\n  const columns: ColumnsType<User> = [\n    {\n      title: (\n        <Checkbox\n          indeterminate={selectedRows.length > 0 && selectedRows.length < data.length}\n          checked={selectedRows.length === data.length && data.length > 0}\n          onChange={(e) => {\n            if (e.target.checked) {\n              setSelectedRows(data.map((item) => item.id));\n            } else {\n              setSelectedRows([]);\n            }\n          }}\n        />\n      ),\n      width: 60,\n      render: (_, record) => (\n        <Checkbox\n          checked={selectedRows.includes(record.id)}\n          onChange={(e) => {\n            if (e.target.checked) {\n              setSelectedRows([...selectedRows, record.id]);\n            } else {\n              setSelectedRows(selectedRows.filter((id) => id !== record.id));\n            }\n          }}\n        />\n      ),\n    },\n    {\n      title: 'ID',\n      dataIndex: 'id',\n      width: 80,\n    },\n    {\n      title: '账号',\n      dataIndex: 'userAccount',\n      width: 120,\n    },\n    {\n      title: '用户名',\n      dataIndex: 'userName',\n      width: 120,\n    },\n    {\n      title: '头像',\n      dataIndex: 'userAvatar',\n      width: 80,\n      render: (url: string) => (\n        url ? <img src={url} alt=\"avatar\" style={{ width: 40, height: 40, borderRadius: '50%' }} /> : '-'\n      ),\n    },\n    {\n      title: '身份',\n      width: 100,\n      render: (_, record) => (\n        <Tag color={getUserTypeColor(record)}>\n          {getUserTypeLabel(record)}\n        </Tag>\n      ),\n    },\n    {\n      title: '积分',\n      dataIndex: 'leftCount',\n      width: 100,\n      render: (count: number, record) => (\n        <Space>\n          <span>{count}</span>\n          <Button\n            size=\"small\"\n            type=\"link\"\n            onClick={() => openPointsModal(record)}\n          >\n            管理\n          </Button>\n        </Space>\n      ),\n    },\n    {\n      title: '状态',\n      dataIndex: 'isDelete',\n      width: 80,\n      render: (isDelete: number) => (\n        <Tag color={isDelete === 0 ? 'green' : 'red'}>\n          {isDelete === 0 ? '正常' : '已禁用'}\n        </Tag>\n      ),\n    },\n    {\n      title: '创建时间',\n      dataIndex: 'createTime',\n      width: 180,\n      render: (time: string) => dayjs(time).format('YYYY-MM-DD HH:mm:ss'),\n    },\n    {\n      title: '操作',\n      width: 200,\n      render: (_, record) => (\n        <Space size=\"small\">\n          <Select\n            value={getUserType(record)}\n            style={{ width: 90 }}\n            size=\"small\"\n            onChange={(value) => updateUserType(record.id, value)}\n            options={[\n              { value: 'user', label: '普通' },\n              { value: 'vip', label: 'VIP' },\n              { value: 'admin', label: '管理员' },\n            ]}\n          />\n          <Button\n            type=\"link\"\n            danger={record.isDelete === 0}\n            onClick={() => updateStatus(record.id, record.isDelete === 0 ? 1 : 0)}\n          >\n            {record.isDelete === 0 ? '禁用' : '启用'}\n          </Button>\n          <Popconfirm\n            title=\"确定删除该用户吗？\"\n            onConfirm={() => deleteUser(record.id)}\n            okText=\"确定\"\n            cancelText=\"取消\"\n            okType=\"danger\"\n          >\n            <Button type=\"link\" danger>删除</Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  return (\n    <PageContainer>\n      <Row gutter={[16, 16]} style={{ marginBottom: 16 }}>\n        <Col xs={12} sm={6}>\n          <Card size=\"small\" hoverable>\n            <Statistic\n              title={<span><UserOutlined style={{ color: '#1890ff' }} /> 总用户数</span>}\n              value={stats?.totalUsers || 0}\n              valueStyle={{ color: '#1890ff' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={12} sm={6}>\n          <Card size=\"small\" hoverable>\n            <Statistic\n              title={<span><TeamOutlined style={{ color: '#faad14' }} /> VIP用户</span>}\n              value={stats?.vipCount || 0}\n              valueStyle={{ color: '#faad14' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={12} sm={6}>\n          <Card size=\"small\" hoverable>\n            <Statistic\n              title={<span><CheckCircleOutlined style={{ color: '#52c41a' }} /> 管理员</span>}\n              value={stats?.adminCount || 0}\n              valueStyle={{ color: '#52c41a' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={12} sm={6}>\n          <Card size=\"small\" hoverable>\n            <Statistic\n              title={<span><WalletOutlined style={{ color: '#722ed1' }} /> 总积分</span>}\n              value={stats?.totalPoints || 0}\n              valueStyle={{ color: '#722ed1' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card>\n        {selectedRows.length > 0 && (\n          <Space style={{ marginBottom: 16 }} wrap>\n            <span>已选择 {selectedRows.length} 个用户</span>\n            <Button onClick={batchEnable}>批量启用</Button>\n            <Button onClick={batchDisable} danger>批量禁用</Button>\n            <Button onClick={batchDelete} danger icon={<CloseCircleOutlined />}>批量删除</Button>\n            <Button onClick={() => setSelectedRows([])}>取消选择</Button>\n          </Space>\n        )}\n\n        <Space style={{ marginBottom: 16 }} wrap>\n          <Input\n            placeholder=\"账号\"\n            value={searchParams.userAccount}\n            onChange={(e) => setSearchParams({ ...searchParams, userAccount: e.target.value })}\n            style={{ width: 150 }}\n            prefix={<SearchOutlined />}\n          />\n          <Input\n            placeholder=\"用户名\"\n            value={searchParams.userName}\n            onChange={(e) => setSearchParams({ ...searchParams, userName: e.target.value })}\n            style={{ width: 150 }}\n            prefix={<SearchOutlined />}\n          />\n          <Select\n            placeholder=\"身份\"\n            value={searchParams.userType || undefined}\n            onChange={(value) => setSearchParams({ ...searchParams, userType: value || '' })}\n            style={{ width: 120 }}\n            allowClear\n            options={[\n              { value: 'user', label: '普通用户' },\n              { value: 'vip', label: 'VIP用户' },\n              { value: 'admin', label: '管理员' },\n            ]}\n          />\n          <Button type=\"primary\" icon={<SearchOutlined />} onClick={handleSearch}>搜索</Button>\n          <Button icon={<ClockCircleOutlined />} onClick={handleReset}>重置</Button>\n          <Button type=\"primary\" onClick={() => setAddModalVisible(true)}>\n            添加用户\n          </Button>\n        </Space>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current,\n            pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (total) => `共 ${total} 条`,\n            onChange: (page, size) => {\n              setCurrent(page);\n              setPageSize(size);\n              setSelectedRows([]);\n            },\n          }}\n        />\n      </Card>\n\n      <Modal\n        title=\"添加用户\"\n        open={addModalVisible}\n        onOk={() => addForm.submit()}\n        onCancel={() => {\n          setAddModalVisible(false);\n          addForm.resetFields();\n        }}\n        destroyOnHidden\n        width={600}\n      >\n        <Form\n          form={addForm}\n          layout=\"vertical\"\n          onFinish={handleAddUser}\n        >\n          <Form.Item\n            name=\"userAccount\"\n            label=\"账号\"\n            rules={[{ required: true, message: '请输入账号' }]}\n          >\n            <Input placeholder=\"请输入账号\" />\n          </Form.Item>\n          <Form.Item\n            name=\"userPassword\"\n            label=\"密码\"\n            rules={[{ required: true, message: '请输入密码' }]}\n          >\n            <Input.Password placeholder=\"请输入密码\" />\n          </Form.Item>\n          <Form.Item\n            name=\"userName\"\n            label=\"用户名\"\n            rules={[{ required: true, message: '请输入用户名' }]}\n          >\n            <Input placeholder=\"请输入用户名\" />\n          </Form.Item>\n          <Form.Item\n            name=\"userAvatar\"\n            label=\"头像\"\n          >\n            <Input placeholder=\"请输入头像URL\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title={`积分管理 - ${selectedUser?.userName || ''}`}\n        open={pointsModalVisible}\n        onOk={() => pointsForm.submit()}\n        onCancel={() => {\n          setPointsModalVisible(false);\n          setSelectedUser(null);\n          pointsForm.resetFields();\n        }}\n        destroyOnHidden\n        width={500}\n      >\n        <Form\n          form={pointsForm}\n          layout=\"vertical\"\n          onFinish={handleUpdatePoints}\n        >\n          <Form.Item\n            name=\"amount\"\n            label=\"积分数量\"\n            rules={[{ required: true, message: '请输入积分数量' }]}\n          >\n            <Input\n              placeholder=\"正数为增加，负数为扣除\"\n              type=\"number\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"remark\"\n            label=\"备注\"\n          >\n            <Input.TextArea placeholder=\"请输入备注信息\" />\n          </Form.Item>\n          {selectedUser && (\n            <div style={{ padding: 16, background: '#f5f5f5', borderRadius: 4 }}>\n              <p>当前积分: <strong>{selectedUser.leftCount}</strong></p>\n              <p>用户ID: {selectedUser.id}</p>\n            </div>\n          )}\n        </Form>\n      </Modal>\n    </PageContainer>\n  );\n};\n\nexport default UserManage;",
       "__isJSFile": true,
       "__absFile": "D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/src/pages/Admin/UserManage/index.tsx"
     },
@@ -9134,7 +9242,7 @@
             "format": "esm"
           },
           "src/pages/Admin/UserManage/index.tsx": {
-            "bytes": 19244,
+            "bytes": 19246,
             "imports": [
               {
                 "path": "@ant-design/pro-components",
@@ -9227,7 +9335,7 @@
             "format": "esm"
           },
           "src/pages/Admin/PointsManage/index.tsx": {
-            "bytes": 12870,
+            "bytes": 12871,
             "imports": [
               {
                 "path": "@ant-design/pro-components",
@@ -11963,7 +12071,7 @@
                 "bytesInOutput": 14033
               },
               "src/pages/Admin/UserManage/index.tsx": {
-                "bytesInOutput": 24614
+                "bytesInOutput": 24616
               },
               "src/pages/Admin/ChartManage/index.tsx": {
                 "bytesInOutput": 21212
@@ -11972,7 +12080,7 @@
                 "bytesInOutput": 22630
               },
               "src/pages/Admin/PointsManage/index.tsx": {
-                "bytesInOutput": 15326
+                "bytesInOutput": 15327
               },
               "src/pages/Admin/Monitor/index.tsx": {
                 "bytesInOutput": 18888
@@ -12020,7 +12128,7 @@
                 "bytesInOutput": 1769
               }
             },
-            "bytes": 414394
+            "bytes": 414397
           }
         }
       }

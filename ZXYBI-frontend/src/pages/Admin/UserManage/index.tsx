@@ -555,7 +555,7 @@ const UserManage: React.FC = () => {
           setAddModalVisible(false);
           addForm.resetFields();
         }}
-        destroyOnClose
+        destroyOnHidden
         width={600}
       >
         <Form
@@ -602,7 +602,7 @@ const UserManage: React.FC = () => {
           setSelectedUser(null);
           pointsForm.resetFields();
         }}
-        destroyOnClose
+        destroyOnHidden
         width={500}
       >
         <Form

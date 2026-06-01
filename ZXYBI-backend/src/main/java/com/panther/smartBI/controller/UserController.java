@@ -1,5 +1,6 @@
 package com.panther.smartBI.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.panther.smartBI.annotation.AuthCheck;
 import com.panther.smartBI.common.BaseResponse;
@@ -172,11 +173,45 @@ public class UserController {
         if (userAddRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        User user = new User();
-        BeanUtils.copyProperties(userAddRequest, user);
-        boolean result = userService.save(user);
-        ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
-        return ResultUtils.success(user.getId());
+        String userAccount = userAddRequest.getUserAccount();
+        String userPassword = userAddRequest.getUserPassword();
+        String userName = userAddRequest.getUserName();
+        String userAvatar = userAddRequest.getUserAvatar();
+        String userRole = userAddRequest.getUserRole();
+        
+        if (StringUtils.isAnyBlank(userAccount, userPassword)) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号或密码为空");
+        }
+        if (userAccount.length() < 4) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户账号过短");
+        }
+        if (userPassword.length() < 8) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "用户密码过短");
+        }
+        
+        synchronized (userAccount.intern()) {
+            QueryWrapper<User> queryWrapper = new QueryWrapper<>();
+            queryWrapper.eq("userAccount", userAccount);
+            long count = userService.count(queryWrapper);
+            if (count > 0) {
+                throw new BusinessException(ErrorCode.PARAMS_ERROR, "账号重复");
+            }
+            
+            String salt = "panther";
+            String encryptPassword = org.springframework.util.DigestUtils.md5DigestAsHex((salt + userPassword).getBytes());
+            
+            User user = new User();
+            user.setUserAccount(userAccount);
+            user.setUserPassword(encryptPassword);
+            user.setUserName(StringUtils.isNotBlank(userName) ? userName : userAccount);
+            user.setUserAvatar(userAvatar);
+            user.setUserRole(StringUtils.isNotBlank(userRole) ? userRole : "user");
+            user.setLeftCount(100);
+            user.setIsVip(0);
+            boolean result = userService.save(user);
+            ThrowUtils.throwIf(!result, ErrorCode.OPERATION_ERROR);
+            return ResultUtils.success(user.getId());
+        }
     }
 
     /**

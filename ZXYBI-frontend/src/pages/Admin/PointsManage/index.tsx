@@ -406,7 +406,7 @@ const PointsManage: React.FC = () => {
           setUpdateModalVisible(false);
           updateForm.resetFields();
         }}
-        destroyOnClose
+        destroyOnHidden
       >
         <Form
           form={updateForm}
