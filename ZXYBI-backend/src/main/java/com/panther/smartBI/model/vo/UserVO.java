@@ -54,6 +54,11 @@ public class UserVO implements Serializable {
     private Integer leftCount;
 
     /**
+     * 是否VIP
+     */
+    private Integer isVip;
+
+    /**
      * 创建时间
      */
     private Date createTime;

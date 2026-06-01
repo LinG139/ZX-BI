@@ -53,14 +53,30 @@ const Login: React.FC = () => {
     
     try {
       const res = await userLoginUsingPOST(values);
-      if (res.code === 0) {
+      if (res.code === 0 && res.data) {
         const defaultLoginSuccessMessage = '登录成功！';
         message.success(defaultLoginSuccessMessage);
 
-        await fetchUserInfo();
-
+        const userInfo = res.data;
+        flushSync(() => {
+          setInitialState((s) => ({
+            ...s,
+            currentUser: userInfo,
+          }));
+        });
+        
         const urlParams = new URL(window.location.href).searchParams;
-        history.push(urlParams.get('redirect') || '/');
+        const redirectUrl = urlParams.get('redirect');
+        
+        if (redirectUrl) {
+          history.push(redirectUrl);
+        } else {
+          if (userInfo.userRole === 'admin' || userInfo.userRole === 'ADMIN') {
+            history.push('/admin/dashboard');
+          } else {
+            history.push('/welcome');
+          }
+        }
         return;
       } else {
         message.error(res.message || '登录失败，请检查账号密码');

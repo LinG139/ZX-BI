@@ -40,7 +40,12 @@ public class ZhiPuClient {
                     "2. 分隔符之后只能有纯JSON代码，不能有任何额外文字、分析、注释或代码块标记\n" +
                     "3. JSON必须是标准可解析格式，不能包含中文注释\n" +
                     "4. 不要在JSON前后添加任何 ``` json 或其他标记，分隔符之后直接就是JSON\n" +
-                    "5. 确保JSON可以被JSON.parse()直接解析";
+                    "5. 确保JSON可以被JSON.parse()直接解析\n" +
+                    "6. 绝对禁止在JSON中使用JavaScript函数，所有动态内容必须使用字符串模板，例如：\n" +
+                    "   - 正确：\"formatter\": \"{b}: {c}\" 或 \"formatter\": \"{a} <br/>{b}: {c}\"\n" +
+                    "   - 错误：\"formatter\": function(params) { return ...; }\n" +
+                    "   - 正确：\"textStyle\": {\"fontSize\": 14} 而不是 \"textStyle\": function() {...}\n" +
+                    "7. 所有支持模板字符串的属性都必须使用 {xxx} 占位符格式，不要使用函数";
 
     public String doChat(String message, boolean isChartAnalysis) {
         return doChat(message, isChartAnalysis, null);

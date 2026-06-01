@@ -10,9 +10,13 @@ import com.panther.smartBI.constant.UserConstant;
 import com.panther.smartBI.exception.BusinessException;
 import com.panther.smartBI.exception.ThrowUtils;
 import com.panther.smartBI.model.entity.User;
+import com.panther.smartBI.model.entity.LoginLog;
+import com.panther.smartBI.model.entity.RechargeRecord;
 import com.panther.smartBI.model.vo.LoginUserVO;
 import com.panther.smartBI.model.vo.UserVO;
 import com.panther.smartBI.service.UserService;
+import com.panther.smartBI.mapper.LoginLogMapper;
+import com.panther.smartBI.mapper.RechargeRecordMapper;
 import com.panther.smartBI.model.dto.user.UserAddRequest;
 import com.panther.smartBI.model.dto.user.UserLoginRequest;
 import com.panther.smartBI.model.dto.user.UserQueryRequest;
@@ -43,6 +47,12 @@ public class UserController {
 
     @Resource
     private UserService userService;
+    
+    @Resource
+    private LoginLogMapper loginLogMapper;
+    
+    @Resource
+    private RechargeRecordMapper rechargeRecordMapper;
 
     // region 登录相关
 
@@ -78,16 +88,44 @@ public class UserController {
      */
     @PostMapping("/login")
     public BaseResponse<LoginUserVO> userLogin(@RequestBody UserLoginRequest userLoginRequest, HttpServletRequest request) {
-        if (userLoginRequest == null) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        LoginLog loginLog = new LoginLog();
+        loginLog.setIp(request.getRemoteAddr());
+        loginLog.setLocation("本地");
+        loginLog.setDevice(request.getHeader("User-Agent"));
+        loginLog.setCreateTime(new java.util.Date());
+        
+        try {
+            if (userLoginRequest == null) {
+                throw new BusinessException(ErrorCode.PARAMS_ERROR);
+            }
+            String userAccount = userLoginRequest.getUserAccount();
+            String userPassword = userLoginRequest.getUserPassword();
+            if (StringUtils.isAnyBlank(userAccount, userPassword)) {
+                throw new BusinessException(ErrorCode.PARAMS_ERROR);
+            }
+            LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
+            
+            // 记录登录日志
+            try {
+                loginLog.setUserId(loginUserVO.getId());
+                loginLog.setUserName(loginUserVO.getUserName());
+                loginLog.setStatus(1);
+                loginLogMapper.insert(loginLog);
+            } catch (Exception e) {
+                log.error("保存登录日志失败", e);
+            }
+            
+            return ResultUtils.success(loginUserVO);
+        } catch (Exception e) {
+            // 记录失败的登录日志
+            try {
+                loginLog.setStatus(0);
+                loginLogMapper.insert(loginLog);
+            } catch (Exception ex) {
+                log.error("保存登录日志失败", ex);
+            }
+            throw e;
         }
-        String userAccount = userLoginRequest.getUserAccount();
-        String userPassword = userLoginRequest.getUserPassword();
-        if (StringUtils.isAnyBlank(userAccount, userPassword)) {
-            throw new BusinessException(ErrorCode.PARAMS_ERROR);
-        }
-        LoginUserVO loginUserVO = userService.userLogin(userAccount, userPassword, request);
-        return ResultUtils.success(loginUserVO);
     }
 
     /**
@@ -287,7 +325,28 @@ public class UserController {
      */
     @PostMapping("/recharge")
     public BaseResponse<Integer> rechargeUserCount(@RequestParam("count") int count, HttpServletRequest request) {
+        User loginUser = userService.getLoginUser(request);
+        int beforeCount = loginUser.getLeftCount() != null ? loginUser.getLeftCount() : 0;
+        
         int result = userService.rechargeUserCount(request, count);
+        
+        // 记录充值记录
+        try {
+            RechargeRecord record = new RechargeRecord();
+            record.setUserId(loginUser.getId());
+            record.setUserName(loginUser.getUserName());
+            record.setAmount(count);
+            record.setBeforeCount(beforeCount);
+            record.setAfterCount(result);
+            record.setType("用户充值");
+            record.setRemark("用户自助充值");
+            record.setCreateTime(new java.util.Date());
+            record.setIsDelete(0);
+            rechargeRecordMapper.insert(record);
+        } catch (Exception e) {
+            log.error("保存充值记录失败", e);
+        }
+        
         return ResultUtils.success(result);
     }
 }

@@ -270,6 +270,8 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
                 log.warn("AI返回的图表JSON格式无效，使用空对象: {}", genChart);
                 genChart = "{}";
             }
+            
+            genChart = cleanJsonWithFunctions(genChart);
 
             Chart update = new Chart();
             update.setId(chartId);
@@ -331,7 +333,18 @@ public class ChartServiceImpl extends ServiceImpl<ChartMapper, Chart> implements
             return false;
         }
         String trimmed = json.trim();
-        return (trimmed.startsWith("{") && trimmed.endsWith("}")) || 
+        return (trimmed.startsWith("{") && trimmed.endsWith("}")) ||
                (trimmed.startsWith("[") && trimmed.endsWith("]"));
+    }
+
+    private String cleanJsonWithFunctions(String json) {
+        if (StringUtils.isBlank(json)) {
+            return json;
+        }
+        String cleaned = json;
+        cleaned = cleaned.replaceAll("\"formatter\"\\s*:\\s*function\\s*\\([^)]*\\)\\s*\\{[\\s\\S]*?\\}", "\"formatter\": \"\"");
+        cleaned = cleaned.replaceAll("\"emphasis\"\\s*:\\s*\\{[\\s\\S]*?\\}", "\"emphasis\": {}");
+        cleaned = cleaned.replaceAll("\"formatter\"\\s*:\\s*\"[^\"]*\"", "\"formatter\": \"\"");
+        return cleaned;
     }
 }

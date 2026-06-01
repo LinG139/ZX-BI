@@ -14,6 +14,7 @@
             <result property="phoneNum" column="phoneNum" jdbcType="VARCHAR"/>
             <result property="email" column="email" jdbcType="VARCHAR"/>
             <result property="leftCount" column="leftCount" jdbcType="INTEGER"/>
+            <result property="isVip" column="isVip" jdbcType="INTEGER"/>
             <result property="createTime" column="createTime" jdbcType="TIMESTAMP"/>
             <result property="updateTime" column="updateTime" jdbcType="TIMESTAMP"/>
             <result property="isDelete" column="isDelete" jdbcType="TINYINT"/>
@@ -22,7 +23,7 @@
     <sql id="Base_Column_List">
         id,userAccount,userPassword,
         userName,userAvatar,userRole,
-        phoneNum,email,leftCount,
+        phoneNum,email,leftCount,isVip,
         createTime,updateTime,isDelete
     </sql>
 </mapper>

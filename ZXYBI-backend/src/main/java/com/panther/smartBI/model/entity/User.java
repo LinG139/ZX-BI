@@ -47,6 +47,11 @@ public class User extends Model<User> {
      * 积分
      */
     private Integer leftCount;
+    
+    /**
+     * 是否VIP
+     */
+    private Integer isVip;
 
     //创建时间
     private Date createTime;

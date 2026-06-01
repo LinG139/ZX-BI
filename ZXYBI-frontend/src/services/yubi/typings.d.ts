@@ -463,4 +463,15 @@ declare namespace API {
     userProfile?: string;
     userRole?: string;
   };
+
+  type CurrentUser = {
+    createTime?: string;
+    id?: number;
+    updateTime?: string;
+    userAccount?: string;
+    userAvatar?: string;
+    userName?: string;
+    userProfile?: string;
+    userRole?: string;
+  };
 }

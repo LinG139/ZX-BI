@@ -21,7 +21,7 @@ import com.panther.smartBI.model.entity.User;
 import com.panther.smartBI.model.vo.BiResponse;
 import com.panther.smartBI.service.ChartService;
 import com.panther.smartBI.service.UserService;
-import com.panther.smartBI.utils.ExcelUtils;
+import com.panther.smartBI.utils.FileParserUtils;
 import com.panther.smartBI.utils.UserInputUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -152,8 +152,8 @@ public class ChartController {
         ThrowUtils.throwIf(size > FileConstant.MAX_FILE_SIZE, ErrorCode.SYSTEM_ERROR, "文件超过1M");
         String originalFilename = multipartFile.getOriginalFilename();
         String fileSuffix = FileUtil.getSuffix(originalFilename);
-        ThrowUtils.throwIf(!BiConstant.VALID_FILE_SUFFIX_LIST.contains(fileSuffix), ErrorCode.PARAMS_ERROR, "文件格式有误");
-        return ExcelUtils.ExcelToCsv(multipartFile,fileSuffix);
+        ThrowUtils.throwIf(!BiConstant.VALID_FILE_SUFFIX_LIST.contains(fileSuffix), ErrorCode.PARAMS_ERROR, "文件格式有误，支持的格式: xlsx, xls, csv, txt, dat, json, ods, parquet, db");
+        return FileParserUtils.parseFileToCsv(multipartFile,fileSuffix);
     }
 
     /**

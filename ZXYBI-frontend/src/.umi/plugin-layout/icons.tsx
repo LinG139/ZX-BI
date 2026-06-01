@@ -6,5 +6,9 @@ import BarChartOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_
 import PieChartOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/PieChartOutlined';
 import WalletOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/WalletOutlined';
 import AliwangwangOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/AliwangwangOutlined';
-import CrownOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/CrownOutlined';
-export default { HomeOutlined, BarChartOutlined, PieChartOutlined, WalletOutlined, AliwangwangOutlined, CrownOutlined };
+import DashboardOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/DashboardOutlined';
+import TeamOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/TeamOutlined';
+import MessageOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/MessageOutlined';
+import MonitorOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/MonitorOutlined';
+import FileTextOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons/es/icons/FileTextOutlined';
+export default { HomeOutlined, BarChartOutlined, PieChartOutlined, WalletOutlined, AliwangwangOutlined, DashboardOutlined, TeamOutlined, MessageOutlined, MonitorOutlined, FileTextOutlined };

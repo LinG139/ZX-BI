@@ -3,6 +3,7 @@ import {Question} from '@/components/RightContent';
 import {getLoginUserUsingGET} from '@/services/yubi/userController';
 import {LinkOutlined} from '@ant-design/icons';
 import {SettingDrawer} from '@ant-design/pro-components';
+import {App} from 'antd';
 import type {RunTimeLayoutConfig} from '@umijs/max';
 import {history, Link} from '@umijs/max';
 import {AvatarDropdown, AvatarName} from './components/RightContent/AvatarDropdown';
@@ -117,7 +118,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
     childrenRender: (children) => {
       // if (initialState?.loading) return <PageLoading />;
       return (
-        <>
+        <App>
           {children}
           <SettingDrawer
             disableUrlParams
@@ -130,7 +131,7 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
               }));
             }}
           />
-        </>
+        </App>
       );
     },
     ...(initialState?.settings || {}),

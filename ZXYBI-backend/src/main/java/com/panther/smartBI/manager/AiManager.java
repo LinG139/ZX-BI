@@ -7,6 +7,7 @@ import com.panther.smartBI.common.ErrorCode;
 import com.panther.smartBI.exception.BusinessException;
 import com.panther.smartBI.model.chat.DevChatRequest;
 import com.panther.smartBI.model.chat.DevChatResponse;
+import com.panther.smartBI.service.MonitorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -80,24 +81,42 @@ public class AiManager {
     }
 
     private String doChatByZhiPu(String message, boolean isChartAnalysis, String prompt) {
+        long startTime = System.currentTimeMillis();
+        boolean success = false;
+        long tokens = 0;
         try {
-            return zhiPuClient.doChat(message, isChartAnalysis, prompt);
+            String result = zhiPuClient.doChat(message, isChartAnalysis, prompt);
+            success = true;
+            tokens = (message.length() + (result != null ? result.length() : 0)) / 4; // 估算token
+            return result;
         } catch (BusinessException e) {
             throw e;
         } catch (Exception e) {
             log.error("智谱AI调用过程中发生未预期异常", e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 调用失败: " + e.getMessage());
+        } finally {
+            long responseTime = System.currentTimeMillis() - startTime;
+            MonitorService.recordAiCall(success, responseTime, tokens);
         }
     }
 
     private String doChatByZhiPuWithHistory(String message, boolean isChartAnalysis, String prompt, List<ZhiPuClient.Message> history) {
+        long startTime = System.currentTimeMillis();
+        boolean success = false;
+        long tokens = 0;
         try {
-            return zhiPuClient.doChatWithHistory(message, isChartAnalysis, prompt, history);
+            String result = zhiPuClient.doChatWithHistory(message, isChartAnalysis, prompt, history);
+            success = true;
+            tokens = (message.length() + (result != null ? result.length() : 0)) / 4;
+            return result;
         } catch (BusinessException e) {
             throw e;
         } catch (Exception e) {
             log.error("智谱AI调用过程中发生未预期异常", e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 调用失败: " + e.getMessage());
+        } finally {
+            long responseTime = System.currentTimeMillis() - startTime;
+            MonitorService.recordAiCall(success, responseTime, tokens);
         }
     }
 
@@ -107,6 +126,9 @@ public class AiManager {
         String finalMessage = buildMessageWithPrompt(message, prompt);
         devChatRequest.setMessage(finalMessage);
 
+        long startTime = System.currentTimeMillis();
+        boolean success = false;
+        long tokens = 0;
         try {
             BaseResponse<DevChatResponse> devChatResponseBaseResponse = yuCongMingClient.doChat(devChatRequest);
             if (devChatResponseBaseResponse == null) {
@@ -133,12 +155,17 @@ public class AiManager {
                 throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 返回内容为空");
             }
 
+            success = true;
+            tokens = (finalMessage.length() + content.length()) / 4;
             return content;
         } catch (BusinessException e) {
             throw e;
         } catch (Exception e) {
             log.error("鱼聪明AI调用过程中发生未预期异常", e);
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "AI 调用失败: " + e.getMessage());
+        } finally {
+            long responseTime = System.currentTimeMillis() - startTime;
+            MonitorService.recordAiCall(success, responseTime, tokens);
         }
     }
 

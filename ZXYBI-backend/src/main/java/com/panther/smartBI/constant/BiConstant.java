@@ -27,8 +27,8 @@ public interface BiConstant {
      */
     Long CHAT_MODEL_ID = 1651468311608803329L;
     /**
-     * 文件后缀
+     * 文件后缀 - 支持多种数据格式
      */
-    List<String> VALID_FILE_SUFFIX_LIST = Arrays.asList("xlsx", "csv", "xls");
+    List<String> VALID_FILE_SUFFIX_LIST = Arrays.asList("xlsx", "xls", "csv", "txt", "dat", "json", "ods", "parquet", "db");
 
 }

@@ -177,7 +177,7 @@ const Welcome: React.FC = () => {
   ];
 
   return (
-    <PageContainer>
+    <PageContainer title={false}>
       <Row gutter={[16, 16]}>
         <Col xs={24} lg={16}>
           <Card
