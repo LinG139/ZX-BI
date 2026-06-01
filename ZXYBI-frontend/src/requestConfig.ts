@@ -81,6 +81,11 @@ export const errorConfig: RequestConfig = {
           }
         }
       } else if (error.response) {
+        // 用户未登录或会话过期时不显示错误消息
+        if (error.response.status === 401) {
+          console.log('用户未登录或会话已过期');
+          return;
+        }
         message.error(`Response status:${error.response.status}`);
       } else if (error.request) {
         message.error('None response! Please retry.');

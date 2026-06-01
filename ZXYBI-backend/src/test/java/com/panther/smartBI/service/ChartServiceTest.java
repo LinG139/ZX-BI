@@ -363,4 +363,138 @@ public class ChartServiceTest {
             Assertions.fail("反射调用失败");
         }
     }
+
+    @Test
+    void testGetQueryWrapper_PartialConditions() {
+        ChartQueryRequest request = new ChartQueryRequest();
+        request.setName("test");
+        request.setSortField("id");
+        request.setSortOrder("desc");
+
+        com.baomidou.mybatisplus.core.conditions.query.QueryWrapper<Chart> wrapper = chartService.getQueryWrapper(request);
+        
+        Assertions.assertNotNull(wrapper);
+    }
+
+    @Test
+    void testGetChartByAi_SaveFailed() {
+        User mockUser = new User();
+        mockUser.setId(1L);
+
+        GenChartByAiRequest genRequest = new GenChartByAiRequest();
+        genRequest.setGoal("分析数据");
+
+        when(userService.getLoginUser(any())).thenReturn(mockUser);
+        when(chartMapper.insert(any())).thenReturn(0);
+
+        Assertions.assertThrows(BusinessException.class, () -> {
+            chartService.getChartByAi("csv data", genRequest, request);
+        });
+    }
+
+    @Test
+    void testReloadChartByAi_Admin() {
+        User mockUser = new User();
+        mockUser.setId(1L);
+
+        Chart existingChart = new Chart();
+        existingChart.setId(1L);
+        existingChart.setUserId(2L);
+        existingChart.setGoal("原始分析目标");
+        existingChart.setChartType("柱状图");
+        existingChart.setChartData("csv data");
+
+        String aiResponse = "重新分析完成=>=>=>{\"type\":\"bar\"}";
+
+        when(userService.getLoginUser(any())).thenReturn(mockUser);
+        when(chartMapper.selectById(anyLong())).thenReturn(existingChart);
+        when(userService.isAdmin((User) any())).thenReturn(true);
+        when(chartMapper.updateById(any())).thenReturn(1);
+        when(aiManager.doChartAnalysis(anyLong(), anyString())).thenReturn(aiResponse);
+
+        boolean result = chartService.reloadChartByAi(1L, request);
+
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void testReloadChartByAi_UpdateStatusFailed() {
+        User mockUser = new User();
+        mockUser.setId(1L);
+
+        Chart existingChart = new Chart();
+        existingChart.setId(1L);
+        existingChart.setUserId(1L);
+        existingChart.setGoal("原始分析目标");
+        existingChart.setChartType("柱状图");
+        existingChart.setChartData("csv data");
+
+        when(userService.getLoginUser(any())).thenReturn(mockUser);
+        when(chartMapper.selectById(anyLong())).thenReturn(existingChart);
+        when(userService.isAdmin((User) any())).thenReturn(false);
+        when(chartMapper.updateById(any())).thenReturn(0);
+
+        Assertions.assertThrows(BusinessException.class, () -> {
+            chartService.reloadChartByAi(1L, request);
+        });
+    }
+
+    @Test
+    void testParseAndSaveChartResponse_TwoParts() {
+        String aiResponse = "分析结论=>=>=>{\"type\":\"pie\",\"data\":[1,2,3]}";
+        
+        try {
+            java.lang.reflect.Method method = ChartServiceImpl.class.getDeclaredMethod("parseAndSaveChartResponse", 
+                long.class, String.class);
+            method.setAccessible(true);
+            
+            when(chartMapper.updateById(any())).thenReturn(1);
+            
+            BiResponse result = (BiResponse) method.invoke(chartService, 1L, aiResponse);
+
+            Assertions.assertNotNull(result);
+            Assertions.assertEquals(ChartStatusEnum.CHART_STATUS_SUCCESS.getValue(), result.getGenStatus());
+            Assertions.assertEquals("分析结论", result.getGenResult());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assertions.fail("反射调用失败");
+        }
+    }
+
+    @Test
+    void testParseAndSaveChartResponse_UnknownException() {
+        String aiResponse = "分析结论=>=>=>{\"type\":\"bar\"}";
+        
+        try {
+            java.lang.reflect.Method method = ChartServiceImpl.class.getDeclaredMethod("parseAndSaveChartResponse", 
+                long.class, String.class);
+            method.setAccessible(true);
+            
+            when(chartMapper.updateById(any())).thenThrow(new RuntimeException("数据库异常"));
+            
+            BiResponse result = (BiResponse) method.invoke(chartService, 1L, aiResponse);
+
+            Assertions.assertNotNull(result);
+            Assertions.assertEquals(ChartStatusEnum.CHART_STATUS_FAILURE.getValue(), result.getGenStatus());
+        } catch (Exception e) {
+            e.printStackTrace();
+            Assertions.fail("反射调用失败");
+        }
+    }
+
+    @Test
+    void testSaveRawData_SaveFailed() {
+        User mockUser = new User();
+        mockUser.setId(1L);
+
+        GenChartByAiRequest genRequest = new GenChartByAiRequest();
+        genRequest.setGoal("分析数据");
+
+        when(userService.getLoginUser(any())).thenReturn(mockUser);
+        when(chartMapper.insert(any())).thenReturn(0);
+
+        Assertions.assertThrows(BusinessException.class, () -> {
+            chartService.saveRawData("csv data", genRequest, request);
+        });
+    }
 }

@@ -258,4 +258,109 @@ public class UserServiceTest {
 
         Assertions.assertEquals(UserRoleEnum.BAN.getValue(), mockUser.getUserRole());
     }
+
+    @Test
+    void testUserLogout_NotLoggedIn() {
+        when(request.getSession()).thenReturn(session);
+        when(session.getAttribute(any())).thenReturn(null);
+
+        boolean result = userService.userLogout(request);
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    void testUserLogout_LoggedIn() {
+        User mockUser = new User();
+        mockUser.setId(1L);
+
+        when(request.getSession()).thenReturn(session);
+        when(session.getAttribute(any())).thenReturn(mockUser);
+
+        boolean result = userService.userLogout(request);
+        Assertions.assertTrue(result);
+        verify(session).removeAttribute(any());
+    }
+
+    @Test
+    void testGetLoginUserVO_NullUser() {
+        LoginUserVO result = userService.getLoginUserVO(null);
+        Assertions.assertNull(result);
+    }
+
+    @Test
+    void testGetLoginUserVO_ValidUser() {
+        User mockUser = new User();
+        mockUser.setId(1L);
+        mockUser.setUserAccount("testUser");
+        mockUser.setUserName("Test User");
+        mockUser.setUserRole(UserRoleEnum.USER.getValue());
+
+        LoginUserVO result = userService.getLoginUserVO(mockUser);
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(1L, result.getId());
+        Assertions.assertEquals("testUser", result.getUserAccount());
+        Assertions.assertEquals("Test User", result.getUserName());
+    }
+
+    @Test
+    void testUserRegister_SaveFailed() {
+        String userAccount = "testUser";
+        String userPassword = "password123";
+        String checkPassword = "password123";
+
+        when(userMapper.selectCount(any())).thenReturn(0L);
+        when(userMapper.insert(any())).thenReturn(0);
+
+        Assertions.assertThrows(BusinessException.class, () -> {
+            userService.userRegister(userAccount, userPassword, checkPassword);
+        });
+    }
+
+    @Test
+    void testUpdateUserChartCount_UserNotFound() {
+        when(userMapper.selectById(any())).thenReturn(null);
+
+        Assertions.assertThrows(BusinessException.class, () -> {
+            userService.updateUserChartCount(999L);
+        });
+    }
+
+    @Test
+    void testRechargeUserCount_Failed() {
+        User mockUser = new User();
+        mockUser.setId(1L);
+        mockUser.setLeftCount(100);
+
+        when(userMapper.selectById(any())).thenReturn(mockUser);
+        when(userMapper.updateById(any())).thenReturn(0);
+
+        Assertions.assertThrows(BusinessException.class, () -> {
+            userService.rechargeUserCount(request, 50);
+        });
+    }
+
+    @Test
+    void testGetLoginUser_NotLoggedIn() {
+        when(request.getSession()).thenReturn(session);
+        when(session.getAttribute(any())).thenReturn(null);
+
+        Assertions.assertThrows(BusinessException.class, () -> {
+            userService.getLoginUser(request);
+        });
+    }
+
+    @Test
+    void testGetLoginUser_UserNotFoundInDB() {
+        User mockUser = new User();
+        mockUser.setId(1L);
+
+        when(request.getSession()).thenReturn(session);
+        when(session.getAttribute(any())).thenReturn(mockUser);
+        when(userMapper.selectById(any())).thenReturn(null);
+
+        Assertions.assertThrows(BusinessException.class, () -> {
+            userService.getLoginUser(request);
+        });
+    }
 }
