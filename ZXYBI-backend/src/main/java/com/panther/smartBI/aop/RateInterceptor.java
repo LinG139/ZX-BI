@@ -46,11 +46,18 @@ public class RateInterceptor {
         // 获取原生的 HttpServletRequest
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         HttpServletRequest request = ((ServletRequestAttributes) requestAttributes).getRequest();
-        String uid = userService.getLoginUser(request).getId().toString();
-        boolean flag = redissonLimiterManager.doRateLimiter(uid,Long.parseLong(s));
-        log.info(uid);
-        if(!flag){
-            throw new BusinessException(ErrorCode.VERY_MANY_REQUEST,"请求过于频繁");
+        
+        String uid;
+        try {
+            uid = userService.getLoginUser(request).getId().toString();
+        } catch (BusinessException e) {
+            throw e;
+        }
+        
+        boolean flag = redissonLimiterManager.doRateLimiter(uid, Long.parseLong(s));
+        log.info("用户ID: {}, 限流检查结果: {}", uid, flag);
+        if (!flag) {
+            throw new BusinessException(ErrorCode.VERY_MANY_REQUEST, "请求过于频繁");
         }
         return joinPoint.proceed();
     }

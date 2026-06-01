@@ -18,7 +18,6 @@ import com.panther.smartBI.service.UserService;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -250,8 +249,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     private static final int MAX_CALLS_PER_SECOND = 10;
     private static final long ONE_SECOND_IN_MILLISECONDS = 1000L;
-    private final Map<Long, AtomicInteger> userCallCountMap = new ConcurrentHashMap<>();
-    private final Object lock = new Object(); // 锁对象
+    private final Map<Long, long[]> userCallCountMap = new ConcurrentHashMap<>();
 
     @Override
     public boolean updateUserChartCount(HttpServletRequest request) {
@@ -273,36 +271,35 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (loginUser == null) {
             throw new BusinessException(ErrorCode.NOT_LOGIN_ERROR);
         }
-        synchronized (lock) {
-            AtomicInteger userCallCount = userCallCountMap.computeIfAbsent(userId, k -> new AtomicInteger(0));
-            int currentCallCount = userCallCount.incrementAndGet();
-            if (currentCallCount > MAX_CALLS_PER_SECOND) {
-                loginUser.setUserRole(UserRoleEnum.BAN.getValue());
-                this.updateById(loginUser);
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "用户异常，加入黑名单");
-            }
 
-            Timer timer = new Timer();
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    userCallCount.set(0);
-                    userCallCountMap.remove(userId);
-                }
-            }, ONE_SECOND_IN_MILLISECONDS);
-
-            Integer leftCount = loginUser.getLeftCount();
-            if (leftCount <= 0) {
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "次数已经耗尽，请充值积分");
+        long[] countAndTimestamp = userCallCountMap.compute(userId, (k, existing) -> {
+            long now = System.currentTimeMillis();
+            if (existing == null) {
+                return new long[]{1, now};
             }
-
-            loginUser.setLeftCount(leftCount - 5);
-            boolean b = this.updateById(loginUser);
-            if (!b) {
-                throw new BusinessException(ErrorCode.SYSTEM_ERROR, "系统错误");
+            if (now - existing[1] > ONE_SECOND_IN_MILLISECONDS) {
+                return new long[]{1, now};
             }
-            return true;
+            return new long[]{existing[0] + 1, existing[1]};
+        });
+
+        if (countAndTimestamp[0] > MAX_CALLS_PER_SECOND) {
+            loginUser.setUserRole(UserRoleEnum.BAN.getValue());
+            this.updateById(loginUser);
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "用户异常，加入黑名单");
         }
+
+        Integer leftCount = loginUser.getLeftCount();
+        if (leftCount == null || leftCount <= 0) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "次数已经耗尽，请充值积分");
+        }
+
+        loginUser.setLeftCount(leftCount - 5);
+        boolean b = this.updateById(loginUser);
+        if (!b) {
+            throw new BusinessException(ErrorCode.SYSTEM_ERROR, "系统错误");
+        }
+        return true;
     }
 
     @Override
