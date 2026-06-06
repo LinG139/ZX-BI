@@ -12,7 +12,7 @@ import lombok.Data;
  * AI聊天
  * @TableName ai_chat
  */
-@TableName(value ="ai_chat")
+@TableName(value = "ai_chat")
 @Data
 public class AiChat implements Serializable {
     /**
@@ -28,7 +28,7 @@ public class AiChat implements Serializable {
     private Long sessionId;
 
     /**
-     * 用户id
+     * 用户ID
      */
     @TableField(value = "userId")
     private Long userId;
@@ -49,13 +49,13 @@ public class AiChat implements Serializable {
      * AI消息
      */
     @TableField(value = "AIMessage")
-    private String AIMessage;
+    private String aiMessage;
 
     /**
      *
      */
     @TableField(value = "AIAvatar")
-    private String AIAvatar;
+    private String aiAvatar;
 
     /**
      * 创建时间
@@ -69,9 +69,17 @@ public class AiChat implements Serializable {
     @TableField(value = "updateTime")
     private Date updateTime;
 
+    /**
+     * 用户名称
+     */
+    @TableField(value = "userName")
     private String userName;
 
-    private String AIName;
+    /**
+     * AI名称
+     */
+    @TableField(value = "AIName")
+    private String aiName;
 
     /**
      * 是否删除

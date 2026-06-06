@@ -50,7 +50,7 @@ const Dashboard: React.FC = () => {
   const fetchDashboard = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:9001/api/admin/dashboard', {
+      const response = await fetch('/api/admin/dashboard', {
         credentials: 'include',
       });
       const res = await response.json();

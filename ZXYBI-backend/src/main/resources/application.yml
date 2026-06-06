@@ -41,21 +41,33 @@ file:
 
 server:
   port: 9001
+  address: 0.0.0.0
   servlet:
     context-path: /api
     # cookie 30 天过期
     session:
       cookie:
         max-age: 2592000
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.panther.smartBI: DEBUG
+    com.panther.smartBI.ai: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
 mybatis-plus:
   configuration:
-    map-underscore-to-camel-case: false
+    map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   global-config:
     db-config:
       logic-delete-field: isDelete
       logic-delete-value: 1
       logic-not-delete-value:  0
+  mapper-locations: classpath*:mapper/*.xml
 
 # AI配置
 ai:
@@ -69,9 +81,3 @@ cos:
     secretKey: xxx
     region: xxx
     bucket: xxx
-
-zhipuai:
-  api-key: 6025a96f27324f4c947c826829a219dd.hYRW0vyqFyYulO2T
-  base-url: https://open.bigmodel.cn/api/paas/v4
-  chat-model-id: glm-5v-Turbo
-  chart-model-id: glm-5v-Turbo

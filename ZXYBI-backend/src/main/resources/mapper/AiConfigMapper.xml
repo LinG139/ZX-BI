@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.panther.smartBI.mapper.AiConfigMapper">
+
+    <resultMap id="AiConfigResultMap" type="com.panther.smartBI.model.entity.AiConfig">
+        <id property="id" column="id"/>
+        <result property="platformType" column="platform_type"/>
+        <result property="platformName" column="platform_name"/>
+        <result property="apiKey" column="api_key"/>
+        <result property="secret" column="secret"/>
+        <result property="baseUrl" column="base_url"/>
+        <result property="chatModelId" column="chat_model_id"/>
+        <result property="chartModelId" column="chart_model_id"/>
+        <result property="isActive" column="is_active"/>
+        <result property="timeout" column="timeout"/>
+        <result property="temperature" column="temperature"/>
+        <result property="topP" column="top_p"/>
+        <result property="maxTokens" column="max_tokens"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="isDelete" column="is_delete"/>
+    </resultMap>
+
+    <select id="selectActiveConfig" resultMap="AiConfigResultMap">
+        SELECT * FROM ai_config WHERE is_active = 1 AND is_delete = 0
+    </select>
+
+    <select id="selectByPlatformType" resultMap="AiConfigResultMap">
+        SELECT * FROM ai_config WHERE platform_type = #{platformType} AND is_delete = 0
+    </select>
+
+</mapper>

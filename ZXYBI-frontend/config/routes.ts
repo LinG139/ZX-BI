@@ -19,6 +19,7 @@ export default [
   {path: '/admin/user', name: '用户管理', icon: 'team', component: './Admin/UserManage', access: 'canAdmin'},
   {path: '/admin/chart', name: '图表管理', icon: 'barChart', component: './Admin/ChartManage', access: 'canAdmin'},
   {path: '/admin/ai', name: 'AI对话管理', icon: 'message', component: './Admin/AiManage', access: 'canAdmin'},
+  {path: '/admin/ai-config', name: 'AI配置管理', icon: 'setting', component: './Admin/AiConfig', access: 'canAdmin'},
   {path: '/admin/points', name: '积分管理', icon: 'wallet', component: './Admin/PointsManage', access: 'canAdmin'},
   {path: '/admin/monitor', name: '系统监控', icon: 'monitor', component: './Admin/Monitor', access: 'canAdmin'},
   {path: '/admin/logs', name: '操作日志', icon: 'fileText', component: './Admin/Logs', access: 'canAdmin'},

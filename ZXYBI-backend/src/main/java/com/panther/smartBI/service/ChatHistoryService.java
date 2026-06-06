@@ -46,11 +46,11 @@ public class ChatHistoryService {
         chat.setSessionId(sessionId);
         chat.setUserId(userId);
         chat.setUserMessage(userMessage);
-        chat.setAIMessage(aiMessage);
+        chat.setAiMessage(aiMessage);
         chat.setUserAvatar(userAvatar);
-        chat.setAIAvatar(aiAvatar);
+        chat.setAiAvatar(aiAvatar);
         chat.setUserName(userName);
-        chat.setAIName(aiName);
+        chat.setAiName(aiName);
         chat.setCreateTime(new Date());
         chat.setUpdateTime(new Date());
         chat.setIsDelete(0);
@@ -73,8 +73,8 @@ public class ChatHistoryService {
                 count++;
             }
 
-            if (chat.getAIMessage() != null && !chat.getAIMessage().trim().isEmpty()) {
-                history.add(new ZhiPuClient.Message("assistant", chat.getAIMessage()));
+            if (chat.getAiMessage() != null && !chat.getAiMessage().trim().isEmpty()) {
+                history.add(new ZhiPuClient.Message("assistant", chat.getAiMessage()));
                 count++;
             }
         }

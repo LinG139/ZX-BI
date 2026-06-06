@@ -67,8 +67,12 @@ public class AiController {
                     history
             );
         } catch (Exception e) {
-            log.error("AI调用失败: {}", e.getMessage());
-            answer = "AI调用失败，请稍后重试: " + e.getMessage();
+            String errorMsg = e.getMessage();
+            if (errorMsg == null) {
+                errorMsg = "未知错误";
+            }
+            log.error("AI调用失败: {}", errorMsg);
+            answer = "AI调用失败，请稍后重试: " + errorMsg;
         }
 
         chatHistoryService.saveMessage(

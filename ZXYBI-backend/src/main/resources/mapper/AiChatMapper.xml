@@ -2,7 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.panther.smartBI.mapper.AiChatMapper">
 
-    <select id="selectBySessionId" resultType="com.panther.smartBI.model.entity.AiChat">
+    <resultMap id="AiChatResultMap" type="com.panther.smartBI.model.entity.AiChat">
+        <id property="id" column="id"/>
+        <result property="sessionId" column="sessionId"/>
+        <result property="userId" column="userId"/>
+        <result property="userAvatar" column="userAvatar"/>
+        <result property="userMessage" column="userMessage"/>
+        <result property="aiMessage" column="AIMessage"/>
+        <result property="aiAvatar" column="AIAvatar"/>
+        <result property="createTime" column="createTime"/>
+        <result property="updateTime" column="updateTime"/>
+        <result property="userName" column="userName"/>
+        <result property="aiName" column="AIName"/>
+        <result property="isDelete" column="isDelete"/>
+    </resultMap>
+
+    <select id="selectBySessionId" resultMap="AiChatResultMap">
         SELECT * FROM ai_chat
         WHERE sessionId = #{sessionId}
         AND isDelete = 0
@@ -21,5 +36,11 @@
         WHERE createTime < #{expireTime}
         ]]>
     </delete>
+
+    <select id="selectPageWithResultMap" resultMap="AiChatResultMap">
+        SELECT * FROM ai_chat
+        ${ew.customSqlSegment}
+        ORDER BY createTime DESC
+    </select>
 
 </mapper>

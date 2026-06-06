@@ -32,6 +32,10 @@ public class AdminDashboardVO implements Serializable {
     
     private Long totalUserPoints;
     
+    private Double successRate;
+    
+    private Double failRate;
+    
     private List<UserTrendVO> userTrend;
     
     private List<ChartTrendVO> chartTrend;

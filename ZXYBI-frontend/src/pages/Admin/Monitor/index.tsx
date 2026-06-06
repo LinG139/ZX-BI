@@ -72,6 +72,7 @@ interface MonitorData {
 const Monitor: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<MonitorData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const formatUptime = (seconds: number) => {
     const days = Math.floor(seconds / 86400);
@@ -102,15 +103,20 @@ const Monitor: React.FC = () => {
 
   const fetchMonitorData = async () => {
     try {
-      const response = await fetch('http://localhost:9001/api/admin/monitor/stats', {
+      setError(null);
+      const response = await fetch('/api/admin/monitor/stats', {
         credentials: 'include',
       });
       const res = await response.json();
       if (res.code === 0) {
         setData(res.data);
+      } else {
+        console.error('获取监控数据失败:', res.message);
+        setError('数据获取异常');
       }
     } catch (error) {
       console.error('获取监控数据失败:', error);
+      setError('数据获取异常');
     } finally {
       setLoading(false);
     }
@@ -131,35 +137,60 @@ const Monitor: React.FC = () => {
     { title: '值', dataIndex: 'value', key: 'value', render: (val: any) => <Tag color="blue">{val}</Tag> },
   ];
 
-  const redisData = data?.redisStatus ? [
+  const redisData = error ? [
+    { key: '1', name: '连接状态', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '2', name: '命中率', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '3', name: '内存使用', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '4', name: 'OPS', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '5', name: '键总数', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '6', name: 'DB大小', value: <Tag color="warning">数据获取异常</Tag> },
+  ] : (data?.redisStatus ? [
     { key: '1', name: '连接状态', value: data.redisStatus.connected ? <Tag color="success">已连接</Tag> : <Tag color="error">未连接</Tag> },
     { key: '2', name: '命中率', value: `${(data.redisStatus.hitRate * 100).toFixed(2)}%` },
     { key: '3', name: '内存使用', value: `${data.redisStatus.memoryUsed}MB / ${data.redisStatus.memoryTotal}MB` },
     { key: '4', name: 'OPS', value: `${data.redisStatus.opsPerSec.toFixed(0)}/s` },
     { key: '5', name: '键总数', value: data.redisStatus.keysCount },
     { key: '6', name: 'DB大小', value: data.redisStatus.dbSize },
-  ] : [];
+  ] : []);
 
   const mqColumns = [
     { title: '指标', dataIndex: 'name', key: 'name' },
     { title: '值', dataIndex: 'value', key: 'value' },
   ];
 
-  const mqData = data?.mqStatus ? [
+  const mqData = error ? [
+    { key: '1', name: '连接状态', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '2', name: '队列名称', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '3', name: '队列消息数', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '4', name: '消费者数量', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '5', name: '消息速率', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '6', name: '最大队列大小', value: <Tag color="warning">数据获取异常</Tag> },
+  ] : (data?.mqStatus ? [
     { key: '1', name: '连接状态', value: data.mqStatus.connected ? <Tag color="success">已连接</Tag> : <Tag color="error">未连接</Tag> },
     { key: '2', name: '队列名称', value: <Tag color="blue">{data.mqStatus.queueName}</Tag> },
     { key: '3', name: '队列消息数', value: data.mqStatus.queueSize },
     { key: '4', name: '消费者数量', value: data.mqStatus.consumerCount },
     { key: '5', name: '消息速率', value: `${data.mqStatus.messageRate.toFixed(2)}/s` },
     { key: '6', name: '最大队列大小', value: data.mqStatus.maxQueueSize },
-  ] : [];
+  ] : []);
 
   const systemColumns = [
     { title: '指标', dataIndex: 'name', key: 'name' },
     { title: '值', dataIndex: 'value', key: 'value' },
   ];
 
-  const systemData = data?.systemInfo ? [
+  const systemData = error ? [
+    { key: '1', name: '系统运行时间', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '2', name: '内存使用', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '3', name: 'CPU 使用率', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '4', name: '活跃线程数', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '5', name: '峰值线程数', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '6', name: '请求总数', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '7', name: '操作系统', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '8', name: 'Java版本', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '9', name: '主机名', value: <Tag color="warning">数据获取异常</Tag> },
+    { key: '10', name: 'GC次数', value: <Tag color="warning">数据获取异常</Tag> },
+  ] : (data?.systemInfo ? [
     { key: '1', name: '系统运行时间', value: <Tag color="blue">{data.systemInfo.uptimeFormatted || formatUptime(data.systemInfo.uptime)}</Tag> },
     { key: '2', name: '内存使用', value: <Tag color="blue">{data.systemInfo.memoryUsage}MB / {data.systemInfo.memoryTotal}MB ({data.systemInfo.memoryUsedPercent}%)</Tag> },
     { key: '3', name: 'CPU 使用率', value: <Tag color="blue">{data.systemInfo.cpuUsage}%</Tag> },
@@ -170,7 +201,7 @@ const Monitor: React.FC = () => {
     { key: '8', name: 'Java版本', value: <Tag color="blue">{data.systemInfo.javaVersion}</Tag> },
     { key: '9', name: '主机名', value: <Tag color="blue">{data.systemInfo.hostName}</Tag> },
     { key: '10', name: 'GC次数', value: <Tag color="blue">{data.systemInfo.gcCount}</Tag> },
-  ] : [];
+  ] : []);
 
   const cpuStatus = data?.systemInfo ? getCpuStatus(data.systemInfo.cpuUsage) : getCpuStatus(0);
   const memoryStatus = data?.systemInfo ? getMemoryStatus(data.systemInfo.memoryUsage, data.systemInfo.memoryTotal) : getMemoryStatus(0, 512);
@@ -191,9 +222,9 @@ const Monitor: React.FC = () => {
           <Card>
             <Statistic
               title="Redis 连接状态"
-              value={data?.redisStatus?.connected ? "在线" : "离线"}
-              prefix={data?.redisStatus?.connected ? <CheckCircleOutlined style={{ color: '#52c41a' }} /> : <CloseCircleOutlined style={{ color: '#ff4d4f' }} />}
-              valueStyle={{ color: data?.redisStatus?.connected ? '#52c41a' : '#ff4d4f' }}
+              value={error ? "数据获取异常" : (data?.redisStatus?.connected ? "在线" : "离线")}
+              prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : (data?.redisStatus?.connected ? <CheckCircleOutlined style={{ color: '#52c41a' }} /> : <CloseCircleOutlined style={{ color: '#ff4d4f' }} />)}
+              valueStyle={{ color: error ? '#faad14' : (data?.redisStatus?.connected ? '#52c41a' : '#ff4d4f') }}
             />
           </Card>
         </Col>
@@ -201,9 +232,9 @@ const Monitor: React.FC = () => {
           <Card>
             <Statistic
               title="MQ 连接状态"
-              value={data?.mqStatus?.connected ? "在线" : "离线"}
-              prefix={data?.mqStatus?.connected ? <CheckCircleOutlined style={{ color: '#52c41a' }} /> : <CloseCircleOutlined style={{ color: '#ff4d4f' }} />}
-              valueStyle={{ color: data?.mqStatus?.connected ? '#52c41a' : '#ff4d4f' }}
+              value={error ? "数据获取异常" : (data?.mqStatus?.connected ? "在线" : "离线")}
+              prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : (data?.mqStatus?.connected ? <CheckCircleOutlined style={{ color: '#52c41a' }} /> : <CloseCircleOutlined style={{ color: '#ff4d4f' }} />)}
+              valueStyle={{ color: error ? '#faad14' : (data?.mqStatus?.connected ? '#52c41a' : '#ff4d4f') }}
             />
           </Card>
         </Col>
@@ -211,10 +242,10 @@ const Monitor: React.FC = () => {
           <Card>
             <Statistic
               title="AI 接口成功率"
-              value={((data?.aiStats?.successRate || 0) * 100).toFixed(1)}
-              suffix="%"
-              prefix={<SafetyCertificateOutlined />}
-              valueStyle={{ color: '#1890ff' }}
+              value={error ? "数据获取异常" : ((data?.aiStats?.successRate || 0) * 100).toFixed(1)}
+              suffix={error ? "" : "%"}
+              prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <SafetyCertificateOutlined />}
+              valueStyle={{ color: error ? '#faad14' : '#1890ff' }}
             />
           </Card>
         </Col>
@@ -222,9 +253,9 @@ const Monitor: React.FC = () => {
           <Card>
             <Statistic
               title="系统运行时间"
-              value={formatUptime(data?.systemInfo?.uptime || 0)}
-              prefix={<HeartOutlined />}
-              valueStyle={{ color: '#722ed1', fontSize: 14 }}
+              value={error ? "数据获取异常" : formatUptime(data?.systemInfo?.uptime || 0)}
+              prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <HeartOutlined />}
+              valueStyle={{ color: error ? '#faad14' : '#722ed1', fontSize: error ? 'inherit' : 14 }}
             />
           </Card>
         </Col>
@@ -235,10 +266,10 @@ const Monitor: React.FC = () => {
           <Card>
             <Statistic
               title="CPU 使用率"
-              value={data?.systemInfo?.cpuUsage || 0}
-              suffix="%"
-              prefix={cpuStatus.icon}
-              valueStyle={{ color: cpuStatus.color }}
+              value={error ? "数据获取异常" : (data?.systemInfo?.cpuUsage || 0)}
+              suffix={error ? "" : "%"}
+              prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : cpuStatus.icon}
+              valueStyle={{ color: error ? '#faad14' : cpuStatus.color }}
             />
           </Card>
         </Col>
@@ -246,10 +277,10 @@ const Monitor: React.FC = () => {
           <Card>
             <Statistic
               title="内存使用"
-              value={data?.systemInfo?.memoryUsage || 0}
-              suffix="MB"
-              prefix={<CloudServerOutlined />}
-              valueStyle={{ color: memoryStatus.color }}
+              value={error ? "数据获取异常" : (data?.systemInfo?.memoryUsage || 0)}
+              suffix={error ? "" : "MB"}
+              prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <CloudServerOutlined />}
+              valueStyle={{ color: error ? '#faad14' : memoryStatus.color }}
             />
           </Card>
         </Col>
@@ -257,9 +288,9 @@ const Monitor: React.FC = () => {
           <Card>
             <Statistic
               title="活跃线程数"
-              value={data?.systemInfo?.threadCount || 0}
-              prefix={<UserOutlined />}
-              valueStyle={{ color: '#13c2c2' }}
+              value={error ? "数据获取异常" : (data?.systemInfo?.threadCount || 0)}
+              prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <UserOutlined />}
+              valueStyle={{ color: error ? '#faad14' : '#13c2c2' }}
             />
           </Card>
         </Col>
@@ -267,10 +298,10 @@ const Monitor: React.FC = () => {
           <Card>
             <Statistic
               title="平均响应时间"
-              value={(data?.aiStats?.avgResponseTime || 0).toFixed(0)}
-              suffix="ms"
-              prefix={<ClockCircleOutlined />}
-              valueStyle={{ color: '#faad14' }}
+              value={error ? "数据获取异常" : (data?.aiStats?.avgResponseTime || 0).toFixed(0)}
+              suffix={error ? "" : "ms"}
+              prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <ClockCircleOutlined />}
+              valueStyle={{ color: error ? '#faad14' : '#faad14' }}
             />
           </Card>
         </Col>
@@ -281,19 +312,19 @@ const Monitor: React.FC = () => {
           <Card
             title={
               <span>
-                <WindowsOutlined style={{ color: '#ff4d4f', marginRight: 8 }} />
+                <WindowsOutlined style={{ color: error ? '#faad14' : '#ff4d4f', marginRight: 8 }} />
                 Redis 缓存状态
               </span>
             }
           >
             <Progress
-              percent={data?.redisStatus ? (data.redisStatus.memoryUsed / data.redisStatus.memoryTotal * 100) : 0}
-              status="active"
-              strokeColor={{
+              percent={error ? 0 : (data?.redisStatus ? (data.redisStatus.memoryUsed / data.redisStatus.memoryTotal * 100) : 0)}
+              status={error ? 'normal' : 'active'}
+              strokeColor={error ? '#faad14' : {
                 '0%': '#108ee9',
                 '100%': '#87d068',
               }}
-              format={(percent) => `${data?.redisStatus?.memoryUsed || 0}MB / ${data?.redisStatus?.memoryTotal || 0}MB`}
+              format={(percent) => error ? '数据获取异常' : `${data?.redisStatus?.memoryUsed || 0}MB / ${data?.redisStatus?.memoryTotal || 0}MB`}
             />
             <Table
               columns={redisColumns}
@@ -308,7 +339,7 @@ const Monitor: React.FC = () => {
           <Card
             title={
               <span>
-                <LinuxOutlined style={{ color: '#ff7875', marginRight: 8 }} />
+                <LinuxOutlined style={{ color: error ? '#faad14' : '#ff7875', marginRight: 8 }} />
                 消息队列状态
               </span>
             }
@@ -317,15 +348,17 @@ const Monitor: React.FC = () => {
               <Col span={12}>
                 <Statistic
                   title="队列消息数"
-                  value={data?.mqStatus?.queueSize || 0}
-                  prefix={<RocketOutlined />}
+                  value={error ? "数据获取异常" : (data?.mqStatus?.queueSize || 0)}
+                  prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <RocketOutlined />}
+                  valueStyle={{ color: error ? '#faad14' : 'inherit' }}
                 />
               </Col>
               <Col span={12}>
                 <Statistic
                   title="消费者数量"
-                  value={data?.mqStatus?.consumerCount || 0}
-                  prefix={<DatabaseOutlined />}
+                  value={error ? "数据获取异常" : (data?.mqStatus?.consumerCount || 0)}
+                  prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <DatabaseOutlined />}
+                  valueStyle={{ color: error ? '#faad14' : 'inherit' }}
                 />
               </Col>
             </Row>
@@ -345,7 +378,7 @@ const Monitor: React.FC = () => {
           <Card
             title={
               <span>
-                <ApiOutlined style={{ color: '#1890ff', marginRight: 8 }} />
+                <ApiOutlined style={{ color: error ? '#faad14' : '#1890ff', marginRight: 8 }} />
                 AI 接口调用统计
               </span>
             }
@@ -354,25 +387,25 @@ const Monitor: React.FC = () => {
               <Col xs={24} sm={8}>
                 <Statistic
                   title="今日调用次数"
-                  value={data?.aiStats?.todayCalls || 0}
-                  prefix={<ThunderboltOutlined />}
-                  valueStyle={{ color: '#1890ff' }}
+                  value={error ? "数据获取异常" : (data?.aiStats?.todayCalls || 0)}
+                  prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <ThunderboltOutlined />}
+                  valueStyle={{ color: error ? '#faad14' : '#1890ff' }}
                 />
               </Col>
               <Col xs={24} sm={8}>
                 <Statistic
                   title="累计调用次数"
-                  value={data?.aiStats?.totalCalls || 0}
-                  prefix={<ApiFilled />}
-                  valueStyle={{ color: '#52c41a' }}
+                  value={error ? "数据获取异常" : (data?.aiStats?.totalCalls || 0)}
+                  prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <ApiFilled />}
+                  valueStyle={{ color: error ? '#faad14' : '#52c41a' }}
                 />
               </Col>
               <Col xs={24} sm={8}>
                 <Statistic
                   title="累计使用 Token"
-                  value={data?.aiStats?.totalTokens || 0}
-                  prefix={<GlobalOutlined />}
-                  valueStyle={{ color: '#faad14' }}
+                  value={error ? "数据获取异常" : (data?.aiStats?.totalTokens || 0)}
+                  prefix={error ? <WarningOutlined style={{ color: '#faad14' }} /> : <GlobalOutlined />}
+                  valueStyle={{ color: error ? '#faad14' : '#faad14' }}
                 />
               </Col>
             </Row>
@@ -382,7 +415,7 @@ const Monitor: React.FC = () => {
           <Card
             title={
               <span>
-                <CloudServerOutlined style={{ color: '#722ed1', marginRight: 8 }} />
+                <CloudServerOutlined style={{ color: error ? '#faad14' : '#722ed1', marginRight: 8 }} />
                 系统资源检测
               </span>
             }
@@ -390,25 +423,25 @@ const Monitor: React.FC = () => {
             <Row gutter={16}>
               <Col xs={24}>
                 <Progress
-                  percent={data?.systemInfo ? (data.systemInfo.cpuUsage) : 0}
-                  status={data?.systemInfo?.cpuUsage !== undefined ? (data.systemInfo.cpuUsage >= 80 ? 'exception' : data.systemInfo.cpuUsage >= 50 ? 'normal' : 'success') : 'normal'}
-                  strokeColor={{
+                  percent={error ? 0 : (data?.systemInfo ? (data.systemInfo.cpuUsage) : 0)}
+                  status={error ? 'normal' : (data?.systemInfo?.cpuUsage !== undefined ? (data.systemInfo.cpuUsage >= 80 ? 'exception' : data.systemInfo.cpuUsage >= 50 ? 'normal' : 'success') : 'normal')}
+                  strokeColor={error ? '#faad14' : {
                     '0%': '#52c41a',
                     '100%': '#ff4d4f',
                   }}
                   style={{ marginBottom: 16 }}
-                  format={(percent) => `CPU: ${percent}%`}
+                  format={(percent) => error ? '数据获取异常' : `CPU: ${percent}%`}
                 />
               </Col>
               <Col xs={24}>
                 <Progress
-                  percent={data?.systemInfo ? (data.systemInfo.memoryUsage / data.systemInfo.memoryTotal * 100) : 0}
-                  status={data?.systemInfo ? (data.systemInfo.memoryUsage / data.systemInfo.memoryTotal >= 0.8 ? 'exception' : data.systemInfo.memoryUsage / data.systemInfo.memoryTotal >= 0.6 ? 'normal' : 'success') : 'normal'}
-                  strokeColor={{
+                  percent={error ? 0 : (data?.systemInfo ? (data.systemInfo.memoryUsage / data.systemInfo.memoryTotal * 100) : 0)}
+                  status={error ? 'normal' : (data?.systemInfo ? (data.systemInfo.memoryUsage / data.systemInfo.memoryTotal >= 0.8 ? 'exception' : data.systemInfo.memoryUsage / data.systemInfo.memoryTotal >= 0.6 ? 'normal' : 'success') : 'normal')}
+                  strokeColor={error ? '#faad14' : {
                     '0%': '#52c41a',
                     '100%': '#ff4d4f',
                   }}
-                  format={(percent) => `内存: ${percent}%`}
+                  format={(percent) => error ? '数据获取异常' : `内存: ${percent}%`}
                 />
               </Col>
             </Row>

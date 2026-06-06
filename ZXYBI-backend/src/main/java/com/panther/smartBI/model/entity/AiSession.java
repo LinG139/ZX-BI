@@ -21,11 +21,20 @@ public class AiSession implements Serializable {
     @TableField(value = "userId")
     private Long userId;
 
+    @TableField(exist = false)
+    private String userName;
+
+    @TableField(exist = false)
+    private String userAvatar;
+
     @TableField(value = "sessionName")
     private String sessionName;
 
     @TableField(value = "role")
     private String role;
+
+    @TableField(exist = false)
+    private String roleName;
 
     @TableField(value = "prompt")
     private String prompt;

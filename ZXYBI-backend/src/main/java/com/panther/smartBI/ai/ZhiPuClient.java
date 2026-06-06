@@ -8,6 +8,7 @@ import cn.hutool.json.JSONUtil;
 import com.panther.smartBI.common.ErrorCode;
 import com.panther.smartBI.config.ZhiPuConfig;
 import com.panther.smartBI.exception.BusinessException;
+import com.panther.smartBI.model.entity.AiConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -17,24 +18,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 智谱AI客户端
+ */
 @Service
 @Slf4j
-public class ZhiPuClient {
+public class ZhiPuClient implements AiClient {
 
     @Resource
     private ZhiPuConfig zhiPuConfig;
+
+    private AiConfig dynamicConfig;
 
     private static final String CHART_ANALYSIS_SYSTEM_PROMPT =
             "你是一个数据分析和可视化专家。请严格按照以下两部分格式返回结果，绝对不能颠倒顺序:\n\n" +
                     "第一部分：简要的数据分析结论\n" +
                     "=>=>=>\n" +
                     "第二部分：只返回纯ECharts option配置JSON代码，不能包含任何其他内容\n\n" +
-
                     "正确输出示例:\n" +
                     "这是数据分析结论...\n" +
                     "=>=>=>\n" +
                     "{\"title\":{...}, \"xAxis\": {...}, ...}\n\n" +
-
                     "严格要求:\n" +
                     "1. 必须在数据分析结论后单独一行使用 '=>=>=>' 作为分隔符，这是强制要求\n" +
                     "2. 分隔符之后只能有纯JSON代码，不能有任何额外文字、分析、注释或代码块标记\n" +
@@ -47,24 +51,58 @@ public class ZhiPuClient {
                     "   - 正确：\"textStyle\": {\"fontSize\": 14} 而不是 \"textStyle\": function() {...}\n" +
                     "7. 所有支持模板字符串的属性都必须使用 {xxx} 占位符格式，不要使用函数";
 
+    @Override
+    public void setConfig(AiConfig config) {
+        this.dynamicConfig = config;
+    }
+
+    @Override
     public String doChat(String message, boolean isChartAnalysis) {
         return doChat(message, isChartAnalysis, null);
     }
 
+    @Override
     public String doChat(String message, boolean isChartAnalysis, String customPrompt) {
         return doChatWithHistory(message, isChartAnalysis, customPrompt, new ArrayList<>());
     }
 
+    @Override
     public String doChatWithHistory(String message, boolean isChartAnalysis, String customPrompt, List<Message> history) {
         try {
-            String modelId = isChartAnalysis ?
-                    zhiPuConfig.getChartModelId() :
-                    zhiPuConfig.getChatModelId();
+            // 优先使用动态配置
+            String apiKey;
+            String baseUrl;
+            String chatModelId;
+            String chartModelId;
+            Integer timeout;
+            Double temperature;
+
+            if (dynamicConfig != null) {
+                apiKey = dynamicConfig.getApiKey();
+                baseUrl = dynamicConfig.getBaseUrl();
+                chatModelId = dynamicConfig.getChatModelId();
+                chartModelId = dynamicConfig.getChartModelId();
+                timeout = dynamicConfig.getTimeout();
+                temperature = dynamicConfig.getTemperature();
+            } else {
+                apiKey = zhiPuConfig.getApiKey();
+                baseUrl = zhiPuConfig.getBaseUrl();
+                chatModelId = zhiPuConfig.getChatModelId();
+                chartModelId = zhiPuConfig.getChartModelId();
+                timeout = null;
+                temperature = null;
+            }
+
+            String modelId = isChartAnalysis ? chartModelId : chatModelId;
 
             log.info("调用智谱AI，模型: {}, 类型: {}, 消息长度: {}, 历史消息数: {}",
                     modelId, isChartAnalysis ? "图表分析" : "普通聊天", message.length(), history.size());
 
-            String url = zhiPuConfig.getBaseUrl() + "/chat/completions";
+            if (baseUrl == null || baseUrl.isEmpty()) {
+                baseUrl = "https://open.bigmodel.cn/api/paas/v4";
+            }
+
+            String url = baseUrl + "/chat/completions";
 
             Map<String, Object> requestBody = new HashMap<>();
             requestBody.put("model", modelId);
@@ -99,7 +137,7 @@ public class ZhiPuClient {
 
             requestBody.put("messages", messages);
             requestBody.put("stream", false);
-            requestBody.put("temperature", 0.95);
+            requestBody.put("temperature", temperature != null ? temperature : 0.95);
             requestBody.put("top_p", 0.7);
 
             String jsonBody = JSONUtil.toJsonStr(requestBody);
@@ -108,9 +146,9 @@ public class ZhiPuClient {
 
             HttpResponse response = HttpRequest.post(url)
                     .header("Content-Type", "application/json")
-                    .header("Authorization", "Bearer " + zhiPuConfig.getApiKey())
+                    .header("Authorization", "Bearer " + apiKey)
                     .body(jsonBody)
-                    .timeout(180000)
+                    .timeout(timeout != null ? timeout : 180000)
                     .execute();
 
             int status = response.getStatus();
@@ -161,6 +199,9 @@ public class ZhiPuClient {
         }
     }
 
+    /**
+     * 消息类
+     */
     public static class Message {
         private String role;
         private String content;

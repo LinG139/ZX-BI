@@ -1,5 +1,5 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Card, Table, Button, Tag, Space, Modal, message, Input, Select, Row, Col, Statistic, Descriptions, Timeline, Typography, Divider, Avatar, Popconfirm } from 'antd';
+import { Card, Table, Button, Tag, Space, Modal, message, Input, Row, Col, Statistic, Descriptions, Timeline, Typography, Divider, Avatar, Popconfirm } from 'antd';
 import { useEffect, useState } from 'react';
 import type { ColumnsType } from 'antd/es/table';
 import {
@@ -10,24 +10,22 @@ import {
   RobotOutlined,
   UserOutlined,
   ThunderboltOutlined,
-  ClockCircleOutlined,
   HistoryOutlined,
   GlobalOutlined,
   TeamOutlined,
-  WarningOutlined
 } from '@ant-design/icons';
 
 const { Text, Paragraph } = Typography;
 const { Search } = Input;
-const { Option } = Select;
-const { TextArea } = Input;
 
 interface AiSession {
   id: number;
   sessionName: string;
   userId: number;
   userName?: string;
+  userAvatar?: string;
   role: string;
+  roleName?: string;
   prompt: string;
   createTime: string;
   updateTime: string;
@@ -39,10 +37,10 @@ interface AiChat {
   userId: number;
   userName?: string;
   userMessage: string;
-  AIMessage: string;
+  aiMessage: string;
   userAvatar?: string;
-  AIAvatar?: string;
-  AIName?: string;
+  aiAvatar?: string;
+  aiName?: string;
   createTime: string;
 }
 
@@ -56,15 +54,12 @@ interface AiUsageStats {
 
 const AiManage: React.FC = () => {
   const [sessionLoading, setSessionLoading] = useState(false);
-  const [chatLoading, setChatLoading] = useState(false);
   const [sessions, setSessions] = useState<AiSession[]>([]);
-  const [chats, setChats] = useState<AiChat[]>([]);
   const [usageStats, setUsageStats] = useState<AiUsageStats | null>(null);
   const [chatDetailVisible, setChatDetailVisible] = useState(false);
   const [currentChats, setCurrentChats] = useState<AiChat[]>([]);
   const [sessionSearchText, setSessionSearchText] = useState('');
   const [sessionCurrent, setSessionCurrent] = useState(1);
-  const [chatCurrent, setChatCurrent] = useState(1);
   const [pageSize] = useState(10);
   const [selectedSession, setSelectedSession] = useState<AiSession | null>(null);
 
@@ -73,14 +68,10 @@ const AiManage: React.FC = () => {
     fetchUsageStats();
   }, [sessionCurrent, pageSize]);
 
-  useEffect(() => {
-    fetchChats();
-  }, [chatCurrent, pageSize]);
-
   const fetchSessions = async () => {
     setSessionLoading(true);
     try {
-      const response = await fetch('http://localhost:9001/api/admin/ai/session/list/page', {
+      const response = await fetch('/api/admin/ai/session/list/page', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -103,34 +94,9 @@ const AiManage: React.FC = () => {
     }
   };
 
-  const fetchChats = async () => {
-    setChatLoading(true);
-    try {
-      const response = await fetch('http://localhost:9001/api/admin/ai/chat/list/page', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-          current: chatCurrent,
-          pageSize,
-        }),
-      });
-      const res = await response.json();
-      if (res.code === 0) {
-        setChats(res.data.records || []);
-      } else {
-        message.error('获取对话列表失败: ' + res.message);
-      }
-    } catch (error) {
-      message.error('网络错误');
-    } finally {
-      setChatLoading(false);
-    }
-  };
-
   const fetchUsageStats = async () => {
     try {
-      const response = await fetch('http://localhost:9001/api/admin/ai/stats', {
+      const response = await fetch('/api/admin/ai/stats', {
         credentials: 'include',
       });
       const res = await response.json();
@@ -144,12 +110,22 @@ const AiManage: React.FC = () => {
 
   const showSessionChats = async (sessionId: number, session: AiSession) => {
     try {
-      const response = await fetch(`http://localhost:9001/api/admin/ai/chat/list?sessionId=${sessionId}`, {
+      const response = await fetch(`/api/admin/ai/chat/list?sessionId=${sessionId}`, {
         credentials: 'include',
       });
       const res = await response.json();
       if (res.code === 0) {
-        setCurrentChats(res.data || []);
+        const chats = res.data || [];
+        console.log('获取到的对话记录:', chats);
+        chats.forEach((chat: AiChat, index: number) => {
+          console.log(`对话 ${index + 1}:`, {
+            userMessage: chat.userMessage,
+            aiMessage: chat.aiMessage,
+            hasAIMessage: !!chat.aiMessage,
+            AIMessageLength: chat.aiMessage ? chat.aiMessage.length : 0
+          });
+        });
+        setCurrentChats(chats);
         setSelectedSession(session);
         setChatDetailVisible(true);
       } else {
@@ -162,7 +138,7 @@ const AiManage: React.FC = () => {
 
   const deleteSession = async (sessionId: number) => {
     try {
-      const response = await fetch('http://localhost:9001/api/admin/ai/session/delete', {
+      const response = await fetch('/api/admin/ai/session/delete', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -181,30 +157,9 @@ const AiManage: React.FC = () => {
     }
   };
 
-  const deleteChat = async (chatId: number) => {
-    try {
-      const response = await fetch('http://localhost:9001/api/admin/ai/chat/delete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({ id: chatId }),
-      });
-      const res = await response.json();
-      if (res.code === 0) {
-        message.success('对话记录删除成功');
-        fetchChats();
-        fetchUsageStats();
-      } else {
-        message.error('删除失败: ' + res.message);
-      }
-    } catch (error) {
-      message.error('网络错误');
-    }
-  };
-
   const deleteAllChatsInSession = async (sessionId: number) => {
     try {
-      const response = await fetch('http://localhost:9001/api/admin/ai/session/delete-all-chats', {
+      const response = await fetch('/api/admin/ai/session/delete-all-chats', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -228,47 +183,61 @@ const AiManage: React.FC = () => {
       title: '会话ID',
       dataIndex: 'id',
       key: 'id',
-      width: 80,
+      width: '12%',
+      align: 'center',
+      render: (text) => <Text code style={{ fontSize: '12px' }}>{text}</Text>,
     },
     {
       title: '会话名称',
       dataIndex: 'sessionName',
       key: 'sessionName',
-      ellipsis: true,
-      render: (text) => <Text strong>{text || '无名称'}</Text>,
+      width: '28%',
+      ellipsis: { tooltip: true },
+      render: (text) => <Text strong style={{ fontSize: '13px' }}>{text || '无名称'}</Text>,
     },
     {
       title: '用户',
       dataIndex: 'userName',
       key: 'userName',
-      width: 120,
+      width: '18%',
+      align: 'center',
       render: (text, record) => (
-        <Space>
-          <Avatar size="small" icon={<UserOutlined />} />
-          <Text>{text || `用户${record.userId}`}</Text>
-        </Space>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+          <Avatar size={24} src={record.userAvatar} icon={<UserOutlined />} shape="circle" />
+          <span style={{ fontSize: '13px', wordBreak: 'break-all', flex: 1, textAlign: 'left' }}>
+            {text || '未知用户'}
+          </span>
+        </div>
       ),
     },
     {
       title: '角色',
       dataIndex: 'role',
       key: 'role',
-      width: 100,
-      render: (text) => <Tag color="blue">{text || '默认'}</Tag>,
+      width: '12%',
+      align: 'center',
+      render: (text, record) => (
+        <Tag color="blue" style={{ padding: '2px 8px', fontSize: '12px', borderRadius: '4px' }}>
+          {record.roleName || text || '默认'}
+        </Tag>
+      ),
     },
     {
       title: '操作',
       key: 'action',
-      width: 280,
+      width: '30%',
+      align: 'center',
       render: (_, record) => (
-        <Space size="small">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px' }}>
           <Button
             type="link"
             icon={<HistoryOutlined />}
             onClick={() => showSessionChats(record.id, record)}
+            style={{ color: '#1677ff', fontSize: '12px', padding: '4px 8px', height: 'auto' }}
           >
             查看对话
           </Button>
+          <span style={{ color: '#d9d9d9', fontSize: '12px' }}>|</span>
           <Popconfirm
             title="清空对话"
             description="确定要清空此会话的所有对话记录吗？"
@@ -276,10 +245,11 @@ const AiManage: React.FC = () => {
             okText="确认"
             cancelText="取消"
           >
-            <Button type="link" danger icon={<DeleteOutlined />}>
+            <Button type="link" danger style={{ fontSize: '12px', padding: '4px 8px', height: 'auto' }}>
               清空
             </Button>
           </Popconfirm>
+          <span style={{ color: '#d9d9d9', fontSize: '12px' }}>|</span>
           <Popconfirm
             title="删除会话"
             description="确定要删除此会话及所有对话记录吗？此操作不可恢复！"
@@ -288,73 +258,11 @@ const AiManage: React.FC = () => {
             cancelText="取消"
             okButtonProps={{ danger: true }}
           >
-            <Button type="link" danger icon={<DeleteOutlined />}>
+            <Button type="link" danger style={{ fontSize: '12px', padding: '4px 8px', height: 'auto' }}>
               删除
             </Button>
           </Popconfirm>
-        </Space>
-      ),
-    },
-  ];
-
-  const chatColumns: ColumnsType<AiChat> = [
-    {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
-      width: 80,
-    },
-    {
-      title: '会话ID',
-      dataIndex: 'sessionId',
-      key: 'sessionId',
-      width: 80,
-      render: (id) => <Text code>{id}</Text>,
-    },
-    {
-      title: '用户',
-      dataIndex: 'userName',
-      key: 'userName',
-      width: 120,
-      render: (text, record) => <Text>{text || `用户${record.userId}`}</Text>,
-    },
-    {
-      title: '用户消息',
-      dataIndex: 'userMessage',
-      key: 'userMessage',
-      ellipsis: true,
-      render: (text) => <Text>{text}</Text>,
-    },
-    {
-      title: 'AI消息',
-      dataIndex: 'AIMessage',
-      key: 'AIMessage',
-      ellipsis: true,
-      render: (text) => <Text type="secondary">{text}</Text>,
-    },
-    {
-      title: '时间',
-      dataIndex: 'createTime',
-      key: 'createTime',
-      width: 180,
-    },
-    {
-      title: '操作',
-      key: 'action',
-      width: 100,
-      render: (_, record) => (
-        <Popconfirm
-          title="删除对话"
-          description="确定要删除这条对话记录吗？"
-          onConfirm={() => deleteChat(record.id)}
-          okText="确认"
-          cancelText="取消"
-          okButtonProps={{ danger: true }}
-        >
-          <Button type="link" danger icon={<DeleteOutlined />}>
-            删除
-          </Button>
-        </Popconfirm>
+        </div>
       ),
     },
   ];
@@ -400,19 +308,24 @@ const AiManage: React.FC = () => {
         </Col>
       </Row>
 
-      <Card title="会话列表" style={{ marginTop: 16 }} extra={
-        <Space>
-          <Search
-            placeholder="搜索会话ID或标题"
-            value={sessionSearchText}
-            onChange={(e) => setSessionSearchText(e.target.value)}
-            onSearch={fetchSessions}
-            style={{ width: 250 }}
-            allowClear
-          />
-          <Button icon={<ReloadOutlined />} onClick={fetchSessions}>刷新</Button>
-        </Space>
-      }>
+      <Card 
+        title="会话列表" 
+        style={{ marginTop: 16 }} 
+        extra={
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Search
+              placeholder="搜索会话ID或标题"
+              value={sessionSearchText}
+              onChange={(e) => setSessionSearchText(e.target.value)}
+              onSearch={fetchSessions}
+              style={{ width: 220 }}
+              allowClear
+              size="small"
+            />
+            <Button icon={<ReloadOutlined />} onClick={fetchSessions} size="small">刷新</Button>
+          </div>
+        }
+      >
         <Table
           columns={sessionColumns}
           dataSource={sessions}
@@ -426,24 +339,18 @@ const AiManage: React.FC = () => {
             showTotal: (total) => `共 ${total} 条`,
             onChange: (page, size) => setSessionCurrent(page),
           }}
-        />
-      </Card>
-
-      <Card title="对话记录" style={{ marginTop: 16 }} extra={
-        <Button icon={<ReloadOutlined />} onClick={fetchChats}>刷新</Button>
-      }>
-        <Table
-          columns={chatColumns}
-          dataSource={chats}
-          rowKey="id"
-          loading={chatLoading}
-          pagination={{
-            current: chatCurrent,
-            pageSize,
-            total: chats.length,
-            showSizeChanger: true,
-            showTotal: (total) => `共 ${total} 条`,
-            onChange: (page, size) => setChatCurrent(page),
+          style={{ fontSize: '13px' }}
+          components={{
+            body: {
+              cell: ({ children, ...restProps }) => (
+                <td {...restProps} style={{ padding: '8px 12px' }}>{children}</td>
+              ),
+            },
+            header: {
+              cell: ({ children, ...restProps }) => (
+                <th {...restProps} style={{ padding: '10px 12px', fontWeight: 600, fontSize: '13px' }}>{children}</th>
+              ),
+            },
           }}
         />
       </Card>
@@ -452,7 +359,7 @@ const AiManage: React.FC = () => {
         title={
           <Space>
             <HistoryOutlined />
-            <span>会话详情: {selectedSession?.title || '无标题'}</span>
+            <span>会话详情: {selectedSession?.sessionName || '无标题'}</span>
           </Space>
         }
         open={chatDetailVisible}
@@ -471,7 +378,7 @@ const AiManage: React.FC = () => {
             description="确定要清空此会话的所有对话记录吗？"
             onConfirm={() => {
               if (selectedSession) {
-                deleteAllChatsInSession(selectedSession.sessionId);
+                deleteAllChatsInSession(selectedSession.id);
                 setChatDetailVisible(false);
               }
             }}
@@ -492,7 +399,7 @@ const AiManage: React.FC = () => {
               <Text code copyable>{selectedSession.id}</Text>
             </Descriptions.Item>
             <Descriptions.Item label="会话名称">{selectedSession.sessionName || '无名称'}</Descriptions.Item>
-            <Descriptions.Item label="用户">{selectedSession.userName || `用户${selectedSession.userId}`}</Descriptions.Item>
+            <Descriptions.Item label="用户">{selectedSession.userName || '未知用户'}</Descriptions.Item>
             <Descriptions.Item label="角色">{selectedSession.role || '默认'}</Descriptions.Item>
             <Descriptions.Item label="创建时间">{selectedSession.createTime}</Descriptions.Item>
             <Descriptions.Item label="更新时间">{selectedSession.updateTime}</Descriptions.Item>
@@ -521,13 +428,13 @@ const AiManage: React.FC = () => {
                       <Descriptions.Item label="用户">
                         <Space>
                           <Avatar size="small" icon={<UserOutlined />} />
-                          {chat.userName || `用户${chat.userId}`}
+                          {chat.userName || '未知用户'}
                         </Space>
                       </Descriptions.Item>
                       <Descriptions.Item label="AI">
                         <Space>
                           <Avatar size="small" icon={<RobotOutlined />} />
-                          {chat.AIName || 'AI助手'}
+                          {chat.aiName || 'AI助手'}
                         </Space>
                       </Descriptions.Item>
                       <Descriptions.Item label="会话ID">{chat.sessionId}</Descriptions.Item>
@@ -541,11 +448,11 @@ const AiManage: React.FC = () => {
                       {chat.userMessage}
                     </Paragraph>
 
-                    {chat.AIMessage && (
+                    {chat.aiMessage && (
                       <>
                         <Divider style={{ margin: '12px 0' }}>AI回答</Divider>
                         <Paragraph style={{ margin: 0, padding: 12, backgroundColor: '#f6ffed', borderRadius: 4 }}>
-                          {chat.AIMessage}
+                          {chat.aiMessage}
                         </Paragraph>
                       </>
                     )}
@@ -554,10 +461,25 @@ const AiManage: React.FC = () => {
                       <Popconfirm
                         title="删除对话"
                         description="确定要删除这条对话记录吗？"
-                        onConfirm={() => {
-                          deleteChat(chat.id);
-                          const updated = currentChats.filter(c => c.id !== chat.id);
-                          setCurrentChats(updated);
+                        onConfirm={async () => {
+                          try {
+                            const response = await fetch('/api/admin/ai/chat/delete', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json' },
+                              credentials: 'include',
+                              body: JSON.stringify({ id: chat.id }),
+                            });
+                            const res = await response.json();
+                            if (res.code === 0) {
+                              message.success('删除成功');
+                              const updated = currentChats.filter(c => c.id !== chat.id);
+                              setCurrentChats(updated);
+                            } else {
+                              message.error('删除失败: ' + res.message);
+                            }
+                          } catch (error) {
+                            message.error('网络错误');
+                          }
                         }}
                         okText="确认"
                         cancelText="取消"

@@ -1,10 +1,10 @@
 import Footer from '@/components/Footer';
 import {userRegisterUsingPOST} from '@/services/yubi/userController';
-import {LockOutlined, UserOutlined} from '@ant-design/icons';
+import {LeftOutlined, LockOutlined, UserOutlined} from '@ant-design/icons';
 import {LoginForm, ProFormText} from '@ant-design/pro-components';
 import {useEmotionCss} from '@ant-design/use-emotion-css';
 import {Helmet, history} from '@umijs/max';
-import {Avatar, message, Tabs} from 'antd';
+import {Avatar, Button, message, Tabs} from 'antd';
 import React, {useState} from 'react';
 import Settings from '../../../../config/defaultSettings';
 import {DEFAULT_AVATAR_URL} from '@/constants';
@@ -141,6 +141,14 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleBack = () => {
+    if (history) {
+      history.push({
+        pathname: '/user/login',
+      });
+    }
+  };
+
   return (
     <div className={containerClassName}>
       <Helmet>
@@ -148,10 +156,21 @@ const Login: React.FC = () => {
           {'注册'}- {Settings.title}
         </title>
       </Helmet>
+      {/* 返回按钮 */}
+      <div style={{ padding: '16px 24px' }}>
+        <Button 
+          icon={<LeftOutlined />} 
+          onClick={handleBack}
+          type="text"
+          style={{ color: '#8c8c8c' }}
+        >
+          返回登录
+        </Button>
+      </div>
       <div
         style={{
           flex: '1',
-          padding: '32px 0',
+          padding: '0 0 32px 0',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'flex-start',

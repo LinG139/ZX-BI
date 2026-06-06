@@ -230,6 +230,16 @@ export async function reloadChartByAiUsingGET(
   });
 }
 
+/** getUserChartStats GET /api/chart/user/stats */
+export async function getUserChartStatsUsingGET(
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseUserChartStatsVO_>('/api/chart/user/stats', {
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
 /** updateChart POST /api/chart/update */
 export async function updateChartUsingPOST(
   body: API.ChartUpdateRequest,

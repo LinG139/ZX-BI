@@ -123,7 +123,12 @@ public class LogInterceptor {
         operationLog.setIp(ip);
         operationLog.setLocation("本地"); // 可以后续添加IP定位功能
         operationLog.setStatus(1);
-        operationLog.setParams(reqParam.length() > 500 ? reqParam.substring(0, 500) : reqParam);
+        // 安全截取字符串，防止索引越界
+        String safeParams = reqParam;
+        if (safeParams != null && safeParams.length() > 500) {
+            safeParams = safeParams.substring(0, 500);
+        }
+        operationLog.setParams(safeParams);
         operationLog.setCreateTime(new Date());
         
         Object result = null;
@@ -134,7 +139,13 @@ public class LogInterceptor {
             return result;
         } catch (Exception e) {
             operationLog.setStatus(0);
-            operationLog.setErrorMessage(e.getMessage() != null ? e.getMessage().substring(0, 500) : "未知错误");
+            String errorMsg = e.getMessage();
+            if (errorMsg != null && errorMsg.length() > 500) {
+                errorMsg = errorMsg.substring(0, 500);
+            } else if (errorMsg == null) {
+                errorMsg = "未知错误";
+            }
+            operationLog.setErrorMessage(errorMsg);
             throw e;
         } finally {
             // 输出响应日志

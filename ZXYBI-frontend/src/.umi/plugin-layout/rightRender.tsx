@@ -3,7 +3,7 @@
 // DO NOT CHANGE IT MANUALLY!
 import React from 'react';
 import { Avatar, version, Dropdown, Menu, Spin } from 'antd';
-import { LogoutOutlined } from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@ant-design/icons';
+import { LogoutOutlined } from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons';
 
 export function getRightRenderContent (opts: {
    runtimeConfig: any,

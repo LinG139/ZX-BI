@@ -1,0 +1,205 @@
+package com.panther.smartBI.ai;
+
+import cn.hutool.http.HttpRequest;
+import cn.hutool.http.HttpResponse;
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.panther.smartBI.common.ErrorCode;
+import com.panther.smartBI.exception.BusinessException;
+import com.panther.smartBI.model.entity.AiConfig;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * 讯飞星火客户端
+ */
+@Service
+@Slf4j
+public class XunfeiClient implements AiClient {
+
+    private AiConfig config;
+
+    private static final String CHART_ANALYSIS_SYSTEM_PROMPT =
+            "你是一个数据分析和可视化专家。请严格按照以下两部分格式返回结果，绝对不能颠倒顺序:\n\n" +
+                    "第一部分：简要的数据分析结论\n" +
+                    "=>=>=>\n" +
+                    "第二部分：只返回纯ECharts option配置JSON代码，不能包含任何其他内容\n\n" +
+                    "正确输出示例:\n" +
+                    "这是数据分析结论...\n" +
+                    "=>=>=>\n" +
+                    "{\"title\":{...}, \"xAxis\": {...}, ...}\n\n" +
+                    "严格要求:\n" +
+                    "1. 必须在数据分析结论后单独一行使用 '=>=>=>' 作为分隔符，这是强制要求\n" +
+                    "2. 分隔符之后只能有纯JSON代码，不能有任何额外文字、分析、注释或代码块标记\n" +
+                    "3. JSON必须是标准可解析格式，不能包含中文注释\n" +
+                    "4. 不要在JSON前后添加任何 ``` json 或其他标记，分隔符之后直接就是JSON\n" +
+                    "5. 确保JSON可以被JSON.parse()直接解析\n" +
+                    "6. 绝对禁止在JSON中使用JavaScript函数，所有动态内容必须使用字符串模板，例如：\n" +
+                    "   - 正确：\"formatter\": \"{b}: {c}\" 或 \"formatter\": \"{a} <br/>{b}: {c}\"\n" +
+                    "   - 错误：\"formatter\": function(params) { return ...; }\n" +
+                    "   - 正确：\"textStyle\": {\"fontSize\": 14} 而不是 \"textStyle\": function() {...}\n" +
+                    "7. 所有支持模板字符串的属性都必须使用 {xxx} 占位符格式，不要使用函数";
+
+    @Override
+    public void setConfig(AiConfig config) {
+        this.config = config;
+    }
+
+    @Override
+    public String doChat(String message, boolean isChartAnalysis) {
+        return doChat(message, isChartAnalysis, null);
+    }
+
+    @Override
+    public String doChat(String message, boolean isChartAnalysis, String customPrompt) {
+        return doChatWithHistory(message, isChartAnalysis, customPrompt, new ArrayList<>());
+    }
+
+    @Override
+    public String doChatWithHistory(String message, boolean isChartAnalysis, String customPrompt, List<ZhiPuClient.Message> history) {
+        try {
+            if (config == null) {
+                throw new BusinessException(ErrorCode.PARAMS_ERROR, "讯飞星火配置未初始化");
+            }
+
+            String modelId = isChartAnalysis ? config.getChartModelId() : config.getChatModelId();
+            String baseUrl = config.getBaseUrl();
+            if (baseUrl == null || baseUrl.isEmpty()) {
+                baseUrl = "https://spark-api.xf-yun.com/v1.1/chat";
+            }
+
+            log.info("调用讯飞星火，模型: {}, 类型: {}, 消息长度: {}",
+                    modelId, isChartAnalysis ? "图表分析" : "普通聊天", message.length());
+
+            String url = baseUrl;
+
+            String authHeader = generateAuthHeader(config.getApiKey(), config.getSecret());
+
+            Map<String, Object> requestBody = new HashMap<>();
+            requestBody.put("header", new JSONObject()
+                    .put("app_id", config.getApiKey())
+                    .put("uid", "smartbi_user"));
+
+            JSONArray messages = new JSONArray();
+
+            if (isChartAnalysis) {
+                JSONObject systemMessage = new JSONObject();
+                systemMessage.put("role", "system");
+                systemMessage.put("content", CHART_ANALYSIS_SYSTEM_PROMPT);
+                messages.add(systemMessage);
+            } else if (customPrompt != null && !customPrompt.trim().isEmpty()) {
+                JSONObject systemMessage = new JSONObject();
+                systemMessage.put("role", "system");
+                systemMessage.put("content", customPrompt);
+                messages.add(systemMessage);
+            }
+
+            for (ZhiPuClient.Message msg : history) {
+                JSONObject historyMessage = new JSONObject();
+                historyMessage.put("role", msg.getRole());
+                historyMessage.put("content", msg.getContent());
+                messages.add(historyMessage);
+            }
+
+            JSONObject userMessage = new JSONObject();
+            userMessage.put("role", "user");
+            userMessage.put("content", message);
+            messages.add(userMessage);
+
+            requestBody.put("parameter", new JSONObject()
+                    .put("chat", new JSONObject()
+                            .put("domain", modelId)
+                            .put("temperature", config.getTemperature() != null ? config.getTemperature() : 0.5)
+                            .put("max_tokens", config.getMaxTokens() != null ? config.getMaxTokens() : 4096)));
+
+            requestBody.put("payload", new JSONObject().put("message", new JSONObject().put("text", messages)));
+
+            String jsonBody = JSONUtil.toJsonStr(requestBody);
+            log.debug("讯飞星火请求体: {}", jsonBody);
+
+            HttpResponse response = HttpRequest.post(url)
+                    .header("Content-Type", "application/json")
+                    .header("Authorization", authHeader)
+                    .body(jsonBody)
+                    .timeout(config.getTimeout() != null ? config.getTimeout() : 180000)
+                    .execute();
+
+            int status = response.getStatus();
+            if (status != 200) {
+                log.error("讯飞星火调用失败，HTTP状态码: {}, 响应: {}", status, response.body());
+                throw new BusinessException(ErrorCode.OPERATION_ERROR, "AI 调用失败，请稍后重试");
+            }
+
+            String responseBody = response.body();
+            log.debug("讯飞星火响应: {}", responseBody);
+
+            JSONObject jsonResponse = JSONUtil.parseObj(responseBody);
+
+            int code = jsonResponse.getInt("code", -1);
+            if (code != 0) {
+                String errorMessage = jsonResponse.getStr("message", "未知错误");
+                log.error("讯飞星火返回错误: {}", errorMessage);
+                throw new BusinessException(ErrorCode.OPERATION_ERROR, "AI 返回错误: " + errorMessage);
+            }
+
+            JSONObject payload = jsonResponse.getJSONObject("payload");
+            if (payload == null) {
+                log.error("讯飞星火响应中没有payload，响应: {}", responseBody);
+                throw new BusinessException(ErrorCode.OPERATION_ERROR, "AI 响应异常");
+            }
+
+            JSONObject messageObj = payload.getJSONObject("message");
+            if (messageObj == null) {
+                log.error("讯飞星火响应中没有message，响应: {}", responseBody);
+                throw new BusinessException(ErrorCode.OPERATION_ERROR, "AI 响应异常");
+            }
+
+            JSONArray textArray = messageObj.getJSONArray("text");
+            if (textArray == null || textArray.isEmpty()) {
+                log.error("讯飞星火响应中没有text，响应: {}", responseBody);
+                throw new BusinessException(ErrorCode.OPERATION_ERROR, "AI 响应异常");
+            }
+
+            String content = textArray.getJSONObject(0).getStr("content");
+            if (content == null || content.trim().isEmpty()) {
+                log.error("讯飞星火返回的内容为空，响应: {}", responseBody);
+                throw new BusinessException(ErrorCode.OPERATION_ERROR, "AI 返回内容为空");
+            }
+
+            log.info("讯飞星火调用成功，返回内容长度: {}", content.length());
+            return content;
+
+        } catch (BusinessException e) {
+            throw e;
+        } catch (Exception e) {
+            log.error("讯飞星火调用过程中发生未预期异常", e);
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "AI 调用失败: " + e.getMessage());
+        }
+    }
+
+    private String generateAuthHeader(String appId, String apiSecret) {
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        String signature = appId + ":" + timestamp;
+        byte[] signatureBytes = signature.getBytes();
+        byte[] secretBytes = apiSecret.getBytes();
+        
+        try {
+            javax.crypto.Mac mac = javax.crypto.Mac.getInstance("HmacSHA256");
+            javax.crypto.spec.SecretKeySpec secretKeySpec = new javax.crypto.spec.SecretKeySpec(secretBytes, "HmacSHA256");
+            mac.init(secretKeySpec);
+            byte[] hash = mac.doFinal(signatureBytes);
+            String signatureBase64 = Base64.getEncoder().encodeToString(hash);
+            return "Bearer " + Base64.getEncoder().encodeToString((appId + ":" + signatureBase64).getBytes());
+        } catch (Exception e) {
+            log.error("生成讯飞星火认证头失败", e);
+            throw new BusinessException(ErrorCode.OPERATION_ERROR, "生成认证信息失败");
+        }
+    }
+}

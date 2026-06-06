@@ -1,6 +1,7 @@
 package com.panther.smartBI.controller;
 
 import cn.hutool.core.io.FileUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.panther.smartBI.annotation.AuthCheck;
 import com.panther.smartBI.annotation.RateCount;
@@ -15,10 +16,12 @@ import com.panther.smartBI.constant.UserConstant;
 import com.panther.smartBI.exception.BusinessException;
 import com.panther.smartBI.exception.ThrowUtils;
 import com.panther.smartBI.manager.RedissonLimiterManager;
+import com.panther.smartBI.mapper.ChartMapper;
 import com.panther.smartBI.model.dto.chart.*;
 import com.panther.smartBI.model.entity.Chart;
 import com.panther.smartBI.model.entity.User;
 import com.panther.smartBI.model.vo.BiResponse;
+import com.panther.smartBI.model.vo.UserChartStatsVO;
 import com.panther.smartBI.service.ChartService;
 import com.panther.smartBI.service.UserService;
 import com.panther.smartBI.utils.FileParserUtils;
@@ -48,6 +51,9 @@ public class ChartController {
 
     @Resource
     private SendMessage sendMessage;
+
+    @Resource
+    private ChartMapper chartMapper;
 
 
     // region 增删改查
@@ -277,6 +283,28 @@ public class ChartController {
         }
         boolean result = chartService.updateById(chart);
         return ResultUtils.success(result);
+    }
+
+    @GetMapping("/user/stats")
+    public BaseResponse<UserChartStatsVO> getUserChartStats(HttpServletRequest request) {
+        User loginUser = userService.getLoginUser(request);
+        Long userId = loginUser.getId();
+        
+        Long totalCount = chartMapper.selectCount(new QueryWrapper<Chart>().eq("userId", userId));
+        Long successCount = chartMapper.selectCount(new QueryWrapper<Chart>().eq("userId", userId).eq("status", 1));
+        Long failedCount = totalCount - successCount;
+        
+        Double successRate = totalCount > 0 ? (double) successCount / totalCount : 0.0;
+        Double failRate = totalCount > 0 ? 1.0 - successRate : 0.0;
+        
+        UserChartStatsVO statsVO = new UserChartStatsVO();
+        statsVO.setTotalCount(totalCount);
+        statsVO.setSuccessCount(successCount);
+        statsVO.setFailedCount(failedCount);
+        statsVO.setSuccessRate(successRate);
+        statsVO.setFailRate(failRate);
+        
+        return ResultUtils.success(statsVO);
     }
 
 }

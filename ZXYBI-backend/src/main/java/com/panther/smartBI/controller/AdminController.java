@@ -1,6 +1,7 @@
 package com.panther.smartBI.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.panther.smartBI.annotation.AuthCheck;
 import com.panther.smartBI.common.BaseResponse;
@@ -11,6 +12,7 @@ import com.panther.smartBI.constant.UserConstant;
 import com.panther.smartBI.exception.BusinessException;
 import com.panther.smartBI.exception.ThrowUtils;
 import com.panther.smartBI.mapper.AiChatMapper;
+import com.panther.smartBI.mapper.AiConfigMapper;
 import com.panther.smartBI.mapper.AiSessionMapper;
 import com.panther.smartBI.mapper.ChartMapper;
 import com.panther.smartBI.mapper.UserMapper;
@@ -19,17 +21,20 @@ import com.panther.smartBI.mapper.OperationLogMapper;
 import com.panther.smartBI.mapper.LoginLogMapper;
 import com.panther.smartBI.model.dto.admin.*;
 import com.panther.smartBI.model.entity.AiChat;
+import com.panther.smartBI.model.entity.AiConfig;
 import com.panther.smartBI.model.entity.AiSession;
 import com.panther.smartBI.model.entity.Chart;
 import com.panther.smartBI.model.entity.User;
 import com.panther.smartBI.model.entity.RechargeRecord;
 import com.panther.smartBI.model.entity.OperationLog;
 import com.panther.smartBI.model.entity.LoginLog;
+import com.panther.smartBI.model.enums.AiPlatformEnum;
 import com.panther.smartBI.model.vo.admin.AdminDashboardVO;
 import com.panther.smartBI.model.vo.admin.AiUsageStatsVO;
 import com.panther.smartBI.model.vo.admin.ChartStatusStatsVO;
 import com.panther.smartBI.model.vo.admin.LoginLogVO;
 import com.panther.smartBI.model.vo.admin.OperationLogVO;
+import com.panther.smartBI.service.AiConfigService;
 import com.panther.smartBI.service.MonitorService;
 import com.panther.smartBI.service.UserService;
 import com.panther.smartBI.utils.SqlUtils;
@@ -77,6 +82,82 @@ public class AdminController {
 
     @Resource
     private MonitorService monitorService;
+
+    @Resource
+    private AiConfigService aiConfigService;
+
+    @GetMapping("/ai/config/platforms")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<List<Map<String, String>>> getAiPlatforms() {
+        List<Map<String, String>> platforms = new ArrayList<>();
+        for (AiPlatformEnum platform : AiPlatformEnum.values()) {
+            Map<String, String> map = new java.util.HashMap<>();
+            map.put("value", platform.getValue());
+            map.put("label", platform.getText());
+            map.put("defaultUrl", platform.getDefaultBaseUrl());
+            platforms.add(map);
+        }
+        return ResultUtils.success(platforms);
+    }
+
+    @GetMapping("/ai/config/list")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<List<AiConfig>> listAiConfigs() {
+        List<AiConfig> configs = aiConfigService.getAllConfig();
+        for (AiConfig config : configs) {
+            config.setApiKey(maskApiKey(config.getApiKey()));
+            config.setSecret(maskApiKey(config.getSecret()));
+        }
+        return ResultUtils.success(configs);
+    }
+
+    @GetMapping("/ai/config/get")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<AiConfig> getAiConfig(@RequestParam Long id) {
+        AiConfig config = aiConfigService.getConfigById(id);
+        config.setApiKey(maskApiKey(config.getApiKey()));
+        config.setSecret(maskApiKey(config.getSecret()));
+        return ResultUtils.success(config);
+    }
+
+    @GetMapping("/ai/config/current")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<AiConfig> getCurrentAiConfig() {
+        AiConfig config = aiConfigService.getActiveConfig();
+        config.setApiKey(maskApiKey(config.getApiKey()));
+        config.setSecret(maskApiKey(config.getSecret()));
+        return ResultUtils.success(config);
+    }
+
+    @PostMapping("/ai/config/save")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<AiConfig> saveAiConfig(@RequestBody AiConfig config) {
+        AiConfig savedConfig = aiConfigService.saveConfig(config);
+        savedConfig.setApiKey(maskApiKey(savedConfig.getApiKey()));
+        savedConfig.setSecret(maskApiKey(savedConfig.getSecret()));
+        return ResultUtils.success(savedConfig);
+    }
+
+    @PostMapping("/ai/config/activate")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> activateAiConfig(@RequestParam Long id) {
+        boolean success = aiConfigService.activateConfig(id);
+        return ResultUtils.success(success);
+    }
+
+    @PostMapping("/ai/config/delete")
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> deleteAiConfig(@RequestParam Long id) {
+        boolean success = aiConfigService.deleteConfig(id);
+        return ResultUtils.success(success);
+    }
+
+    private String maskApiKey(String apiKey) {
+        if (apiKey == null || apiKey.length() <= 8) {
+            return "******";
+        }
+        return apiKey.substring(0, 4) + "******" + apiKey.substring(apiKey.length() - 4);
+    }
 
     @PostMapping("/user/list/page")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
@@ -177,6 +258,16 @@ public class AdminController {
         long size = adminChartQueryRequest.getPageSize();
         Page<Chart> chartPage = chartMapper.selectPage(new Page<>(current, size),
                 getChartQueryWrapper(adminChartQueryRequest));
+        
+        for (Chart chart : chartPage.getRecords()) {
+            if (chart.getUserId() != null) {
+                User user = userMapper.selectById(chart.getUserId());
+                if (user != null) {
+                    chart.setUserName(user.getUserName());
+                }
+            }
+        }
+        
         return ResultUtils.success(chartPage);
     }
 
@@ -213,6 +304,14 @@ public class AdminController {
         }
         Chart chart = chartMapper.selectById(id);
         ThrowUtils.throwIf(chart == null, ErrorCode.NOT_FOUND_ERROR, "图表不存在");
+        
+        if (chart.getUserId() != null) {
+            User user = userMapper.selectById(chart.getUserId());
+            if (user != null) {
+                chart.setUserName(user.getUserName());
+            }
+        }
+        
         return ResultUtils.success(chart);
     }
 
@@ -224,16 +323,50 @@ public class AdminController {
         long size = request.getPageSize();
         Page<AiSession> sessionPage = aiSessionMapper.selectPage(new Page<>(current, size),
                 getAiSessionQueryWrapper(request));
+        
+        for (AiSession session : sessionPage.getRecords()) {
+            if (session.getUserId() != null) {
+                User user = userMapper.selectById(session.getUserId());
+                if (user != null) {
+                    session.setUserName(user.getUserName());
+                    session.setUserAvatar(user.getUserAvatar());
+                }
+            }
+            
+            String role = session.getRole();
+            if (role != null) {
+                String roleName = getRoleName(role);
+                session.setRoleName(roleName);
+            }
+        }
+        
         return ResultUtils.success(sessionPage);
+    }
+    
+    private String getRoleName(String role) {
+        switch (role) {
+            case "yuyu":
+                return "雨雨";
+            case "tingting":
+                return "婷婷";
+            case "writer":
+                return "文案作家";
+            case "analyst":
+                return "数据分析师";
+            case "default":
+                return "默认";
+            default:
+                return role;
+        }
     }
 
     @PostMapping("/ai/chat/list/page")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Page<AiChat>> listAiChatByPage(@RequestBody AdminAiChatQueryRequest request,
+    public BaseResponse<IPage<AiChat>> listAiChatByPage(@RequestBody AdminAiChatQueryRequest request,
                                                        HttpServletRequest httpRequest) {
         long current = request.getCurrent();
         long size = request.getPageSize();
-        Page<AiChat> chatPage = aiChatMapper.selectPage(new Page<>(current, size),
+        IPage<AiChat> chatPage = aiChatMapper.selectPageWithResultMap(new Page<>(current, size),
                 getAiChatQueryWrapper(request));
         return ResultUtils.success(chatPage);
     }
@@ -244,8 +377,12 @@ public class AdminController {
         if (sessionId == null || sessionId <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
-        List<AiChat> chatList = aiChatMapper.selectList(
-                new QueryWrapper<AiChat>().eq("sessionId", sessionId).orderByAsc("createTime"));
+        List<AiChat> chatList = aiChatMapper.selectBySessionId(sessionId);
+        log.info("查询会话对话: sessionId={}, 记录数={}", sessionId, chatList.size());
+        for (AiChat chat : chatList) {
+            log.info("对话记录: id={}, userMessage={}, aiMessage={}", 
+                    chat.getId(), chat.getUserMessage(), chat.getAiMessage());
+        }
         return ResultUtils.success(chatList);
     }
 
@@ -327,6 +464,13 @@ public class AdminController {
         dashboardVO.setSuccessCharts(chartMapper.selectCount(new QueryWrapper<Chart>().eq("status", 1)));
         dashboardVO.setFailedCharts(chartMapper.selectCount(new QueryWrapper<Chart>().eq("status", -1)));
         
+        Long totalChartsCount = chartMapper.selectCount(null);
+        Long successCount = dashboardVO.getSuccessCharts();
+        Double successRate = totalChartsCount > 0 ? (double) successCount / totalChartsCount : 0.0;
+        Double failRate = totalChartsCount > 0 ? 1.0 - successRate : 0.0;
+        dashboardVO.setSuccessRate(successRate);
+        dashboardVO.setFailRate(failRate);
+        
         Long totalPoints = 0L;
         List<User> users = userMapper.selectList(null);
         for (User user : users) {
@@ -336,8 +480,8 @@ public class AdminController {
         }
         dashboardVO.setTotalUserPoints(totalPoints);
         
-        dashboardVO.setUserTrend(getUserTrend(7));
-        dashboardVO.setChartTrend(getChartTrend(7));
+        dashboardVO.setUserTrend(getUserTrend(14));
+        dashboardVO.setChartTrend(getChartTrend(14));
         
         return ResultUtils.success(dashboardVO);
     }

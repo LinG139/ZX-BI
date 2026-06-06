@@ -24,7 +24,7 @@ import {
 } from '@ant-design/icons';
 import React, {useEffect, useState} from 'react';
 import {history} from '@umijs/max';
-import {listMyChartVOByPageUsingPOST} from '@/services/yubi/chartController';
+import {listMyChartVOByPageUsingPOST, getUserChartStatsUsingGET} from '@/services/yubi/chartController';
 import moment from 'moment';
 
 /**
@@ -121,21 +121,22 @@ const Welcome: React.FC = () => {
   const loadChartStats = async () => {
     setLoading(true);
     try {
+      const statsRes = await getUserChartStatsUsingGET();
+      if (statsRes.code === 0 && statsRes.data) {
+        const {totalCount, successCount, failedCount} = statsRes.data;
+        setChartStats({
+          total: totalCount || 0,
+          success: successCount || 0,
+          failed: failedCount || 0,
+        });
+      }
+      
       const res = await listMyChartVOByPageUsingPOST({
         current: 1,
         pageSize: 20,
       });
       if (res.code === 0 && res.data) {
         const records = res.data.records || [];
-        const total = res.data.total || 0;
-        const pageSuccess = records.filter(r => r.execMessage === '成功').length;
-        const pageFailed = records.filter(r => r.execMessage === '失败').length;
-        
-        setChartStats({
-          total: total,
-          success: pageSuccess,
-          failed: pageFailed,
-        });
         setRecentCharts(records.slice(0, 7));
       }
     } catch (e) {
