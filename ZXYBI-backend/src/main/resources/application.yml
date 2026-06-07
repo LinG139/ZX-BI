@@ -35,7 +35,7 @@ spring:
 # 文件存储配置
 file:
   upload:
-    path: uploads/avatars/
+    path: upload/
   access:
     url: http://localhost:9001/api/file/avatar/
 

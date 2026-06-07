@@ -4,6 +4,7 @@
 import HomeOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/HomeOutlined';
 import BarChartOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/BarChartOutlined';
 import PieChartOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/PieChartOutlined';
+import FileTextOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/FileTextOutlined';
 import WalletOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/WalletOutlined';
 import AliwangwangOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/AliwangwangOutlined';
 import DashboardOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/DashboardOutlined';
@@ -11,5 +12,5 @@ import TeamOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modu
 import MessageOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/MessageOutlined';
 import SettingOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/SettingOutlined';
 import MonitorOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/MonitorOutlined';
-import FileTextOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/FileTextOutlined';
-export default { HomeOutlined, BarChartOutlined, PieChartOutlined, WalletOutlined, AliwangwangOutlined, DashboardOutlined, TeamOutlined, MessageOutlined, SettingOutlined, MonitorOutlined, FileTextOutlined };
+import FolderOutlined from 'D:/Code/ZX-BI-main/ZX-BI-main/ZXYBI-frontend/node_modules/@umijs/plugins/node_modules/@ant-design/icons/es/icons/FolderOutlined';
+export default { HomeOutlined, BarChartOutlined, PieChartOutlined, FileTextOutlined, WalletOutlined, AliwangwangOutlined, DashboardOutlined, TeamOutlined, MessageOutlined, SettingOutlined, MonitorOutlined, FolderOutlined };

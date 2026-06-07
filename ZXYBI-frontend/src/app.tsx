@@ -49,10 +49,10 @@ export const layout: RunTimeLayoutConfig = ({initialState, setInitialState}) => 
   return {
     logo: (
       <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-        <img alt="logo" src="/logo.svg" style={{ width: '40px', height: '40px', marginRight: '8px' }} />
+        <img alt="logo" src="/logo.svg" style={{ width: '35px', height: '35px', marginRight: '8px' }} /> 
         
           <span style={{ 
-            fontSize: '30px', 
+            fontSize: '28px', 
             fontWeight: 'bold',
             fontStyle: 'italic',
             background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',

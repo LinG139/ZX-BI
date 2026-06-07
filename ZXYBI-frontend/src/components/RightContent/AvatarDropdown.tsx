@@ -57,10 +57,10 @@ export const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({menu, children
   const {initialState, setInitialState} = useModel('@@initialState');
 
   const handleDownload = () => {
-    const fileUrl = 'testdata/测试数据1.xlsx';
+    const fileUrl = 'testdata/sales_data.csv';
     const link = document.createElement('a');
     link.href = fileUrl;
-    link.download = "测试数据1.xlsx";
+    link.download = "sales_data.csv";
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
     link.click();

@@ -310,7 +310,7 @@ const Dashboard: React.FC = () => {
           </Col>
         </Row>
         <Progress
-          percent={parseFloat(successRate)}
+          percent={Number(successRate)}
           strokeColor={{
             '0%': '#ff4d4f',
             '50%': '#faad14',

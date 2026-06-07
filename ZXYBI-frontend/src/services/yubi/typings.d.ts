@@ -100,6 +100,118 @@ declare namespace API {
     message?: string;
   };
 
+  type BaseResponseFileInfo_ = {
+    code?: number;
+    data?: FileInfo;
+    message?: string;
+  };
+
+  type BaseResponseFileCategory_ = {
+    code?: number;
+    data?: FileCategory;
+    message?: string;
+  };
+
+  type BaseResponseListFileCategory_ = {
+    code?: number;
+    data?: FileCategory[];
+    message?: string;
+  };
+
+  type BaseResponsePageFileInfo_ = {
+    code?: number;
+    data?: PageFileInfo_;
+    message?: string;
+  };
+
+  type BaseResponsePageFileCategory_ = {
+    code?: number;
+    data?: PageFileCategory_;
+    message?: string;
+  };
+
+  type FileInfo = {
+    id?: number;
+    fileName?: string;
+    fileFormat?: string;
+    fileSize?: number;
+    filePath?: string;
+    fileMd5?: string;
+    userId?: number;
+    categoryId?: number;
+    createTime?: string;
+    updateTime?: string;
+    isDelete?: number;
+  };
+
+  type FileCategory = {
+    id?: number;
+    categoryName?: string;
+    fileSuffixes?: string;
+    createTime?: string;
+    updateTime?: string;
+    isDelete?: number;
+  };
+
+  type FileInfoQueryRequest = {
+    id?: number;
+    fileName?: string;
+    fileFormat?: string;
+    userId?: number;
+    categoryId?: number;
+    current?: number;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+  };
+
+  type FileCategoryQueryRequest = {
+    id?: number;
+    categoryName?: string;
+    current?: number;
+    pageSize?: number;
+    sortField?: string;
+    sortOrder?: string;
+  };
+
+  type PageFileInfo_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: FileInfo[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type PageFileCategory_ = {
+    countId?: string;
+    current?: number;
+    maxLimit?: number;
+    optimizeCountSql?: boolean;
+    orders?: OrderItem[];
+    pages?: number;
+    records?: FileCategory[];
+    searchCount?: boolean;
+    size?: number;
+    total?: number;
+  };
+
+  type previewFileUsingGETParams = {
+    id?: number;
+  };
+
+  type getFileInfoUsingGETParams = {
+    id?: number;
+  };
+
+  type getFileCategoryByIdUsingGETParams = {
+    id?: number;
+  };
+
   type BiResponse = {
     chartId?: number;
     execMessage?: string;

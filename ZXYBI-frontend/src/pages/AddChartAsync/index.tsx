@@ -1,11 +1,12 @@
 import { ByAiAsyncUsingPOST, getChartVOByIdUsingGET, reloadChartByAiUsingGET } from '@/services/yubi/chartController';
-import { UploadOutlined, ReloadOutlined, CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined, LoadingOutlined, BarChartOutlined, AimOutlined, FileTextOutlined, SyncOutlined, CloudUploadOutlined } from '@ant-design/icons';
+import { getFileInfoUsingGET } from '@/services/yubi/fileInfoController';
+import { UploadOutlined, ReloadOutlined, CheckCircleOutlined, ClockCircleOutlined, CloseCircleOutlined, LoadingOutlined, BarChartOutlined, AimOutlined, FileTextOutlined, SyncOutlined, CloudUploadOutlined, PaperClipOutlined } from '@ant-design/icons';
 import { Button, Card, Col, Divider, Form, Input, message, Modal, Row, Select, Space, Spin, Upload, Tag, Steps, Typography } from 'antd';
 import { useForm } from 'antd/es/form/Form';
 import TextArea from 'antd/es/input/TextArea';
 import React, { useEffect, useState } from 'react';
 import ReactECharts from 'echarts-for-react';
-import { history, useModel } from '@umijs/max';
+import { history, useModel, useLocation } from '@umijs/max';
 
 interface ChartData {
   id: number;
@@ -26,11 +27,70 @@ const AddChartAsync: React.FC = () => {
   const [polling, setPolling] = useState<boolean>(false);
   const [chartOption, setChartOption] = useState<any>(null);
   const [showNoCreditModal, setShowNoCreditModal] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<API.FileInfo | null>(null);
   const { initialState } = useModel('@@initialState');
+  const location = useLocation();
 
   const handleGoToRecharge = () => {
     setShowNoCreditModal(false);
     history.push('/recharge');
+  };
+
+  useEffect(() => {
+    // 优先使用直接传递过来的完整文件信息
+    const state = location.state as any;
+    const fileInfoFromState = state?.fileInfo;
+    if (fileInfoFromState) {
+      try {
+        let fileInfo;
+        // 如果已经是对象，直接使用
+        if (typeof fileInfoFromState === 'object' && fileInfoFromState !== null) {
+          fileInfo = fileInfoFromState;
+        } else {
+          // 否则尝试解析字符串
+          fileInfo = JSON.parse(fileInfoFromState);
+        }
+        if (fileInfo) {
+          setSelectedFile(fileInfo);
+          return;
+        }
+      } catch (e) {
+        console.warn('解析文件信息失败', e);
+      }
+    }
+    
+    // 如果没有直接传递，再尝试从 state 中获取 fileId 查询
+    let fileId = state?.fileId;
+    // 也可以从 search 参数中获取
+    const searchParams = new URLSearchParams(location.search);
+    if (!fileId) {
+      fileId = searchParams.get('fileId');
+    }
+    
+    if (fileId) {
+      // 将字符串转换为数字，避免精度丢失
+      const fileIdNumber = Number(fileId);
+      if (!isNaN(fileIdNumber) && fileIdNumber > 0) {
+        getFileInfoUsingGET({ id: fileIdNumber })
+          .then((res) => {
+            if (res?.data) {
+              setSelectedFile(res.data);
+            } else {
+              message.warning('文件不存在或已被删除，请重新上传文件');
+            }
+          })
+          .catch((e) => {
+            // 文件不存在或已被删除，给出友好提示
+            message.warning('文件不存在或已被删除，请重新上传文件');
+            console.warn('获取文件信息失败', e);
+          });
+      }
+    }
+  }, [location]);
+
+  const removeSelectedFile = () => {
+    setSelectedFile(null);
+    history.replace('/add_chart_async');
   };
 
   const statusConfig: Record<number, { icon: any; color: string; text: string }> = {
@@ -102,7 +162,7 @@ const AddChartAsync: React.FC = () => {
 
   const onFinish = async (values: any) => {
     // 获取当前用户积分
-    const userLeftCount = initialState?.currentUser?.leftCount ?? 0;
+    const userLeftCount = (initialState?.currentUser as any)?.leftCount ?? 0;
     
     // 积分校验
     if (userLeftCount <= 0) {
@@ -113,18 +173,29 @@ const AddChartAsync: React.FC = () => {
     if (submitting) return;
     setSubmitting(true);
     
-    const params = {
-      ...values,
-      file: undefined,
-    };
-    
     try {
-      const res = await ByAiAsyncUsingPOST(params, {}, values.file.file.originFileObj);
+      let res;
+      if (selectedFile) {
+        // 使用已选择的文件进行分析
+        const bodyParams = {
+          ...values,
+          fileId: selectedFile.id,
+        };
+        res = await ByAiAsyncUsingPOST({}, bodyParams, undefined);
+      } else {
+        // 对接后端，上传数据
+        const bodyParams = {
+          ...values,
+          file: undefined,
+        };
+        res = await ByAiAsyncUsingPOST({}, bodyParams, values.file.file.originFileObj);
+      }
+      
       if (!res?.data) {
         message.error('提交失败');
       } else {
         message.success('分析任务提交成功，正在处理中...');
-        setChartId(res.data.chartId);
+        setChartId(res.data.chartId ?? null);
         setChartData(null);
         setChartOption(null);
         form.resetFields();
@@ -192,7 +263,7 @@ const AddChartAsync: React.FC = () => {
           <Card
             title={<><AimOutlined style={{color: '#11998e', marginRight: 8}} />智能分析</>}
             style={{borderRadius: 12, boxShadow: '0 2px 12px rgba(0,0,0,0.08)'}}
-            headStyle={{borderBottom: '1px solid #f0f0f0', fontWeight: 600}}
+            styles={{header: {borderBottom: '1px solid #f0f0f0', fontWeight: 600}}}
           >
             <Form
               form={form}
@@ -277,22 +348,52 @@ const AddChartAsync: React.FC = () => {
                   </span>
                   原始数据
                 </span>}>
-                <Upload name="file" maxCount={5} accept=".csv,.xlsx,.xls,.txt,.dat,.json,.ods,.parquet,.db" multiple>
+                {selectedFile ? (
                   <div style={{
-                    border: '2px dashed #d9d9d9',
+                    border: '1px solid #d9d9d9',
                     borderRadius: 8,
-                    padding: '24px',
-                    textAlign: 'center',
-                    transition: 'all 0.3s ease',
-                    cursor: 'pointer'
+                    padding: '16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    background: '#fafafa'
                   }}>
-                    <div style={{marginBottom: 8}}>
-                      <UploadOutlined style={{fontSize: 32, color: '#999'}} />
+                    <div style={{display: 'flex', alignItems: 'center', gap: 12}}>
+                      <PaperClipOutlined style={{fontSize: 20, color: '#11998e'}} />
+                      <div>
+                        <div style={{fontWeight: 500}}>{selectedFile.fileName}</div>
+                        <div style={{fontSize: 12, color: '#999'}}>
+                          {selectedFile.fileFormat} · {(selectedFile.fileSize! / 1024).toFixed(2)} KB
+                        </div>
+                      </div>
                     </div>
-                    <p style={{color: '#666', margin: 0}}>点击或拖拽上传数据文件（支持多选）</p>
-                    <p style={{color: '#999', fontSize: 12, margin: '8px 0 0 0'}}>支持 CSV、Excel (.xlsx/.xls)、TXT、DAT、JSON、ODS、Parquet、SQLite 格式，单次最多上传 5 个文件，单个最大 10MB</p>
+                    <Button
+                      type="text"
+                      danger
+                      icon={<CloseCircleOutlined />}
+                      onClick={removeSelectedFile}
+                    >
+                      移除
+                    </Button>
                   </div>
-                </Upload>
+                ) : (
+                  <Upload name="file" maxCount={5} accept=".csv,.xlsx,.xls,.txt,.dat,.json,.ods,.parquet,.db" multiple>
+                    <div style={{
+                      border: '2px dashed #d9d9d9',
+                      borderRadius: 8,
+                      padding: '24px',
+                      textAlign: 'center',
+                      transition: 'all 0.3s ease',
+                      cursor: 'pointer'
+                    }}>
+                      <div style={{marginBottom: 8}}>
+                        <UploadOutlined style={{fontSize: 32, color: '#999'}} />
+                      </div>
+                      <p style={{color: '#666', margin: 0}}>点击或拖拽上传数据文件（支持多选）</p>
+                      <p style={{color: '#999', fontSize: 12, margin: '8px 0 0 0'}}>支持 CSV、Excel (.xlsx/.xls)、TXT、DAT、JSON、ODS、Parquet、SQLite 格式，单次最多上传 5 个文件，单个最大 10MB</p>
+                    </div>
+                  </Upload>
+                )}
               </Form.Item>
 
               <Form.Item wrapperCol={{ span: 18, offset: 4 }}>
@@ -315,9 +416,9 @@ const AddChartAsync: React.FC = () => {
 
         <Col xs={24} lg={12}>
           <Card
-            title={<><SyncOutlined style={{color: '#11998e', marginRight: 8, spin: chartData?.status === 2}} />任务状态</>}
+            title={<><SyncOutlined spin={chartData?.status === 2} style={{color: '#11998e', marginRight: 8}} />任务状态</>}
             style={{borderRadius: 12, boxShadow: '0 2px 12px rgba(0,0,0,0.08)', marginBottom: 16}}
-            headStyle={{borderBottom: '1px solid #f0f0f0', fontWeight: 600}}
+            styles={{header: {borderBottom: '1px solid #f0f0f0', fontWeight: 600}}}
           >
             {chartId ? (
               <div>
@@ -362,14 +463,14 @@ const AddChartAsync: React.FC = () => {
               <Card
                 title={<><FileTextOutlined style={{color: '#11998e', marginRight: 8}} />分析结论</>}
                 style={{borderRadius: 12, boxShadow: '0 2px 12px rgba(0,0,0,0.08)', marginBottom: 16}}
-                headStyle={{borderBottom: '1px solid #f0f0f0', fontWeight: 600}}
+                styles={{header: {borderBottom: '1px solid #f0f0f0', fontWeight: 600}}}
               >
                 <div style={{lineHeight: 1.8}}>{chartData.genResult || '暂无分析结果'}</div>
               </Card>
               <Card
                 title={<><BarChartOutlined style={{color: '#11998e', marginRight: 8}} />可视化图表</>}
                 style={{borderRadius: 12, boxShadow: '0 2px 12px rgba(0,0,0,0.08)'}}
-                headStyle={{borderBottom: '1px solid #f0f0f0', fontWeight: 600}}
+                styles={{header: {borderBottom: '1px solid #f0f0f0', fontWeight: 600}}}
               >
                 {chartOption ? (
                   <ReactECharts option={chartOption} style={{ height: 350 }} />
@@ -386,7 +487,7 @@ const AddChartAsync: React.FC = () => {
 
       <Modal
         title="积分不足"
-        visible={showNoCreditModal}
+        open={showNoCreditModal}
         onCancel={() => setShowNoCreditModal(false)}
         footer={null}
         closable={true}

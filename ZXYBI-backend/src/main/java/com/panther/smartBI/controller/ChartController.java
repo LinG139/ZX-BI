@@ -19,10 +19,12 @@ import com.panther.smartBI.manager.RedissonLimiterManager;
 import com.panther.smartBI.mapper.ChartMapper;
 import com.panther.smartBI.model.dto.chart.*;
 import com.panther.smartBI.model.entity.Chart;
+import com.panther.smartBI.model.entity.FileInfo;
 import com.panther.smartBI.model.entity.User;
 import com.panther.smartBI.model.vo.BiResponse;
 import com.panther.smartBI.model.vo.UserChartStatsVO;
 import com.panther.smartBI.service.ChartService;
+import com.panther.smartBI.service.FileInfoService;
 import com.panther.smartBI.service.UserService;
 import com.panther.smartBI.utils.FileParserUtils;
 import com.panther.smartBI.utils.UserInputUtils;
@@ -33,6 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
 
 /**
  * 图表接口
@@ -48,6 +51,9 @@ public class ChartController {
 
     @Resource
     private UserService userService;
+
+    @Resource
+    private FileInfoService fileInfoService;
 
     @Resource
     private SendMessage sendMessage;
@@ -163,6 +169,38 @@ public class ChartController {
     }
 
     /**
+     * 通过文件ID或上传文件获取CSV数据
+     *
+     * @param multipartFile 上传的文件
+     * @param fileId 文件ID
+     * @param loginUser 登录用户
+     * @return CSV数据
+     */
+    private String getCsvData(MultipartFile multipartFile, Long fileId, User loginUser) {
+        if (fileId != null) {
+            // 使用已上传的文件
+            FileInfo fileInfo = fileInfoService.getById(fileId);
+            ThrowUtils.throwIf(fileInfo == null, ErrorCode.NOT_FOUND_ERROR, "文件不存在");
+            // 验证文件所有权
+            ThrowUtils.throwIf(!fileInfo.getUserId().equals(loginUser.getId()), ErrorCode.NO_AUTH_ERROR, "无权操作该文件");
+            // 验证文件大小
+            ThrowUtils.throwIf(fileInfo.getFileSize() > FileConstant.MAX_FILE_SIZE, ErrorCode.SYSTEM_ERROR, "文件超过1M");
+            // 验证文件格式
+            String fileSuffix = fileInfo.getFileFormat().toLowerCase();
+            ThrowUtils.throwIf(!BiConstant.VALID_FILE_SUFFIX_LIST.contains(fileSuffix), ErrorCode.PARAMS_ERROR, "文件格式有误，支持的格式: xlsx, xls, csv, txt, dat, json, ods, parquet, db");
+            // 解析文件
+            File file = new File(fileInfo.getFilePath());
+            ThrowUtils.throwIf(!file.exists(), ErrorCode.NOT_FOUND_ERROR, "文件不存在");
+            return FileParserUtils.parseFileToCsv(file, fileSuffix);
+        } else if (multipartFile != null) {
+            // 使用上传的文件
+            return analysisFile(multipartFile);
+        } else {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR, "请上传文件或选择已上传的文件");
+        }
+    }
+
+    /**
      * 智能分析图标
      *
      * @param multipartFile 用户上传的文件
@@ -172,37 +210,37 @@ public class ChartController {
      */
     @PostMapping("/gen")
     @RateCount(count = "2")
-    public BaseResponse<BiResponse> getChartByAi(@RequestPart("file") MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
+    public BaseResponse<BiResponse> getChartByAi(@RequestPart(value = "file", required = false) MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
         // 积分校验
         User loginUser = userService.getLoginUser(request);
         ThrowUtils.throwIf(loginUser.getLeftCount() <= 0, ErrorCode.NO_AUTH_ERROR, "积分不足，请前往个人设置中心进行充值");
         
         //参数校验
-        String csvData = analysisFile(multipartFile);
+        String csvData = getCsvData(multipartFile, genChartByAiRequest.getFileId(), loginUser);
         BiResponse biResponse = chartService.getChartByAi(csvData, genChartByAiRequest, request);
         return ResultUtils.success(biResponse);
     }
 
     @PostMapping("/gen/async")
     @RateCount
-    public BaseResponse<BiResponse> ByAiAsync(@RequestPart("file") MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
+    public BaseResponse<BiResponse> ByAiAsync(@RequestPart(value = "file", required = false) MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
         // 积分校验
         User loginUser = userService.getLoginUser(request);
         ThrowUtils.throwIf(loginUser.getLeftCount() <= 0, ErrorCode.NO_AUTH_ERROR, "积分不足，请前往个人设置中心进行充值");
         
-        String csvData = analysisFile(multipartFile);
+        String csvData = getCsvData(multipartFile, genChartByAiRequest.getFileId(), loginUser);
         BiResponse biResponse = chartService.ByAiAsync(csvData, genChartByAiRequest, request);
         return ResultUtils.success(biResponse);
     }
 
     @PostMapping("/gen/async/mq")
     @RateCount
-    public BaseResponse<BiResponse> ByAiAsyncMQ(@RequestPart("file") MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
+    public BaseResponse<BiResponse> ByAiAsyncMQ(@RequestPart(value = "file", required = false) MultipartFile multipartFile, GenChartByAiRequest genChartByAiRequest, HttpServletRequest request) {
         // 积分校验
         User loginUser = userService.getLoginUser(request);
         ThrowUtils.throwIf(loginUser.getLeftCount() <= 0, ErrorCode.NO_AUTH_ERROR, "积分不足，请前往个人设置中心进行充值");
         
-        String csvData = analysisFile(multipartFile);
+        String csvData = getCsvData(multipartFile, genChartByAiRequest.getFileId(), loginUser);
         long chartId = chartService.saveRawData(csvData, genChartByAiRequest, request);
         sendMessage.sendMessage(String.valueOf(chartId));
         BiResponse biResponse = new BiResponse();
